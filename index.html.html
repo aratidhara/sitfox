@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitfox — AI Implementation Agency</title>
+  <meta name="description" content="Not sure how to use AI in your business? Sitfox shows you exactly what to implement — then builds it for you. Strategy + execution, under one roof.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --lime: #c7f57d; --dark: #242747; --orange: #fe8829;
+      --glass: rgba(255,255,255,0.55); --glass-s: rgba(255,255,255,0.78);
+      --gb: rgba(255,255,255,0.72); --gbs: rgba(36,39,71,0.1);
+      --t1: #1a1d3a; --t2: #4a4d6a; --t3: #8a8da8;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #eef0fb; color: var(--t1); line-height: 1.6; overflow-x: hidden; }
+
+    .bg-mesh { position: fixed; inset: 0; z-index: 0; background: linear-gradient(135deg,#eef0fb 0%,#e4eefe 25%,#fef0e4 60%,#f2fce6 100%); }
+    .orb { position: fixed; border-radius: 50%; filter: blur(90px); z-index: 0; pointer-events: none; }
+    .o1 { width:600px; height:600px; background:rgba(199,245,125,0.18); top:-150px; right:-120px; }
+    .o2 { width:450px; height:450px; background:rgba(254,136,41,0.11); bottom:80px; left:-120px; }
+    .o3 { width:350px; height:350px; background:rgba(36,39,71,0.05); top:45%; left:38%; }
+    .pg { position: relative; z-index: 1; }
+
+    /* NAV */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:100;
+      background: rgba(255,255,255,0.72); backdrop-filter: blur(24px);
+      border-bottom: 0.5px solid var(--gb); padding: 0 2.5rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nlogo { font-size:21px; font-weight:700; color:var(--dark); letter-spacing:-0.5px; }
+    .nlogo b { color:var(--orange); }
+    .nlinks { display:flex; gap:2rem; }
+    .nlinks a { font-size:14px; color:var(--t2); text-decoration:none; transition:color 0.2s; }
+    .nlinks a:hover { color:var(--dark); }
+    .ncta { background:var(--dark); color:#fff; padding:10px 22px; border-radius:10px; font-size:14px; font-weight:500; text-decoration:none; transition:all 0.2s; }
+    .ncta:hover { background:var(--orange); transform:translateY(-1px); }
+
+    /* HERO */
+    .hero { padding-top:68px; min-height:100vh; display:flex; align-items:center; max-width:1200px; margin:0 auto; padding-left:2.5rem; padding-right:2.5rem; }
+    .hg { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; width:100%; padding:4rem 0; }
+    .badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--glass-s); border:0.5px solid var(--gbs); border-radius:100px;
+      padding:6px 14px; font-size:12px; font-weight:500; color:var(--t2); margin-bottom:1.5rem;
+    }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--lime); animation:pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    h1 { font-size:clamp(2.2rem,3.8vw,3.3rem); font-weight:700; line-height:1.12; letter-spacing:-1.2px; margin-bottom:1.25rem; }
+    h1 .ac { color:var(--orange); }
+    .hsub { font-size:1.05rem; color:var(--t2); line-height:1.8; margin-bottom:2.25rem; max-width:460px; }
+    .hbtns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .bp { background:var(--dark); color:#fff; padding:14px 28px; border-radius:12px; font-size:15px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s; }
+    .bp:hover { background:var(--orange); transform:translateY(-2px); }
+    .bs { background:var(--glass-s); color:var(--t2); padding:14px 24px; border-radius:12px; font-size:15px; border:0.5px solid var(--gbs); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; }
+    .bs:hover { background:white; }
+    .trust { display:flex; align-items:center; gap:14px; }
+    .avs { display:flex; }
+    .avs span { width:32px; height:32px; border-radius:50%; border:2px solid white; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; margin-left:-8px; color:white; }
+    .avs span:first-child { margin-left:0; }
+    .a1{background:var(--dark)} .a2{background:var(--orange)} .a3{background:#5a8a1a} .a4{background:#7c3aed}
+    .ttext { font-size:13px; color:var(--t3); }
+    .ttext b { color:var(--t1); font-weight:500; }
+
+    /* Hero Collage */
+    .hcol { position:relative; width:100%; min-height:520px; }
+    .im { width:78%; border-radius:24px; overflow:hidden; box-shadow:0 20px 60px rgba(36,39,71,0.15); position:absolute; top:0; right:0; }
+    .im img { width:100%; height:340px; object-fit:cover; display:block; }
+    .is { width:52%; border-radius:18px; overflow:hidden; box-shadow:0 12px 40px rgba(36,39,71,0.12); position:absolute; bottom:20px; left:0; border:3px solid white; }
+    .is img { width:100%; height:200px; object-fit:cover; display:block; }
+    .fc { position:absolute; background:var(--glass-s); backdrop-filter:blur(16px); border:0.5px solid var(--gb); border-radius:14px; padding:11px 15px; white-space:nowrap; box-shadow:0 6px 28px rgba(36,39,71,0.1); animation:fy 4s ease-in-out infinite; z-index:10; }
+    .fc1 { top:18%; left:-4%; animation-delay:0s; }
+    .fc2 { bottom:24%; right:-2%; animation-delay:1.6s; }
+    @keyframes fy { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .fl { font-size:10px; color:var(--t3); margin-bottom:2px; }
+    .fv { font-size:15px; font-weight:700; color:var(--t1); }
+    .fp { background:rgba(199,245,125,0.4); color:#3a6b0a; font-size:10px; font-weight:600; padding:2px 8px; border-radius:100px; display:inline-block; margin-top:3px; }
+
+    /* STATS */
+    .sw { max-width:1200px; margin:0 auto; padding:0 2.5rem 4rem; }
+    .sr { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+    .sb { background:var(--glass-s); backdrop-filter:blur(16px); border:0.5px solid var(--gb); border-radius:18px; padding:1.5rem; text-align:center; }
+    .sn { font-size:2.2rem; font-weight:700; color:var(--t1); }
+    .sd { font-size:12px; color:var(--t3); margin-top:3px; }
+
+    .sep { height:0.5px; background:rgba(36,39,71,0.08); max-width:1200px; margin:0 auto; }
+
+    section { padding:5rem 2.5rem; max-width:1200px; margin:0 auto; }
+    .stag { display:inline-flex; align-items:center; gap:6px; background:rgba(199,245,125,0.2); color:#3a6b0a; font-size:11px; font-weight:600; letter-spacing:0.6px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:1rem; }
+    h2 { font-size:clamp(1.7rem,3vw,2.3rem); font-weight:700; letter-spacing:-0.6px; margin-bottom:0.75rem; }
+    .ssub { font-size:1rem; color:var(--t2); max-width:540px; }
+
+    /* METHOD */
+    .mg { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem; }
+    .mc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; padding:2rem; overflow:hidden; }
+    .mimg { width:100%; height:180px; object-fit:cover; border-radius:14px; margin-bottom:1.5rem; display:block; }
+    .micon { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:1rem; }
+    .mi1 { background:rgba(36,39,71,0.08); }
+    .mi2 { background:rgba(254,136,41,0.12); }
+    .mc h3 { font-size:1.15rem; font-weight:600; margin-bottom:0.5rem; }
+    .mc p { font-size:0.9rem; color:var(--t2); line-height:1.7; }
+    .ml { margin-top:1rem; display:flex; flex-direction:column; gap:8px; }
+    .mi { display:flex; align-items:center; gap:9px; font-size:13px; color:var(--t2); }
+    .ck { width:17px; height:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .ck1 { background:var(--dark); } .ck2 { background:var(--orange); }
+    .ck svg { width:8px; height:8px; }
+
+    /* TIMELINE */
+    .tg { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+    .tc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; overflow:hidden; }
+    .timg { width:100%; height:160px; object-fit:cover; display:block; }
+    .tb { padding:1.75rem; text-align:center; }
+    .tn { width:50px; height:50px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:700; color:#fff; margin:0 auto 1rem; }
+    .n1{background:var(--dark)} .n2{background:var(--orange)} .n3{background:#5a8a1a}
+    .tc h3 { font-size:1.05rem; font-weight:600; margin-bottom:0.5rem; }
+    .tc p { font-size:0.87rem; color:var(--t2); line-height:1.65; }
+    .tbadge { display:inline-block; background:rgba(199,245,125,0.25); color:#3a6b0a; font-size:11px; font-weight:500; padding:3px 10px; border-radius:100px; margin-top:0.9rem; }
+
+    /* BENTO */
+    .bg { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:2rem; }
+    .bc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; overflow:hidden; transition:transform 0.22s, box-shadow 0.22s; }
+    .bc:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(36,39,71,0.1); }
+    .bc.s2 { grid-column:span 2; }
+    .bimg { width:100%; height:180px; object-fit:cover; display:block; }
+    .bbar { height:3px; }
+    .b1{background:linear-gradient(90deg,#fe8829,#ffb347)}
+    .b2{background:linear-gradient(90deg,#242747,#4a4fad)}
+    .b3{background:linear-gradient(90deg,#c7f57d,#7ecf3a)}
+    .b4{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+    .b5{background:linear-gradient(90deg,#0ea5e9,#38bdf8)}
+    .bbd { padding:1.5rem; }
+    .bic { font-size:22px; margin-bottom:0.75rem; display:block; }
+    .bc h3 { font-size:1rem; font-weight:600; margin-bottom:0.4rem; }
+    .bc p { font-size:0.84rem; color:var(--t2); line-height:1.65; }
+    .bst { margin-top:0.9rem; display:flex; align-items:baseline; gap:4px; }
+    .bsn { font-size:1.6rem; font-weight:700; color:var(--t1); }
+    .bsl { font-size:12px; color:var(--t3); }
+    .btags { display:flex; gap:6px; margin-top:0.9rem; flex-wrap:wrap; }
+    .tg2 { font-size:11px; font-weight:500; padding:3px 10px; border-radius:100px; background:rgba(36,39,71,0.07); color:var(--t2); }
+    /* wide bento */
+    .bwin { display:grid; grid-template-columns:1fr 1fr; }
+    .bwin .bimgw { width:100%; height:100%; min-height:240px; object-fit:cover; display:block; }
+    .bwin .bbd { display:flex; flex-direction:column; justify-content:center; }
+
+    /* TESTIMONIALS */
+    .proof { background:var(--dark); border-radius:28px; padding:3.5rem; margin:0 2.5rem; position:relative; overflow:hidden; }
+    .proof::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:rgba(199,245,125,0.08); }
+    .proof::after { content:''; position:absolute; bottom:-60px; left:-60px; width:200px; height:200px; border-radius:50%; background:rgba(254,136,41,0.08); }
+    .phd { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
+    .phd h2 { color:white; }
+    .phd p { color:rgba(255,255,255,0.55); font-size:1rem; }
+    .pg2 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; position:relative; z-index:1; }
+    .pcard { background:rgba(255,255,255,0.06); border:0.5px solid rgba(255,255,255,0.12); border-radius:18px; padding:1.5rem; }
+    .pstars { color:var(--lime); font-size:13px; margin-bottom:0.75rem; }
+    .ptxt { font-size:0.87rem; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:1.25rem; font-style:italic; }
+    .pau { display:flex; align-items:center; gap:10px; }
+    .pav { width:38px; height:38px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid rgba(255,255,255,0.15); }
+    .pav img { width:100%; height:100%; object-fit:cover; display:block; }
+    .pname { font-size:13px; font-weight:500; color:white; }
+    .prole { font-size:11px; color:rgba(255,255,255,0.45); }
+
+    /* FAQ */
+    .fl2 { margin-top:2rem; display:flex; flex-direction:column; gap:1rem; }
+    .fi { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:16px; overflow:hidden; }
+    .fq { padding:1.2rem 1.5rem; font-size:0.95rem; font-weight:500; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
+    .fq:hover { background:rgba(255,255,255,0.45); }
+    .fch { font-size:16px; color:var(--t3); transition:transform 0.25s; flex-shrink:0; }
+    .fdiv { height:0.5px; background:rgba(36,39,71,0.07); margin:0 1.5rem; }
+    .fa { padding:0 1.5rem; max-height:0; overflow:hidden; font-size:0.88rem; color:var(--t2); line-height:1.75; transition:max-height 0.35s ease, padding 0.25s; }
+    .fi.open .fa { max-height:220px; padding:0 1.5rem 1.25rem; }
+    .fi.open .fch { transform:rotate(180deg); }
+
+    /* CTA */
+    .ctas { background:var(--dark); border-radius:28px; padding:5rem 3rem; text-align:center; position:relative; overflow:hidden; margin:0 2.5rem 5rem; }
+    .ctabg { position:absolute; inset:0; }
+    .ctabg img { width:100%; height:100%; object-fit:cover; opacity:0.12; display:block; }
+    .ctai { position:relative; z-index:1; }
+    .ctas h2 { color:white; font-size:clamp(1.7rem,3vw,2.4rem); margin-bottom:1rem; }
+    .ctas p { color:rgba(255,255,255,0.6); font-size:1rem; max-width:480px; margin:0 auto 2rem; }
+    .blime { background:var(--lime); color:var(--dark); padding:15px 34px; border-radius:12px; font-size:15px; font-weight:700; text-decoration:none; display:inline-block; transition:all 0.2s; }
+    .blime:hover { background:#d4f994; transform:translateY(-2px); }
+    .cnote { font-size:12px; color:rgba(255,255,255,0.3); margin-top:1rem; }
+
+    /* FOOTER */
+    footer { background:var(--glass-s); backdrop-filter:blur(20px); border-top:0.5px solid var(--gb); padding:2.5rem; }
+    .fi2 { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .flog { font-size:18px; font-weight:700; color:var(--dark); }
+    .flog b { color:var(--orange); }
+    .fcopy { font-size:13px; color:var(--t3); }
+    .flinks { display:flex; gap:1.5rem; }
+    .flinks a { font-size:13px; color:var(--t3); text-decoration:none; }
+    .flinks a:hover { color:var(--t1); }
+
+    @media (max-width:900px) {
+      .hg,.mg,.tg,.bg,.pg2,.sr,.bwin { grid-template-columns:1fr; }
+      .bc.s2 { grid-column:span 1; }
+      .bwin .bimgw { min-height:200px; }
+      .nlinks { display:none; }
+      .fi2 { flex-direction:column; gap:1rem; text-align:center; }
+      .proof,.ctas { margin:0 1rem 3rem; }
+      .hcol { min-height:300px; margin-top:2rem; }
+      .im { width:85%; } .is { width:58%; }
+      .fc1,.fc2 { display:none; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<div class="pg">
+
+<!-- NAV -->
+<nav>
+  <div class="nlogo">Sit<b>Fox</b></div>
+  <div class="nlinks">
+    <a href="#how">How it Works</a>
+    <a href="#industries">Industries</a>
+    <a href="#results">Results</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="ncta">Book a Free Call</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hg">
+    <div>
+      <div class="badge"><span class="dot"></span>AI Implementation Agency · Global</div>
+      <h1>Not sure how to<br>use <span class="ac">AI</span> in your<br>business?</h1>
+      <p class="hsub">Sitfox shows you exactly what to implement — then we build it for you. Strategy and execution, under one roof.</p>
+      <div class="hbtns">
+        <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="bp">Get Your AI Roadmap →</a>
+        <a href="#how" class="bs">See how it works</a>
+      </div>
+      <div class="trust">
+        <div class="avs"><span class="a1">JR</span><span class="a2">ML</span><span class="a3">SK</span><span class="a4">TP</span></div>
+        <div class="ttext"><b>120+ businesses</b> already automated with Sitfox</div>
+      </div>
+    </div>
+
+    <div class="hcol">
+      <div class="im">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=700&q=80&auto=format&fit=crop" alt="AI interface dashboard">
+      </div>
+      <div class="is">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop" alt="Team strategy session">
+      </div>
+      <div class="fc fc1">
+        <div class="fl">Avg. deployment</div>
+        <div class="fv">21 Days</div>
+        <div class="fp">time to live</div>
+      </div>
+      <div class="fc fc2">
+        <div class="fl">Efficiency gain</div>
+        <div class="fv">+340%</div>
+        <div class="fp">post-automation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="sw">
+  <div class="sr">
+    <div class="sb"><div class="sn">120+</div><div class="sd">Businesses Automated</div></div>
+    <div class="sb"><div class="sn">21</div><div class="sd">Day Avg. Time to Live</div></div>
+    <div class="sb"><div class="sn">340%</div><div class="sd">Avg. Efficiency Gain</div></div>
+    <div class="sb"><div class="sn">5+</div><div class="sd">Industry Verticals</div></div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="stag">The Sitfox Method</div>
+  <h2>Your guide <em>and</em> your builder</h2>
+  <p class="ssub">Most agencies give you a strategy deck and disappear. Most developers build without strategy. Sitfox does both.</p>
+  <div class="mg">
+    <div class="mc">
+      <img class="mimg" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80&auto=format&fit=crop" alt="Business strategy planning">
+      <div class="micon mi1">🧭</div>
+      <h3>The Strategy (Guide)</h3>
+      <p>We map your entire business process and identify exactly where AI creates the most leverage — no guesswork, no generic advice.</p>
+      <div class="ml">
+        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>The Sitfox 21-Day AI-Stack Audit</div>
+        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom AI tool selection per workflow</div>
+        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>ROI projection before a single dollar spent</div>
+      </div>
+    </div>
+    <div class="mc">
+      <img class="mimg" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&auto=format&fit=crop" alt="Building AI systems">
+      <div class="micon mi2">⚡</div>
+      <h3>The Build (Doer)</h3>
+      <p>We don't just hand you a roadmap. Our team builds, integrates, and deploys every system — so you never have to manage a developer again.</p>
+      <div class="ml">
+        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Done-for-you AI systems & agents</div>
+        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom AI voice agents & chatbots</div>
+        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Business process automation end-to-end</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- TIMELINE -->
+<section>
+  <div class="stag">21-Day ROI Timeline</div>
+  <h2>From confusion to live AI — in 3 steps</h2>
+  <p class="ssub">Our structured sprint gets you from zero to a fully deployed, ROI-generating AI system within 2–4 weeks.</p>
+  <div class="tg">
+    <div class="tc">
+      <img class="timg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop" alt="Data analytics audit">
+      <div class="tb">
+        <div class="tn n1">1</div>
+        <h3>AI-Stack Audit</h3>
+        <p>We analyze your workflows, bottlenecks, and goals. You receive a prioritized plan with projected ROI for each system.</p>
+        <div class="tbadge">Days 1–5</div>
+      </div>
+    </div>
+    <div class="tc">
+      <img class="timg" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80&auto=format&fit=crop" alt="Coding and development">
+      <div class="tb">
+        <div class="tn n2">2</div>
+        <h3>Build & Configure</h3>
+        <p>Our team builds your custom AI agents, automations, and integrations. No code on your end. We handle all the complexity.</p>
+        <div class="tbadge">Days 6–14</div>
+      </div>
+    </div>
+    <div class="tc">
+      <img class="timg" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80&auto=format&fit=crop" alt="Team celebrating launch">
+      <div class="tb">
+        <div class="tn n3">3</div>
+        <h3>Live Integration</h3>
+        <p>Your AI systems go live inside your existing tools. We run QA, train your team, and support you for 30 days post-launch.</p>
+        <div class="tbadge">Days 15–21</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="stag">Industry Solutions</div>
+  <h2>Built for your industry</h2>
+  <p class="ssub">Every sector has unique processes. Sitfox delivers AI implementation tailored to your workflows — not generic templates.</p>
+  <div class="bg">
+
+    <!-- Medical wide -->
+    <div class="bc s2">
+      <div class="bbar b1"></div>
+      <div class="bwin">
+        <img class="bimgw" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop" alt="Medical clinic scheduling">
+        <div class="bbd">
+          <span class="bic">🏥</span>
+          <h3>Medical Clinics</h3>
+          <p>Eliminate scheduling chaos and reduce no-shows with AI-powered patient intake, intelligent triage, and automated appointment management.</p>
+          <div class="btags"><span class="tg2">Patient Scheduling</span><span class="tg2">AI Triage</span><span class="tg2">Intake Automation</span></div>
+          <div class="bst"><div class="bsn">60%</div><div class="bsl">fewer admin hours/week</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manufacturing -->
+    <div class="bc">
+      <div class="bbar b2"></div>
+      <img class="bimg" src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&auto=format&fit=crop" alt="Smart manufacturing">
+      <div class="bbd">
+        <span class="bic">🏭</span>
+        <h3>Manufacturing</h3>
+        <p>Predictive AI that monitors inventory, flags supply chain disruptions before they happen, and automates reorder flows.</p>
+        <div class="btags"><span class="tg2">Supply Chain AI</span><span class="tg2">Predictive Inventory</span></div>
+        <div class="bst"><div class="bsn">35%</div><div class="bsl">avg. stockout reduction</div></div>
+      </div>
+    </div>
+
+    <!-- Home Services -->
+    <div class="bc">
+      <div class="bbar b3"></div>
+      <img class="bimg" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Home services professional">
+      <div class="bbd">
+        <span class="bic">🏠</span>
+        <h3>Home Services</h3>
+        <p>Never miss a lead again. AI voice agents answer calls 24/7, qualify prospects, and dispatch jobs automatically — even at 2am.</p>
+        <div class="btags"><span class="tg2">AI Voice Dispatch</span><span class="tg2">Lead Capture</span></div>
+        <div class="bst"><div class="bsn">3×</div><div class="bsl">leads captured after hours</div></div>
+      </div>
+    </div>
+
+    <!-- Real Estate -->
+    <div class="bc">
+      <div class="bbar b4"></div>
+      <img class="bimg" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80&auto=format&fit=crop" alt="Real estate property">
+      <div class="bbd">
+        <span class="bic">🏢</span>
+        <h3>Real Estate</h3>
+        <p>Instant lead qualification and AI-powered property matching. Stop wasting time on unqualified buyers — let AI pre-screen them.</p>
+        <div class="btags"><span class="tg2">Lead Qualification</span><span class="tg2">Property Matching</span></div>
+        <div class="bst"><div class="bsn">80%</div><div class="bsl">faster lead response time</div></div>
+      </div>
+    </div>
+
+    <!-- Law & Accounting -->
+    <div class="bc">
+      <div class="bbar b5"></div>
+      <img class="bimg" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80&auto=format&fit=crop" alt="Legal documents and law">
+      <div class="bbd">
+        <span class="bic">⚖️</span>
+        <h3>Law & Accounting</h3>
+        <p>Automate document review, contract summaries, and billing workflows. Recover billable hours lost to admin work.</p>
+        <div class="btags"><span class="tg2">Document Automation</span><span class="tg2">Billable Hours</span></div>
+        <div class="bst"><div class="bsn">12+</div><div class="bsl">billable hours recovered/week</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div id="results" class="proof" style="max-width:1200px;margin:0 auto 4rem;margin-left:2.5rem;margin-right:2.5rem;">
+  <div class="phd">
+    <div class="stag" style="background:rgba(199,245,125,0.15);color:#c7f57d;">Results</div>
+    <h2>What our clients say</h2>
+    <p>Real outcomes from real businesses — across industries and team sizes.</p>
+  </div>
+  <div class="pg2">
+    <div class="pcard">
+      <div class="pstars">★★★★★</div>
+      <p class="ptxt">"We went from manually booking 20 appointments a day to fully automated scheduling. Our admin team was freed to focus on actual patient care."</p>
+      <div class="pau">
+        <div class="pav"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&q=80&auto=format&fit=crop" alt="Dr. Maya Chen"></div>
+        <div><div class="pname">Dr. Maya Chen</div><div class="prole">Director, HealthFirst Clinic</div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pstars">★★★★★</div>
+      <p class="ptxt">"Our AI voice agent answers every call we used to miss after 5pm. It's booked us $80k in jobs in the first 60 days. Absolutely unbelievable results."</p>
+      <div class="pau">
+        <div class="pav"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop" alt="Ryan Johnson"></div>
+        <div><div class="pname">Ryan Johnson</div><div class="prole">Owner, PrimeHome Services</div></div>
+      </div>
+    </div>
+    <div class="pcard">
+      <div class="pstars">★★★★★</div>
+      <p class="ptxt">"Sitfox audited our supply chain and built a predictive inventory system in under 3 weeks. We've cut stockouts by 40% and our team finally has visibility."</p>
+      <div class="pau">
+        <div class="pav"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&q=80&auto=format&fit=crop" alt="Sara Kim"></div>
+        <div><div class="pname">Sara Kim</div><div class="prole">COO, Nexora Manufacturing</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="stag">FAQ</div>
+  <h2>Common questions</h2>
+  <p class="ssub">Everything you need to know before booking a call — answered directly.</p>
+  <div class="fl2">
+    <div class="fi open">
+      <div class="fq" onclick="tf(this)">How much does AI automation cost for a small business?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">AI automation projects with Sitfox typically range from $3,000 to $25,000 depending on complexity. Most small businesses see full ROI within 60–90 days through recovered labour costs and new revenue captured by AI-handled leads. We always provide a projected ROI before any engagement begins.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">Will AI replace my existing staff?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">No. Sitfox AI systems handle repetitive, time-consuming tasks — not skilled people. The goal is to free your team from admin work so they focus on higher-value activities. Most clients report increased team satisfaction after implementation.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">What is an AI voice agent and how does it work?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">A custom AI voice agent answers inbound phone calls using natural, conversational AI. It qualifies leads, books appointments, captures contact details, and routes urgent calls to a human — all without staff involvement. Sitfox configures each agent specifically for your business scripts, FAQs, and workflows.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">How long does it take to implement an AI system?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">The Sitfox 21-Day AI-Stack method delivers most systems live within 2–4 weeks. Simple automations can go live in 5–7 days. Complex multi-system integrations may take 4–6 weeks. Every project begins with a scoped timeline so you know exactly what to expect.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">Do I need any technical knowledge?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">None at all. Sitfox is a done-for-you AI implementation partner. We handle all technical work — from tool selection to building, testing, and deploying. You describe your business challenges; we handle everything else.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">What industries does Sitfox specialize in?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">Sitfox currently serves Medical Clinics, Manufacturing, Home Services, Real Estate, and Law & Accounting. Each vertical has a dedicated implementation framework developed from real deployments — not generic templates.</div>
+    </div>
+    <div class="fi">
+      <div class="fq" onclick="tf(this)">What happens after my AI system goes live?<span class="fch">▾</span></div>
+      <div class="fdiv"></div>
+      <div class="fa">Every Sitfox deployment includes a 30-day post-launch support period at no additional cost. We monitor performance, fix issues, and optimize. After 30 days, clients can opt into ongoing retainer support — your systems are fully yours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="ctas">
+  <div class="ctabg"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80&auto=format&fit=crop" alt="Technology network"></div>
+  <div class="ctai">
+    <div class="stag" style="background:rgba(199,245,125,0.15);color:#c7f57d;margin-bottom:1.25rem;">Free Strategy Call</div>
+    <h2>Ready to stop guessing<br>and start implementing?</h2>
+    <p>Book a free 30-minute AI Roadmap call. We'll map your top 3 automation opportunities and give you a clear next step — no commitment required.</p>
+    <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="blime">Book Your Free Call →</a>
+    <p class="cnote">No credit card · No commitment · 30 minutes</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi2">
+    <div class="flog">Sit<b>Fox</b></div>
+    <div class="fcopy">© 2026 Sitfox. All rights reserved.</div>
+    <div class="flinks">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="https://calendly.com/aratidhara5/30min" target="_blank">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  function tf(el) {
+    const item = el.parentElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.fi').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
