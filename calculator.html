@@ -918,7 +918,7 @@ async function sendLead(){
     page_url:window.location.href
   };
   /* ↓ Replace with your Make.com webhook URL */
-  const WEBHOOK='YOUR_MAKE_WEBHOOK_URL_HERE';
+  const WEBHOOK='https://hook.us2.make.com/q74fmids3bw4uaelwbf9yq7pqivsur3d';
   try{await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}
   catch(e){console.log('Webhook error (silent):',e);}
   document.getElementById('email-form-inner').style.display='none';
