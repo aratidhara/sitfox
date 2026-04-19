@@ -1,528 +1,652 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sitfox — AI Implementation Agency</title>
-  <meta name="description" content="Not sure how to use AI in your business? Sitfox shows you exactly what to implement — then builds it for you. Strategy + execution, under one roof.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --lime: #c7f57d; --dark: #242747; --orange: #fe8829;
-      --glass: rgba(255,255,255,0.55); --glass-s: rgba(255,255,255,0.78);
-      --gb: rgba(255,255,255,0.72); --gbs: rgba(36,39,71,0.1);
-      --t1: #1a1d3a; --t2: #4a4d6a; --t3: #8a8da8;
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #eef0fb; color: var(--t1); line-height: 1.6; overflow-x: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitfox — AI Implementation Agency</title>
+<meta name="description" content="Not sure how to use AI in your business? Sitfox shows you exactly what to implement — then builds it for you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --lime:#c7f57d;
+  --dark:#242747;
+  --orange:#fe8829;
+  --cream:#faf9f6;
+  --ink:#1a1c2e;
+  --muted:#6b6f8a;
+  --border:rgba(36,39,71,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
 
-    .bg-mesh { position: fixed; inset: 0; z-index: 0; background: linear-gradient(135deg,#eef0fb 0%,#e4eefe 25%,#fef0e4 60%,#f2fce6 100%); }
-    .orb { position: fixed; border-radius: 50%; filter: blur(90px); z-index: 0; pointer-events: none; }
-    .o1 { width:600px; height:600px; background:rgba(199,245,125,0.18); top:-150px; right:-120px; }
-    .o2 { width:450px; height:450px; background:rgba(254,136,41,0.11); bottom:80px; left:-120px; }
-    .o3 { width:350px; height:350px; background:rgba(36,39,71,0.05); top:45%; left:38%; }
-    .pg { position: relative; z-index: 1; }
+/* ─── CURSOR ─── */
+.cursor{position:fixed;width:8px;height:8px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(254,136,41,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
 
-    /* NAV */
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index:100;
-      background: rgba(255,255,255,0.72); backdrop-filter: blur(24px);
-      border-bottom: 0.5px solid var(--gb); padding: 0 2.5rem; height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nlogo { font-size:21px; font-weight:700; color:var(--dark); letter-spacing:-0.5px; }
-    .nlogo b { color:var(--orange); }
-    .nlinks { display:flex; gap:2rem; }
-    .nlinks a { font-size:14px; color:var(--t2); text-decoration:none; transition:color 0.2s; }
-    .nlinks a:hover { color:var(--dark); }
-    .ncta { background:var(--dark); color:#fff; padding:10px 22px; border-radius:10px; font-size:14px; font-weight:500; text-decoration:none; transition:all 0.2s; }
-    .ncta:hover { background:var(--orange); transform:translateY(-1px); }
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.3s}
+nav.scrolled{background:rgba(250,249,246,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{height:38px;width:auto}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{font-size:13.5px;color:var(--muted);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s;font-weight:400}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:#fff;padding:11px 24px;border-radius:100px;font-size:13.5px;font-weight:500;text-decoration:none;transition:all 0.25s;letter-spacing:0.01em}
+.nav-cta:hover{background:var(--orange);transform:translateY(-1px)}
 
-    /* HERO */
-    .hero { padding-top:68px; min-height:100vh; display:flex; align-items:center; max-width:1200px; margin:0 auto; padding-left:2.5rem; padding-right:2.5rem; }
-    .hg { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; width:100%; padding:4rem 0; }
-    .badge {
-      display:inline-flex; align-items:center; gap:8px;
-      background:var(--glass-s); border:0.5px solid var(--gbs); border-radius:100px;
-      padding:6px 14px; font-size:12px; font-weight:500; color:var(--t2); margin-bottom:1.5rem;
-    }
-    .dot { width:6px; height:6px; border-radius:50%; background:var(--lime); animation:pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-    h1 { font-size:clamp(2.2rem,3.8vw,3.3rem); font-weight:700; line-height:1.12; letter-spacing:-1.2px; margin-bottom:1.25rem; }
-    h1 .ac { color:var(--orange); }
-    .hsub { font-size:1.05rem; color:var(--t2); line-height:1.8; margin-bottom:2.25rem; max-width:460px; }
-    .hbtns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:2.5rem; }
-    .bp { background:var(--dark); color:#fff; padding:14px 28px; border-radius:12px; font-size:15px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.2s; }
-    .bp:hover { background:var(--orange); transform:translateY(-2px); }
-    .bs { background:var(--glass-s); color:var(--t2); padding:14px 24px; border-radius:12px; font-size:15px; border:0.5px solid var(--gbs); text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:all 0.2s; }
-    .bs:hover { background:white; }
-    .trust { display:flex; align-items:center; gap:14px; }
-    .avs { display:flex; }
-    .avs span { width:32px; height:32px; border-radius:50%; border:2px solid white; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:600; margin-left:-8px; color:white; }
-    .avs span:first-child { margin-left:0; }
-    .a1{background:var(--dark)} .a2{background:var(--orange)} .a3{background:#5a8a1a} .a4{background:#7c3aed}
-    .ttext { font-size:13px; color:var(--t3); }
-    .ttext b { color:var(--t1); font-weight:500; }
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 2rem 6rem;position:relative;overflow:hidden}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:2.5rem;animation:fadeUp 0.8s ease both}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:livepulse 2s infinite}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(3rem,6.5vw,6rem);font-weight:800;line-height:1.0;letter-spacing:-2px;max-width:900px;animation:fadeUp 0.8s 0.1s ease both}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero h1 .lime-word{color:#5a8a1a}
+.hero-sub{font-size:clamp(1rem,1.5vw,1.2rem);color:var(--muted);max-width:520px;line-height:1.8;margin:2rem auto 3rem;font-weight:300;animation:fadeUp 0.8s 0.2s ease both}
+.hero-actions{display:flex;gap:14px;justify-content:center;animation:fadeUp 0.8s 0.3s ease both}
+.btn-main{background:var(--ink);color:#fff;padding:16px 32px;border-radius:100px;font-size:15px;font-weight:500;text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:10px}
+.btn-main:hover{background:var(--orange);transform:translateY(-2px)}
+.btn-main .arrow{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:rgba(255,255,255,0.15);border-radius:50%;font-size:12px;transition:transform 0.2s}
+.btn-main:hover .arrow{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:var(--ink);padding:16px 32px;border-radius:100px;font-size:15px;font-weight:400;text-decoration:none;border:1.5px solid var(--border);transition:all 0.25s}
+.btn-ghost:hover{border-color:var(--ink);background:white}
 
-    /* Hero Collage */
-    .hcol { position:relative; width:100%; min-height:520px; }
-    .im { width:78%; border-radius:24px; overflow:hidden; box-shadow:0 20px 60px rgba(36,39,71,0.15); position:absolute; top:0; right:0; }
-    .im img { width:100%; height:340px; object-fit:cover; display:block; }
-    .is { width:52%; border-radius:18px; overflow:hidden; box-shadow:0 12px 40px rgba(36,39,71,0.12); position:absolute; bottom:20px; left:0; border:3px solid white; }
-    .is img { width:100%; height:200px; object-fit:cover; display:block; }
-    .fc { position:absolute; background:var(--glass-s); backdrop-filter:blur(16px); border:0.5px solid var(--gb); border-radius:14px; padding:11px 15px; white-space:nowrap; box-shadow:0 6px 28px rgba(36,39,71,0.1); animation:fy 4s ease-in-out infinite; z-index:10; }
-    .fc1 { top:18%; left:-4%; animation-delay:0s; }
-    .fc2 { bottom:24%; right:-2%; animation-delay:1.6s; }
-    @keyframes fy { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    .fl { font-size:10px; color:var(--t3); margin-bottom:2px; }
-    .fv { font-size:15px; font-weight:700; color:var(--t1); }
-    .fp { background:rgba(199,245,125,0.4); color:#3a6b0a; font-size:10px; font-weight:600; padding:2px 8px; border-radius:100px; display:inline-block; margin-top:3px; }
+/* Hero scroll indicator */
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s 0.6s ease both;opacity:0.4}
+.scroll-hint span{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--muted),transparent);animation:scrollline 2s ease-in-out infinite}
+@keyframes scrollline{0%,100%{transform:scaleY(1);opacity:0.4}50%{transform:scaleY(0.5);opacity:0.1}}
 
-    /* STATS */
-    .sw { max-width:1200px; margin:0 auto; padding:0 2.5rem 4rem; }
-    .sr { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
-    .sb { background:var(--glass-s); backdrop-filter:blur(16px); border:0.5px solid var(--gb); border-radius:18px; padding:1.5rem; text-align:center; }
-    .sn { font-size:2.2rem; font-weight:700; color:var(--t1); }
-    .sd { font-size:12px; color:var(--t3); margin-top:3px; }
+/* Hero background texture */
+.hero-bg{position:absolute;inset:0;z-index:-1}
+.hero-bg::before{content:'';position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(199,245,125,0.15) 0%,transparent 70%)}
+.hero-bg::after{content:'';position:absolute;bottom:-10%;left:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(254,136,41,0.08) 0%,transparent 70%)}
 
-    .sep { height:0.5px; background:rgba(36,39,71,0.08); max-width:1200px; margin:0 auto; }
+/* Hero image strip */
+.hero-img-strip{width:100%;max-width:1100px;margin:4rem auto 0;position:relative;animation:fadeUp 0.8s 0.4s ease both}
+.hero-img-strip-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;border-radius:24px;overflow:hidden}
+.hip-main{position:relative}
+.hip-main img{width:100%;height:420px;object-fit:cover;display:block}
+.hip-side{display:flex;flex-direction:column;gap:16px}
+.hip-side-top img,.hip-side-bot img{width:100%;height:202px;object-fit:cover;display:block}
+.hip-badge{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-radius:14px;padding:12px 18px}
+.hip-badge-val{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;color:var(--ink);line-height:1}
+.hip-badge-label{font-size:11px;color:var(--muted);margin-top:2px}
 
-    section { padding:5rem 2.5rem; max-width:1200px; margin:0 auto; }
-    .stag { display:inline-flex; align-items:center; gap:6px; background:rgba(199,245,125,0.2); color:#3a6b0a; font-size:11px; font-weight:600; letter-spacing:0.6px; text-transform:uppercase; padding:4px 12px; border-radius:100px; margin-bottom:1rem; }
-    h2 { font-size:clamp(1.7rem,3vw,2.3rem); font-weight:700; letter-spacing:-0.6px; margin-bottom:0.75rem; }
-    .ssub { font-size:1rem; color:var(--t2); max-width:540px; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-    /* METHOD */
-    .mg { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem; }
-    .mc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; padding:2rem; overflow:hidden; }
-    .mimg { width:100%; height:180px; object-fit:cover; border-radius:14px; margin-bottom:1.5rem; display:block; }
-    .micon { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:1rem; }
-    .mi1 { background:rgba(36,39,71,0.08); }
-    .mi2 { background:rgba(254,136,41,0.12); }
-    .mc h3 { font-size:1.15rem; font-weight:600; margin-bottom:0.5rem; }
-    .mc p { font-size:0.9rem; color:var(--t2); line-height:1.7; }
-    .ml { margin-top:1rem; display:flex; flex-direction:column; gap:8px; }
-    .mi { display:flex; align-items:center; gap:9px; font-size:13px; color:var(--t2); }
-    .ck { width:17px; height:17px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-    .ck1 { background:var(--dark); } .ck2 { background:var(--orange); }
-    .ck svg { width:8px; height:8px; }
+/* ─── DIVIDER ─── */
+.divider{width:100%;max-width:1100px;margin:0 auto;height:1px;background:var(--border)}
 
-    /* TIMELINE */
-    .tg { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
-    .tc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; overflow:hidden; }
-    .timg { width:100%; height:160px; object-fit:cover; display:block; }
-    .tb { padding:1.75rem; text-align:center; }
-    .tn { width:50px; height:50px; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:700; color:#fff; margin:0 auto 1rem; }
-    .n1{background:var(--dark)} .n2{background:var(--orange)} .n3{background:#5a8a1a}
-    .tc h3 { font-size:1.05rem; font-weight:600; margin-bottom:0.5rem; }
-    .tc p { font-size:0.87rem; color:var(--t2); line-height:1.65; }
-    .tbadge { display:inline-block; background:rgba(199,245,125,0.25); color:#3a6b0a; font-size:11px; font-weight:500; padding:3px 10px; border-radius:100px; margin-top:0.9rem; }
+/* ─── SECTIONS ─── */
+.section{padding:7rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:1.5rem}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:1.25rem}
+.section-body{font-size:1.05rem;color:var(--muted);line-height:1.85;max-width:520px;font-weight:300}
 
-    /* BENTO */
-    .bg { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:2rem; }
-    .bc { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:22px; overflow:hidden; transition:transform 0.22s, box-shadow 0.22s; }
-    .bc:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(36,39,71,0.1); }
-    .bc.s2 { grid-column:span 2; }
-    .bimg { width:100%; height:180px; object-fit:cover; display:block; }
-    .bbar { height:3px; }
-    .b1{background:linear-gradient(90deg,#fe8829,#ffb347)}
-    .b2{background:linear-gradient(90deg,#242747,#4a4fad)}
-    .b3{background:linear-gradient(90deg,#c7f57d,#7ecf3a)}
-    .b4{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
-    .b5{background:linear-gradient(90deg,#0ea5e9,#38bdf8)}
-    .bbd { padding:1.5rem; }
-    .bic { font-size:22px; margin-bottom:0.75rem; display:block; }
-    .bc h3 { font-size:1rem; font-weight:600; margin-bottom:0.4rem; }
-    .bc p { font-size:0.84rem; color:var(--t2); line-height:1.65; }
-    .bst { margin-top:0.9rem; display:flex; align-items:baseline; gap:4px; }
-    .bsn { font-size:1.6rem; font-weight:700; color:var(--t1); }
-    .bsl { font-size:12px; color:var(--t3); }
-    .btags { display:flex; gap:6px; margin-top:0.9rem; flex-wrap:wrap; }
-    .tg2 { font-size:11px; font-weight:500; padding:3px 10px; border-radius:100px; background:rgba(36,39,71,0.07); color:var(--t2); }
-    /* wide bento */
-    .bwin { display:grid; grid-template-columns:1fr 1fr; }
-    .bwin .bimgw { width:100%; height:100%; min-height:240px; object-fit:cover; display:block; }
-    .bwin .bbd { display:flex; flex-direction:column; justify-content:center; }
+/* ─── STATS BAND ─── */
+.stats-band{background:var(--ink);padding:4rem 2rem}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-item{text-align:center;padding:1rem;border-right:1px solid rgba(255,255,255,0.08)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--lime);line-height:1}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.5);margin-top:6px;font-weight:300}
 
-    /* TESTIMONIALS */
-    .proof { background:var(--dark); border-radius:28px; padding:3.5rem; margin:0 2.5rem; position:relative; overflow:hidden; }
-    .proof::before { content:''; position:absolute; top:-80px; right:-80px; width:280px; height:280px; border-radius:50%; background:rgba(199,245,125,0.08); }
-    .proof::after { content:''; position:absolute; bottom:-60px; left:-60px; width:200px; height:200px; border-radius:50%; background:rgba(254,136,41,0.08); }
-    .phd { text-align:center; margin-bottom:2.5rem; position:relative; z-index:1; }
-    .phd h2 { color:white; }
-    .phd p { color:rgba(255,255,255,0.55); font-size:1rem; }
-    .pg2 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; position:relative; z-index:1; }
-    .pcard { background:rgba(255,255,255,0.06); border:0.5px solid rgba(255,255,255,0.12); border-radius:18px; padding:1.5rem; }
-    .pstars { color:var(--lime); font-size:13px; margin-bottom:0.75rem; }
-    .ptxt { font-size:0.87rem; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:1.25rem; font-style:italic; }
-    .pau { display:flex; align-items:center; gap:10px; }
-    .pav { width:38px; height:38px; border-radius:50%; overflow:hidden; flex-shrink:0; border:2px solid rgba(255,255,255,0.15); }
-    .pav img { width:100%; height:100%; object-fit:cover; display:block; }
-    .pname { font-size:13px; font-weight:500; color:white; }
-    .prole { font-size:11px; color:rgba(255,255,255,0.45); }
+/* ─── METHOD ─── */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:4rem}
+.method-card{background:white;border-radius:24px;overflow:hidden;border:1px solid var(--border);transition:transform 0.3s,box-shadow 0.3s}
+.method-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(36,39,71,0.1)}
+.method-card-img{width:100%;height:220px;object-fit:cover;display:block}
+.method-card-body{padding:2rem}
+.method-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1.25rem}
+.icon-a{background:rgba(36,39,71,0.06)}
+.icon-b{background:rgba(254,136,41,0.1)}
+.method-card h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.6rem}
+.method-card p{font-size:0.92rem;color:var(--muted);line-height:1.75;margin-bottom:1.5rem}
+.check-list{display:flex;flex-direction:column;gap:10px}
+.check-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink)}
+.check-dot{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cd-dark{background:var(--ink)} .cd-orange{background:var(--orange)}
+.check-dot svg{width:8px;height:8px}
 
-    /* FAQ */
-    .fl2 { margin-top:2rem; display:flex; flex-direction:column; gap:1rem; }
-    .fi { background:var(--glass-s); backdrop-filter:blur(20px); border:0.5px solid var(--gb); border-radius:16px; overflow:hidden; }
-    .fq { padding:1.2rem 1.5rem; font-size:0.95rem; font-weight:500; cursor:pointer; display:flex; justify-content:space-between; align-items:center; user-select:none; }
-    .fq:hover { background:rgba(255,255,255,0.45); }
-    .fch { font-size:16px; color:var(--t3); transition:transform 0.25s; flex-shrink:0; }
-    .fdiv { height:0.5px; background:rgba(36,39,71,0.07); margin:0 1.5rem; }
-    .fa { padding:0 1.5rem; max-height:0; overflow:hidden; font-size:0.88rem; color:var(--t2); line-height:1.75; transition:max-height 0.35s ease, padding 0.25s; }
-    .fi.open .fa { max-height:220px; padding:0 1.5rem 1.25rem; }
-    .fi.open .fch { transform:rotate(180deg); }
+/* ─── TIMELINE ─── */
+.timeline{margin-top:5rem;position:relative}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+.tl-step{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:start;margin-bottom:5rem}
+.tl-step:last-child{margin-bottom:0}
+.tl-content{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+.tl-content:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(36,39,71,0.08)}
+.tl-content img{width:100%;height:180px;object-fit:cover;display:block}
+.tl-content-body{padding:1.75rem}
+.tl-content h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:0.5rem}
+.tl-content p{font-size:0.88rem;color:var(--muted);line-height:1.7}
+.tl-badge{display:inline-block;background:rgba(199,245,125,0.25);color:#3a6b0a;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:0.9rem;letter-spacing:0.03em}
+.tl-center{display:flex;flex-direction:column;align-items:center;padding-top:1.75rem}
+.tl-num{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;position:relative;z-index:1}
+.tn1{background:var(--ink)} .tn2{background:var(--orange)} .tn3{background:#5a8a1a}
+.tl-step.right .tl-content{order:3}
+.tl-step.right .tl-spacer{order:2}
+.tl-step.right .tl-empty{order:1}
 
-    /* CTA */
-    .ctas { background:var(--dark); border-radius:28px; padding:5rem 3rem; text-align:center; position:relative; overflow:hidden; margin:0 2.5rem 5rem; }
-    .ctabg { position:absolute; inset:0; }
-    .ctabg img { width:100%; height:100%; object-fit:cover; opacity:0.12; display:block; }
-    .ctai { position:relative; z-index:1; }
-    .ctas h2 { color:white; font-size:clamp(1.7rem,3vw,2.4rem); margin-bottom:1rem; }
-    .ctas p { color:rgba(255,255,255,0.6); font-size:1rem; max-width:480px; margin:0 auto 2rem; }
-    .blime { background:var(--lime); color:var(--dark); padding:15px 34px; border-radius:12px; font-size:15px; font-weight:700; text-decoration:none; display:inline-block; transition:all 0.2s; }
-    .blime:hover { background:#d4f994; transform:translateY(-2px); }
-    .cnote { font-size:12px; color:rgba(255,255,255,0.3); margin-top:1rem; }
+/* ─── INDUSTRIES ─── */
+.industry-intro{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:end;margin-bottom:4rem}
+.industry-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem}
+.ind-card{background:white;border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;cursor:default}
+.ind-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(36,39,71,0.09)}
+.ind-card.featured{grid-column:span 2}
+.ind-img{width:100%;height:160px;object-fit:cover;display:block}
+.ind-img-tall{width:100%;height:220px;object-fit:cover;display:block}
+.ind-bar{height:3px}
+.ib1{background:linear-gradient(90deg,#fe8829,#ffb870)}
+.ib2{background:linear-gradient(90deg,#242747,#5a5fc7)}
+.ib3{background:linear-gradient(90deg,#c7f57d,#7ecf3a)}
+.ib4{background:linear-gradient(90deg,#7c3aed,#c084fc)}
+.ib5{background:linear-gradient(90deg,#0ea5e9,#38bdf8)}
+.ind-body{padding:1.4rem}
+.ind-icon{font-size:20px;margin-bottom:0.6rem;display:block}
+.ind-card h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;margin-bottom:0.35rem}
+.ind-card p{font-size:0.82rem;color:var(--muted);line-height:1.6}
+.ind-stat{margin-top:0.9rem;display:flex;align-items:baseline;gap:5px}
+.ind-stat-n{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--ink)}
+.ind-stat-l{font-size:11.5px;color:var(--muted)}
+.ind-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:0.75rem}
+.ind-tag{font-size:10.5px;padding:3px 9px;border-radius:100px;background:rgba(36,39,71,0.05);color:var(--muted);font-weight:500}
 
-    /* FOOTER */
-    footer { background:var(--glass-s); backdrop-filter:blur(20px); border-top:0.5px solid var(--gb); padding:2.5rem; }
-    .fi2 { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-    .flog { font-size:18px; font-weight:700; color:var(--dark); }
-    .flog b { color:var(--orange); }
-    .fcopy { font-size:13px; color:var(--t3); }
-    .flinks { display:flex; gap:1.5rem; }
-    .flinks a { font-size:13px; color:var(--t3); text-decoration:none; }
-    .flinks a:hover { color:var(--t1); }
+/* Featured industry */
+.ind-card.featured .ind-inner{display:grid;grid-template-columns:1fr 1fr}
+.ind-card.featured .ind-img-tall{height:100%;min-height:260px}
+.ind-card.featured .ind-body{display:flex;flex-direction:column;justify-content:center;padding:2rem}
 
-    @media (max-width:900px) {
-      .hg,.mg,.tg,.bg,.pg2,.sr,.bwin { grid-template-columns:1fr; }
-      .bc.s2 { grid-column:span 1; }
-      .bwin .bimgw { min-height:200px; }
-      .nlinks { display:none; }
-      .fi2 { flex-direction:column; gap:1rem; text-align:center; }
-      .proof,.ctas { margin:0 1rem 3rem; }
-      .hcol { min-height:300px; margin-top:2rem; }
-      .im { width:85%; } .is { width:58%; }
-      .fc1,.fc2 { display:none; }
-    }
-  </style>
+/* ─── TESTIMONIALS ─── */
+.testi-section{background:var(--ink);padding:7rem 2rem}
+.testi-inner{max-width:1100px;margin:0 auto}
+.testi-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+.testi-header .section-title{color:white}
+.testi-header .section-body{color:rgba(255,255,255,0.5)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:1.75rem;transition:background 0.3s}
+.testi-card:hover{background:rgba(255,255,255,0.08)}
+.testi-stars{color:var(--lime);font-size:13px;margin-bottom:1rem;letter-spacing:2px}
+.testi-text{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.8;margin-bottom:1.5rem;font-style:italic;font-weight:300}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{width:40px;height:40px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,0.1);flex-shrink:0}
+.testi-av img{width:100%;height:100%;object-fit:cover}
+.testi-name{font-size:13px;font-weight:500;color:white}
+.testi-role{font-size:11px;color:rgba(255,255,255,0.4);margin-top:1px}
+
+/* ─── FAQ ─── */
+.faq-grid{display:grid;grid-template-columns:5fr 7fr;gap:6rem;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;padding:1.4rem 0;font-size:0.95rem;font-weight:500;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;text-align:left;font-family:'DM Sans',sans-serif;transition:color 0.2s}
+.faq-q:hover{color:var(--orange)}
+.faq-icon{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.25s;font-size:14px;color:var(--muted)}
+.faq-item.open .faq-icon{background:var(--ink);border-color:var(--ink);color:white;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.25s}
+.faq-a-inner{padding:0 0 1.4rem;font-size:0.88rem;color:var(--muted);line-height:1.8}
+.faq-item.open .faq-a{max-height:200px}
+
+/* ─── CTA ─── */
+.cta-section{padding:7rem 2rem}
+.cta-inner{max-width:1100px;margin:0 auto}
+.cta-card{background:var(--ink);border-radius:32px;padding:5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden}
+.cta-card::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:rgba(199,245,125,0.06)}
+.cta-card::after{content:'';position:absolute;bottom:-80px;left:200px;width:300px;height:300px;border-radius:50%;background:rgba(254,136,41,0.06)}
+.cta-text{position:relative;z-index:1}
+.cta-text h2{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,2.8vw,2.8rem);font-weight:800;color:white;letter-spacing:-0.5px;line-height:1.15;margin-bottom:1.25rem}
+.cta-text p{font-size:0.98rem;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;max-width:380px}
+.cta-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:1rem}
+.cta-img{width:100%;border-radius:20px;overflow:hidden}
+.cta-img img{width:100%;height:240px;object-fit:cover;display:block;opacity:0.7}
+.cta-btn-wrap{display:flex;gap:12px;flex-wrap:wrap}
+.btn-lime{background:var(--lime);color:var(--ink);padding:15px 32px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.25s;display:inline-flex;align-items:center;gap:10px}
+.btn-lime:hover{background:#d4f994;transform:translateY(-2px)}
+.cta-note{font-size:12px;color:rgba(255,255,255,0.3);margin-top:0.5rem}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--border);padding:2.5rem 3rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{display:flex;align-items:center;gap:8px}
+.footer-logo img{height:30px}
+.footer-copy{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--ink)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero-img-strip-inner{grid-template-columns:1fr}
+  .hip-side{flex-direction:row}
+  .hip-side-top img,.hip-side-bot img{height:160px}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .method-grid,.industry-intro,.testi-header,.faq-grid,.cta-card{grid-template-columns:1fr}
+  .industry-cards{grid-template-columns:1fr}
+  .ind-card.featured{grid-column:span 1}
+  .ind-card.featured .ind-inner{grid-template-columns:1fr}
+  .timeline::before{display:none}
+  .tl-step{grid-template-columns:1fr}
+  .tl-center{flex-direction:row;padding:1rem 0;padding-top:0}
+  .tl-step.right .tl-content{order:unset}
+  .testi-grid{grid-template-columns:1fr}
+  .cta-card{padding:3rem 2rem}
+  .footer-inner{flex-direction:column;gap:1.5rem;text-align:center}
+}
+</style>
 </head>
 <body>
-<div class="bg-mesh"></div>
-<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 
-<div class="pg">
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nlogo">Sit<b>Fox</b></div>
-  <div class="nlinks">
-    <a href="#how">How it Works</a>
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-logo">
+    <img src="data:image/jpeg;base64,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" alt="Sitfox">
+  </div>
+  <div class="nav-links">
+    <a href="#method">Method</a>
+    <a href="#timeline">Timeline</a>
     <a href="#industries">Industries</a>
-    <a href="#results">Results</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="ncta">Book a Free Call</a>
+  <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="nav-cta">Book a Free Call</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hg">
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-eyebrow">
+    <span class="live-dot"></span>
+    AI Implementation Agency · Global
+  </div>
+
+  <h1>
+    Stop guessing.<br>
+    Start <em>using</em> AI<br>
+    <span class="lime-word">the right way.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Most businesses know AI can help them. Few know exactly how. Sitfox maps your process, picks the right tools, and builds everything — so you see results in 21 days.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="btn-main">
+      Get Your Free AI Roadmap
+      <span class="arrow">→</span>
+    </a>
+    <a href="#method" class="btn-ghost">See how it works</a>
+  </div>
+
+  <div class="hero-img-strip">
+    <div class="hero-img-strip-inner">
+      <div class="hip-main">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop" alt="AI dashboard">
+        <div class="hip-badge">
+          <div class="hip-badge-val">21 days</div>
+          <div class="hip-badge-label">avg. time to live</div>
+        </div>
+      </div>
+      <div class="hip-side">
+        <div class="hip-side-top">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop" alt="Strategy session">
+        </div>
+        <div class="hip-side-bot">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop" alt="Data analytics">
+        </div>
+      </div>
+      <div class="hip-side">
+        <div class="hip-side-top">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop" alt="Healthcare AI">
+        </div>
+        <div class="hip-side-bot">
+          <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&auto=format&fit=crop" alt="Manufacturing">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ STATS BAND ══ -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">120+</div>
+      <div class="stat-label">Businesses automated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">21</div>
+      <div class="stat-label">Day avg. time to live</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">340%</div>
+      <div class="stat-label">Avg. efficiency gain</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Industry verticals</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ METHOD ══ -->
+<section class="section" id="method">
+  <div class="section-label">The Sitfox Method</div>
+  <h2 class="section-title">We're your guide<br><em style="font-style:normal;color:var(--orange)">and</em> your builder.</h2>
+  <p class="section-body">Most agencies hand you a deck. Most developers code without a strategy. Sitfox is the only partner that does both — under one roof.</p>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <img class="method-card-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80&auto=format&fit=crop" alt="Strategy">
+      <div class="method-card-body">
+        <div class="method-card-icon icon-a">🧭</div>
+        <h3>The Strategy</h3>
+        <p>We audit your entire workflow and pinpoint exactly where AI creates leverage. No guesswork. No generic advice. A custom plan with projected ROI before a single dollar is spent.</p>
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check-dot cd-dark"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            The Sitfox 21-Day AI-Stack Audit
+          </div>
+          <div class="check-item">
+            <div class="check-dot cd-dark"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Custom AI tool selection per workflow
+          </div>
+          <div class="check-item">
+            <div class="check-dot cd-dark"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            ROI projection before any work begins
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="method-card">
+      <img class="method-card-img" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80&auto=format&fit=crop" alt="Build">
+      <div class="method-card-body">
+        <div class="method-card-icon icon-b">⚡</div>
+        <h3>The Build</h3>
+        <p>We don't just hand you a roadmap. Our team builds, integrates, and deploys your AI systems end-to-end — so you never have to manage a developer or figure out the tech yourself.</p>
+        <div class="check-list">
+          <div class="check-item">
+            <div class="check-dot cd-orange"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Done-for-you AI systems & voice agents
+          </div>
+          <div class="check-item">
+            <div class="check-dot cd-orange"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Full integration into your existing tools
+          </div>
+          <div class="check-item">
+            <div class="check-dot cd-orange"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            30-day post-launch support included
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ TIMELINE ══ -->
+<section class="section" id="timeline">
+  <div class="section-label">21-Day ROI Timeline</div>
+  <h2 class="section-title">Zero to live AI.<br>Three steps.</h2>
+  <p class="section-body">From your first call to a fully deployed, revenue-generating AI system — in 2 to 4 weeks.</p>
+
+  <div class="timeline">
+    <!-- Step 1 — left -->
+    <div class="tl-step">
+      <div class="tl-content">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop" alt="Audit">
+        <div class="tl-content-body">
+          <h3>AI-Stack Audit</h3>
+          <p>We analyze your workflows, bottlenecks, and goals. You receive a prioritized plan with projected ROI for every system we recommend.</p>
+          <div class="tl-badge">Days 1 – 5</div>
+        </div>
+      </div>
+      <div class="tl-center"><div class="tl-num tn1">1</div></div>
+      <div></div>
+    </div>
+
+    <!-- Step 2 — right -->
+    <div class="tl-step right">
+      <div></div>
+      <div class="tl-center"><div class="tl-num tn2">2</div></div>
+      <div class="tl-content">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80&auto=format&fit=crop" alt="Build">
+        <div class="tl-content-body">
+          <h3>Build & Configure</h3>
+          <p>Our team builds your custom AI agents, automations, and integrations. Zero code required on your end. We handle all technical complexity.</p>
+          <div class="tl-badge">Days 6 – 14</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 — left -->
+    <div class="tl-step">
+      <div class="tl-content">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&auto=format&fit=crop" alt="Launch">
+        <div class="tl-content-body">
+          <h3>Live Integration</h3>
+          <p>Your AI goes live inside your existing tools. We run QA, train your team, and provide 30 days of post-launch support at no extra cost.</p>
+          <div class="tl-badge">Days 15 – 21</div>
+        </div>
+      </div>
+      <div class="tl-center"><div class="tl-num tn3">3</div></div>
+      <div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ INDUSTRIES ══ -->
+<section class="section" id="industries">
+  <div class="industry-intro">
     <div>
-      <div class="badge"><span class="dot"></span>AI Implementation Agency · Global</div>
-      <h1>Not sure how to<br>use <span class="ac">AI</span> in your<br>business?</h1>
-      <p class="hsub">Sitfox shows you exactly what to implement — then we build it for you. Strategy and execution, under one roof.</p>
-      <div class="hbtns">
-        <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="bp">Get Your AI Roadmap →</a>
-        <a href="#how" class="bs">See how it works</a>
-      </div>
-      <div class="trust">
-        <div class="avs"><span class="a1">JR</span><span class="a2">ML</span><span class="a3">SK</span><span class="a4">TP</span></div>
-        <div class="ttext"><b>120+ businesses</b> already automated with Sitfox</div>
-      </div>
+      <div class="section-label">Industry Solutions</div>
+      <h2 class="section-title">Built for<br>your world.</h2>
     </div>
-
-    <div class="hcol">
-      <div class="im">
-        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=700&q=80&auto=format&fit=crop" alt="AI interface dashboard">
-      </div>
-      <div class="is">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop" alt="Team strategy session">
-      </div>
-      <div class="fc fc1">
-        <div class="fl">Avg. deployment</div>
-        <div class="fv">21 Days</div>
-        <div class="fp">time to live</div>
-      </div>
-      <div class="fc fc2">
-        <div class="fl">Efficiency gain</div>
-        <div class="fv">+340%</div>
-        <div class="fp">post-automation</div>
-      </div>
-    </div>
+    <p class="section-body" style="margin:0">Every sector has its own chaos. We've mapped the highest-leverage AI opportunities for each — and we've already built the frameworks to deliver them fast.</p>
   </div>
-</div>
 
-<!-- STATS -->
-<div class="sw">
-  <div class="sr">
-    <div class="sb"><div class="sn">120+</div><div class="sd">Businesses Automated</div></div>
-    <div class="sb"><div class="sn">21</div><div class="sd">Day Avg. Time to Live</div></div>
-    <div class="sb"><div class="sn">340%</div><div class="sd">Avg. Efficiency Gain</div></div>
-    <div class="sb"><div class="sn">5+</div><div class="sd">Industry Verticals</div></div>
-  </div>
-</div>
+  <div class="industry-cards">
 
-<div class="sep"></div>
-
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="stag">The Sitfox Method</div>
-  <h2>Your guide <em>and</em> your builder</h2>
-  <p class="ssub">Most agencies give you a strategy deck and disappear. Most developers build without strategy. Sitfox does both.</p>
-  <div class="mg">
-    <div class="mc">
-      <img class="mimg" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80&auto=format&fit=crop" alt="Business strategy planning">
-      <div class="micon mi1">🧭</div>
-      <h3>The Strategy (Guide)</h3>
-      <p>We map your entire business process and identify exactly where AI creates the most leverage — no guesswork, no generic advice.</p>
-      <div class="ml">
-        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>The Sitfox 21-Day AI-Stack Audit</div>
-        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom AI tool selection per workflow</div>
-        <div class="mi"><div class="ck ck1"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>ROI projection before a single dollar spent</div>
-      </div>
-    </div>
-    <div class="mc">
-      <img class="mimg" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&auto=format&fit=crop" alt="Building AI systems">
-      <div class="micon mi2">⚡</div>
-      <h3>The Build (Doer)</h3>
-      <p>We don't just hand you a roadmap. Our team builds, integrates, and deploys every system — so you never have to manage a developer again.</p>
-      <div class="ml">
-        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Done-for-you AI systems & agents</div>
-        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom AI voice agents & chatbots</div>
-        <div class="mi"><div class="ck ck2"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6 7,2" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Business process automation end-to-end</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- TIMELINE -->
-<section>
-  <div class="stag">21-Day ROI Timeline</div>
-  <h2>From confusion to live AI — in 3 steps</h2>
-  <p class="ssub">Our structured sprint gets you from zero to a fully deployed, ROI-generating AI system within 2–4 weeks.</p>
-  <div class="tg">
-    <div class="tc">
-      <img class="timg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop" alt="Data analytics audit">
-      <div class="tb">
-        <div class="tn n1">1</div>
-        <h3>AI-Stack Audit</h3>
-        <p>We analyze your workflows, bottlenecks, and goals. You receive a prioritized plan with projected ROI for each system.</p>
-        <div class="tbadge">Days 1–5</div>
-      </div>
-    </div>
-    <div class="tc">
-      <img class="timg" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&q=80&auto=format&fit=crop" alt="Coding and development">
-      <div class="tb">
-        <div class="tn n2">2</div>
-        <h3>Build & Configure</h3>
-        <p>Our team builds your custom AI agents, automations, and integrations. No code on your end. We handle all the complexity.</p>
-        <div class="tbadge">Days 6–14</div>
-      </div>
-    </div>
-    <div class="tc">
-      <img class="timg" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&q=80&auto=format&fit=crop" alt="Team celebrating launch">
-      <div class="tb">
-        <div class="tn n3">3</div>
-        <h3>Live Integration</h3>
-        <p>Your AI systems go live inside your existing tools. We run QA, train your team, and support you for 30 days post-launch.</p>
-        <div class="tbadge">Days 15–21</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="sep"></div>
-
-<!-- INDUSTRIES -->
-<section id="industries">
-  <div class="stag">Industry Solutions</div>
-  <h2>Built for your industry</h2>
-  <p class="ssub">Every sector has unique processes. Sitfox delivers AI implementation tailored to your workflows — not generic templates.</p>
-  <div class="bg">
-
-    <!-- Medical wide -->
-    <div class="bc s2">
-      <div class="bbar b1"></div>
-      <div class="bwin">
-        <img class="bimgw" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop" alt="Medical clinic scheduling">
-        <div class="bbd">
-          <span class="bic">🏥</span>
+    <!-- Medical — featured wide -->
+    <div class="ind-card featured">
+      <div class="ind-bar ib1"></div>
+      <div class="ind-inner">
+        <img class="ind-img-tall" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&auto=format&fit=crop" alt="Medical clinic">
+        <div class="ind-body">
+          <span class="ind-icon">🏥</span>
           <h3>Medical Clinics</h3>
-          <p>Eliminate scheduling chaos and reduce no-shows with AI-powered patient intake, intelligent triage, and automated appointment management.</p>
-          <div class="btags"><span class="tg2">Patient Scheduling</span><span class="tg2">AI Triage</span><span class="tg2">Intake Automation</span></div>
-          <div class="bst"><div class="bsn">60%</div><div class="bsl">fewer admin hours/week</div></div>
+          <p>Eliminate scheduling chaos and reduce no-shows with AI-powered patient intake, intelligent triage, and automated appointment management — freeing your staff to focus on care.</p>
+          <div class="ind-tags"><span class="ind-tag">Patient Scheduling</span><span class="ind-tag">AI Triage</span><span class="ind-tag">Intake Automation</span></div>
+          <div class="ind-stat"><div class="ind-stat-n">60%</div><div class="ind-stat-l">fewer admin hours per week</div></div>
         </div>
       </div>
     </div>
 
     <!-- Manufacturing -->
-    <div class="bc">
-      <div class="bbar b2"></div>
-      <img class="bimg" src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&auto=format&fit=crop" alt="Smart manufacturing">
-      <div class="bbd">
-        <span class="bic">🏭</span>
+    <div class="ind-card">
+      <div class="ind-bar ib2"></div>
+      <img class="ind-img" src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&auto=format&fit=crop" alt="Manufacturing">
+      <div class="ind-body">
+        <span class="ind-icon">🏭</span>
         <h3>Manufacturing</h3>
-        <p>Predictive AI that monitors inventory, flags supply chain disruptions before they happen, and automates reorder flows.</p>
-        <div class="btags"><span class="tg2">Supply Chain AI</span><span class="tg2">Predictive Inventory</span></div>
-        <div class="bst"><div class="bsn">35%</div><div class="bsl">avg. stockout reduction</div></div>
+        <p>Predictive AI that monitors inventory, flags supply chain disruptions before they hit, and automates reorder flows.</p>
+        <div class="ind-tags"><span class="ind-tag">Supply Chain AI</span><span class="ind-tag">Predictive Inventory</span></div>
+        <div class="ind-stat"><div class="ind-stat-n">35%</div><div class="ind-stat-l">avg. stockout reduction</div></div>
       </div>
     </div>
 
     <!-- Home Services -->
-    <div class="bc">
-      <div class="bbar b3"></div>
-      <img class="bimg" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Home services professional">
-      <div class="bbd">
-        <span class="bic">🏠</span>
+    <div class="ind-card">
+      <div class="ind-bar ib3"></div>
+      <img class="ind-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Home services">
+      <div class="ind-body">
+        <span class="ind-icon">🏠</span>
         <h3>Home Services</h3>
         <p>Never miss a lead again. AI voice agents answer calls 24/7, qualify prospects, and dispatch jobs automatically — even at 2am.</p>
-        <div class="btags"><span class="tg2">AI Voice Dispatch</span><span class="tg2">Lead Capture</span></div>
-        <div class="bst"><div class="bsn">3×</div><div class="bsl">leads captured after hours</div></div>
+        <div class="ind-tags"><span class="ind-tag">AI Voice Dispatch</span><span class="ind-tag">Lead Capture</span></div>
+        <div class="ind-stat"><div class="ind-stat-n">3×</div><div class="ind-stat-l">leads captured after hours</div></div>
       </div>
     </div>
 
     <!-- Real Estate -->
-    <div class="bc">
-      <div class="bbar b4"></div>
-      <img class="bimg" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80&auto=format&fit=crop" alt="Real estate property">
-      <div class="bbd">
-        <span class="bic">🏢</span>
+    <div class="ind-card">
+      <div class="ind-bar ib4"></div>
+      <img class="ind-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80&auto=format&fit=crop" alt="Real estate">
+      <div class="ind-body">
+        <span class="ind-icon">🏢</span>
         <h3>Real Estate</h3>
-        <p>Instant lead qualification and AI-powered property matching. Stop wasting time on unqualified buyers — let AI pre-screen them.</p>
-        <div class="btags"><span class="tg2">Lead Qualification</span><span class="tg2">Property Matching</span></div>
-        <div class="bst"><div class="bsn">80%</div><div class="bsl">faster lead response time</div></div>
+        <p>Instant lead qualification and AI-powered property matching. Stop wasting time on unqualified buyers.</p>
+        <div class="ind-tags"><span class="ind-tag">Lead Qualification</span><span class="ind-tag">Property Matching</span></div>
+        <div class="ind-stat"><div class="ind-stat-n">80%</div><div class="ind-stat-l">faster lead response time</div></div>
       </div>
     </div>
 
-    <!-- Law & Accounting -->
-    <div class="bc">
-      <div class="bbar b5"></div>
-      <img class="bimg" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80&auto=format&fit=crop" alt="Legal documents and law">
-      <div class="bbd">
-        <span class="bic">⚖️</span>
+    <!-- Law -->
+    <div class="ind-card">
+      <div class="ind-bar ib5"></div>
+      <img class="ind-img" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80&auto=format&fit=crop" alt="Law">
+      <div class="ind-body">
+        <span class="ind-icon">⚖️</span>
         <h3>Law & Accounting</h3>
-        <p>Automate document review, contract summaries, and billing workflows. Recover billable hours lost to admin work.</p>
-        <div class="btags"><span class="tg2">Document Automation</span><span class="tg2">Billable Hours</span></div>
-        <div class="bst"><div class="bsn">12+</div><div class="bsl">billable hours recovered/week</div></div>
+        <p>Automate document review, contract summaries, and billing. Recover the billable hours lost to admin every week.</p>
+        <div class="ind-tags"><span class="ind-tag">Document Automation</span><span class="ind-tag">Billable Hours</span></div>
+        <div class="ind-stat"><div class="ind-stat-n">12+</div><div class="ind-stat-l">hrs recovered per week</div></div>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<div id="results" class="proof" style="max-width:1200px;margin:0 auto 4rem;margin-left:2.5rem;margin-right:2.5rem;">
-  <div class="phd">
-    <div class="stag" style="background:rgba(199,245,125,0.15);color:#c7f57d;">Results</div>
-    <h2>What our clients say</h2>
-    <p>Real outcomes from real businesses — across industries and team sizes.</p>
-  </div>
-  <div class="pg2">
-    <div class="pcard">
-      <div class="pstars">★★★★★</div>
-      <p class="ptxt">"We went from manually booking 20 appointments a day to fully automated scheduling. Our admin team was freed to focus on actual patient care."</p>
-      <div class="pau">
-        <div class="pav"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&q=80&auto=format&fit=crop" alt="Dr. Maya Chen"></div>
-        <div><div class="pname">Dr. Maya Chen</div><div class="prole">Director, HealthFirst Clinic</div></div>
+<!-- ══ TESTIMONIALS ══ -->
+<div class="testi-section">
+  <div class="testi-inner">
+    <div class="testi-header">
+      <div>
+        <div class="section-label" style="color:var(--lime)">Client Results</div>
+        <h2 class="section-title">Real businesses.<br>Real outcomes.</h2>
       </div>
+      <p class="section-body">These aren't case studies from enterprise clients. These are owners and operators just like you — who were confused about AI and needed someone to just build it.</p>
     </div>
-    <div class="pcard">
-      <div class="pstars">★★★★★</div>
-      <p class="ptxt">"Our AI voice agent answers every call we used to miss after 5pm. It's booked us $80k in jobs in the first 60 days. Absolutely unbelievable results."</p>
-      <div class="pau">
-        <div class="pav"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop" alt="Ryan Johnson"></div>
-        <div><div class="pname">Ryan Johnson</div><div class="prole">Owner, PrimeHome Services</div></div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"We went from manually booking 20 appointments a day to fully automated scheduling. Our admin team now focuses on patient care, not paperwork."</p>
+        <div class="testi-author">
+          <div class="testi-av"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&q=80&auto=format&fit=crop" alt="Dr. Maya Chen"></div>
+          <div><div class="testi-name">Dr. Maya Chen</div><div class="testi-role">Director, HealthFirst Clinic</div></div>
+        </div>
       </div>
-    </div>
-    <div class="pcard">
-      <div class="pstars">★★★★★</div>
-      <p class="ptxt">"Sitfox audited our supply chain and built a predictive inventory system in under 3 weeks. We've cut stockouts by 40% and our team finally has visibility."</p>
-      <div class="pau">
-        <div class="pav"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&q=80&auto=format&fit=crop" alt="Sara Kim"></div>
-        <div><div class="pname">Sara Kim</div><div class="prole">COO, Nexora Manufacturing</div></div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Our AI voice agent answers every call we used to miss after 5pm. It booked us $80k in jobs in the first 60 days. I couldn't believe it worked this fast."</p>
+        <div class="testi-author">
+          <div class="testi-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80&auto=format&fit=crop" alt="Ryan Johnson"></div>
+          <div><div class="testi-name">Ryan Johnson</div><div class="testi-role">Owner, PrimeHome Services</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Sitfox audited our supply chain and deployed a predictive inventory system in under 3 weeks. We've cut stockouts by 40%. The team finally has visibility."</p>
+        <div class="testi-author">
+          <div class="testi-av"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&q=80&auto=format&fit=crop" alt="Sara Kim"></div>
+          <div><div class="testi-name">Sara Kim</div><div class="testi-role">COO, Nexora Manufacturing</div></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="sep"></div>
+<!-- ══ FAQ ══ -->
+<section class="section" id="faq">
+  <div class="faq-grid">
+    <div>
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-title">Everything you need to know.</h2>
+      <p class="section-body" style="margin-top:1rem">No jargon. No fluff. Just honest answers about how this works, what it costs, and what you can expect.</p>
+      <div style="margin-top:2.5rem">
+        <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="btn-main" style="display:inline-flex">
+          Still have questions?
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="stag">FAQ</div>
-  <h2>Common questions</h2>
-  <p class="ssub">Everything you need to know before booking a call — answered directly.</p>
-  <div class="fl2">
-    <div class="fi open">
-      <div class="fq" onclick="tf(this)">How much does AI automation cost for a small business?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">AI automation projects with Sitfox typically range from $3,000 to $25,000 depending on complexity. Most small businesses see full ROI within 60–90 days through recovered labour costs and new revenue captured by AI-handled leads. We always provide a projected ROI before any engagement begins.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">Will AI replace my existing staff?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">No. Sitfox AI systems handle repetitive, time-consuming tasks — not skilled people. The goal is to free your team from admin work so they focus on higher-value activities. Most clients report increased team satisfaction after implementation.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">What is an AI voice agent and how does it work?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">A custom AI voice agent answers inbound phone calls using natural, conversational AI. It qualifies leads, books appointments, captures contact details, and routes urgent calls to a human — all without staff involvement. Sitfox configures each agent specifically for your business scripts, FAQs, and workflows.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">How long does it take to implement an AI system?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">The Sitfox 21-Day AI-Stack method delivers most systems live within 2–4 weeks. Simple automations can go live in 5–7 days. Complex multi-system integrations may take 4–6 weeks. Every project begins with a scoped timeline so you know exactly what to expect.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">Do I need any technical knowledge?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">None at all. Sitfox is a done-for-you AI implementation partner. We handle all technical work — from tool selection to building, testing, and deploying. You describe your business challenges; we handle everything else.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">What industries does Sitfox specialize in?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">Sitfox currently serves Medical Clinics, Manufacturing, Home Services, Real Estate, and Law & Accounting. Each vertical has a dedicated implementation framework developed from real deployments — not generic templates.</div>
-    </div>
-    <div class="fi">
-      <div class="fq" onclick="tf(this)">What happens after my AI system goes live?<span class="fch">▾</span></div>
-      <div class="fdiv"></div>
-      <div class="fa">Every Sitfox deployment includes a 30-day post-launch support period at no additional cost. We monitor performance, fix issues, and optimize. After 30 days, clients can opt into ongoing retainer support — your systems are fully yours.</div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q" onclick="tf(this)">How much does AI automation cost?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Projects typically range from $3,000 to $25,000 depending on complexity. Most businesses see full ROI within 60–90 days through recovered labour costs and new revenue from AI-handled leads. We always project your ROI before any engagement begins.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="tf(this)">Will AI replace my staff?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Sitfox AI handles repetitive, time-consuming tasks — not skilled people. The goal is to free your team from admin so they focus on what actually matters. Most clients report higher team satisfaction after implementation.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="tf(this)">What is an AI voice agent?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">An AI voice agent answers inbound calls using natural conversational AI. It qualifies leads, books appointments, captures details, and routes urgent calls to a human — with zero staff involvement. We configure it to your exact scripts and workflows.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="tf(this)">How long does implementation take?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Most systems go live within 2–4 weeks. Simple automations can launch in 5–7 days. Complex multi-system builds may take 4–6 weeks. Every project starts with a scoped timeline — you always know what to expect before we begin.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="tf(this)">Do I need technical knowledge?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">None. Sitfox is a fully done-for-you partner. We handle every technical decision — from tool selection to deployment. You describe the problem; we build the solution. Our onboarding is built for non-technical business owners.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="tf(this)">What happens after launch?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Every deployment includes 30 days of post-launch support at no extra cost. We monitor performance, fix issues, and optimize based on real data. After 30 days you can continue with a retainer or run independently — your systems are fully yours.</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="ctas">
-  <div class="ctabg"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1400&q=80&auto=format&fit=crop" alt="Technology network"></div>
-  <div class="ctai">
-    <div class="stag" style="background:rgba(199,245,125,0.15);color:#c7f57d;margin-bottom:1.25rem;">Free Strategy Call</div>
-    <h2>Ready to stop guessing<br>and start implementing?</h2>
-    <p>Book a free 30-minute AI Roadmap call. We'll map your top 3 automation opportunities and give you a clear next step — no commitment required.</p>
-    <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="blime">Book Your Free Call →</a>
-    <p class="cnote">No credit card · No commitment · 30 minutes</p>
+<!-- ══ CTA ══ -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-card">
+      <div class="cta-text">
+        <div class="section-label" style="color:var(--lime)">Free Strategy Call</div>
+        <h2>Ready to stop guessing and start implementing?</h2>
+        <p>Book a free 30-minute AI Roadmap call. We'll map your top 3 automation opportunities and give you a clear next step — no commitment required.</p>
+      </div>
+      <div class="cta-right">
+        <div class="cta-img">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80&auto=format&fit=crop" alt="Technology">
+        </div>
+        <div class="cta-btn-wrap">
+          <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="btn-lime">
+            Book Your Free Call →
+          </a>
+        </div>
+        <p class="cta-note">No credit card · No commitment · 30 minutes</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="fi2">
-    <div class="flog">Sit<b>Fox</b></div>
-    <div class="fcopy">© 2026 Sitfox. All rights reserved.</div>
-    <div class="flinks">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="data:image/jpeg;base64,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" alt="Sitfox">
+    </div>
+    <div class="footer-copy">© 2026 Sitfox. All rights reserved.</div>
+    <div class="footer-links">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
       <a href="https://calendly.com/aratidhara5/30min" target="_blank">Contact</a>
@@ -530,22 +654,61 @@
   </div>
 </footer>
 
-</div>
-
 <script>
-  function tf(el) {
-    const item = el.parentElement;
-    const open = item.classList.contains('open');
-    document.querySelectorAll('.fi').forEach(i => i.classList.remove('open'));
-    if (!open) item.classList.add('open');
-  }
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) t.scrollIntoView({ behavior: 'smooth' });
-    });
+// Custom cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('curRing');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 80);
+});
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.borderColor = 'rgba(254,136,41,0.6)'; });
+  el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(254,136,41,0.4)'; });
+});
+
+// Sticky nav
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// FAQ
+function tf(btn) {
+  const item = btn.parentElement;
+  const open = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!open) item.classList.add('open');
+}
+
+// Smooth anchor scrolling
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
   });
+});
+
+// Scroll-triggered fade-in
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.method-card, .tl-content, .ind-card, .testi-card, .faq-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  io.observe(el);
+});
 </script>
 </body>
 </html>
