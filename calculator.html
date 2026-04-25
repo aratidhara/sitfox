@@ -134,14 +134,11 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .cs.done .cs-dot{background:var(--lime-dark)}
 
 /* ── RESULT SCREEN ── */
-/* Two-column layout on result */
-.result-grid{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;align-items:start}
-
-/* Left col */
-.result-left{}
+/* Clean single-column result */
+#screen-result{max-width:700px;margin:0 auto}
 
 /* Big leak number */
-.leak-hero{background:var(--dark);border-radius:22px;padding:2.25rem;margin-bottom:1.25rem;position:relative;overflow:hidden;text-align:center}
+.leak-hero{background:var(--dark);border-radius:22px;padding:2.5rem;margin-bottom:1.5rem;position:relative;overflow:hidden;text-align:center}
 .leak-hero::before{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.09),transparent 70%)}
 .leak-hero::after{content:'';position:absolute;bottom:-40px;left:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(199,245,125,.06),transparent 70%)}
 .lh-label{font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.5rem;position:relative;z-index:1}
@@ -178,35 +175,32 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .fix-ck{width:17px;height:17px;border-radius:50%;background:var(--lime-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .fix-ck svg{width:7px;height:7px}
 
-/* ── RIGHT COL: sticky form ── */
-.result-right{}
-.sticky-form{position:sticky;top:128px}
+/* Two CTA cards side by side */
+.result-cta-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
 
 /* Book call CTA */
-.cta-box{background:var(--dark);border-radius:20px;padding:1.75rem;margin-bottom:1rem;text-align:center;position:relative;overflow:hidden}
+.cta-box{background:var(--dark);border-radius:20px;padding:1.75rem;text-align:center;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.09),transparent 70%)}
 .cta-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.65rem;position:relative;z-index:1}
-.cta-h{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.2;margin-bottom:.5rem;position:relative;z-index:1}
-.cta-p{font-size:.82rem;color:rgba(255,255,255,.38);font-weight:300;line-height:1.65;margin-bottom:1.25rem;position:relative;z-index:1}
-.btn-book{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:#fff;padding:14px 20px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .28s;box-shadow:0 6px 20px rgba(254,136,41,.4);position:relative;z-index:1;width:100%}
+.cta-h{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.25;margin-bottom:.5rem;position:relative;z-index:1}
+.cta-p{font-size:.8rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.65;margin-bottom:1.25rem;position:relative;z-index:1;flex:1}
+.btn-book{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--orange);color:#fff;padding:13px 18px;border-radius:100px;font-size:13.5px;font-weight:700;text-decoration:none;transition:all .28s;box-shadow:0 6px 20px rgba(254,136,41,.4);position:relative;z-index:1;width:100%;margin-top:auto}
 .btn-book:hover{background:#ff9940;transform:translateY(-2px);box-shadow:0 12px 32px rgba(254,136,41,.5)}
 
-/* Divider */
-.or-divider{display:flex;align-items:center;gap:.75rem;margin:.85rem 0;font-size:.78rem;color:var(--muted)}
-.or-line{flex:1;height:1px;background:var(--border)}
-
-/* Email form — ALWAYS VISIBLE in right col */
-.email-box{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:1.5rem}
+/* Email form */
+.email-box{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:1.75rem;display:flex;flex-direction:column}
 .email-box h4{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:.3rem}
-.email-box .email-desc{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.1rem}
-.email-field{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:11px;padding:.8rem .95rem;font-size:.9rem;font-family:'Inter',sans-serif;color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:.55rem}
+.email-box .email-desc{font-size:.8rem;color:var(--muted);font-weight:300;line-height:1.65;margin-bottom:1.1rem;flex:1}
+.email-field{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:11px;padding:.75rem .95rem;font-size:.88rem;font-family:'Inter',sans-serif;color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:.5rem}
 .email-field:focus{border-color:var(--orange);background:#fff}
-.btn-email{width:100%;background:var(--ink);color:#fff;padding:.9rem;border-radius:11px;font-size:.92rem;font-weight:700;border:none;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
+.btn-email{width:100%;background:var(--ink);color:#fff;padding:.875rem;border-radius:11px;font-size:.9rem;font-weight:700;border:none;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
 .btn-email:hover{background:var(--orange)}
-.email-micro{font-size:.72rem;color:var(--muted);text-align:center;margin-top:.5rem}
+.email-micro{font-size:.71rem;color:var(--muted);text-align:center;margin-top:.5rem}
 .email-done{display:none;text-align:center;padding:.85rem;background:rgba(74,122,18,.06);border:1px solid rgba(74,122,18,.14);border-radius:11px}
 .email-done.show{display:block}
 .email-done p{font-size:.85rem;color:var(--lime-dark);font-weight:500;line-height:1.5}
+
+@media(max-width:600px){.result-cta-row{grid-template-columns:1fr}}
 
 /* Share */
 .share-row{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1.1rem;flex-wrap:wrap}
@@ -223,7 +217,14 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 
 
 /* ════ INTRO HERO ════ */
-.intro-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;min-height:calc(100vh - 128px);padding:2rem 0}
+/* Full-width top strip: badge + h1 */
+.intro-top{text-align:center;padding:2rem 0 2.25rem;max-width:680px;margin:0 auto}
+.intro-top .intro-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-glow);border:1px solid rgba(254,136,41,.22);border-radius:100px;padding:5px 14px;font-size:11.5px;color:var(--orange);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.25rem}
+.intro-top .intro-h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.06;letter-spacing:-2px;color:var(--ink)}
+.intro-top .intro-h1 em{font-style:normal;color:var(--orange)}
+
+/* Two-column body */
+.intro-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding-bottom:2.5rem}
 
 /* Drain visual */
 .drain-visual{position:relative;height:480px;display:flex;align-items:center;justify-content:center}
@@ -238,8 +239,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 
 /* Floating leak cards */
 .leak-float{
-  position:absolute;
-  display:flex;align-items:center;gap:7px;
+  position:absolute;display:flex;align-items:center;gap:7px;
   background:#fff;border:1px solid var(--border);border-radius:12px;
   padding:.55rem .9rem;font-size:.8rem;font-weight:500;
   box-shadow:0 4px 16px rgba(26,28,46,.08);
@@ -247,8 +247,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 }
 .lf-1{top:8%;left:-5%;animation-delay:0s}
 .lf-2{top:20%;right:-8%;animation-delay:0.7s}
-.lf-3{bottom:25%;left:-10%;animation-delay:1.4s}
-.lf-4{bottom:10%;right:-5%;animation-delay:2.1s}
+.lf-3{bottom:26%;left:-10%;animation-delay:1.4s}
+.lf-4{bottom:26%;right:-5%;animation-delay:2.1s}
 @keyframes floatCard{0%,100%{transform:translateY(0px)}50%{transform:translateY(-8px)}}
 .lf-icon{font-size:1rem}
 .lf-text{color:var(--muted)}
@@ -259,25 +259,24 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   position:absolute;bottom:0;left:50%;transform:translateX(-50%);
   background:var(--dark);border-radius:14px;padding:.85rem 1.5rem;
   text-align:center;min-width:180px;
-  box-shadow:0 8px 28px rgba(26,28,46,.25)
+  box-shadow:0 8px 28px rgba(26,28,46,.25);z-index:10;
 }
 .dt-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.3rem}
 .dt-amount{font-size:1.8rem;font-weight:900;letter-spacing:-1.5px;color:var(--red);line-height:1}
 
-/* Intro content */
+/* Intro right content */
 .intro-content{display:flex;flex-direction:column;gap:0}
-.intro-content .intro-badge{margin-bottom:1.25rem}
-.intro-content .intro-h1{font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:900;line-height:1.06;letter-spacing:-1.8px;margin-bottom:1rem}
-.intro-content .intro-h1 em{font-style:normal;color:var(--orange)}
-.intro-content .intro-sub{font-size:.95rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+.intro-content .intro-sub{font-size:.93rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
 
-/* Mini steps */
-.mini-steps{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:1.5rem;background:rgba(26,28,46,.03);border:1px solid var(--border);border-radius:14px;padding:1rem}
-.ms{display:flex;align-items:flex-start;gap:8px;flex:1}
-.ms-num{width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.ms-text{font-size:.78rem;color:var(--ink);line-height:1.5}
-.ms-text strong{font-weight:700}
-.ms-arrow{font-size:.8rem;color:var(--muted);align-self:center;padding-top:0;flex-shrink:0}
+/* ── HOW IT WORKS — vertical timeline ── */
+.how-steps{display:flex;flex-direction:column;gap:0;margin-bottom:1.75rem;position:relative}
+.how-steps::before{content:'';position:absolute;left:17px;top:22px;bottom:22px;width:2px;background:linear-gradient(to bottom,var(--orange),var(--lime));border-radius:100px;opacity:.2}
+.how-step{display:flex;align-items:flex-start;gap:1rem;padding:.75rem 0;position:relative}
+.how-step-num{width:36px;height:36px;border-radius:50%;background:#fff;border:2px solid var(--orange);color:var(--orange);font-size:.82rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;transition:all .2s;box-shadow:0 2px 10px rgba(254,136,41,.15)}
+.how-step:hover .how-step-num{background:var(--orange);color:#fff;box-shadow:0 4px 16px rgba(254,136,41,.35)}
+.how-step-body{padding-top:7px}
+.how-step-title{font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.2rem;letter-spacing:-.2px}
+.how-step-desc{font-size:.79rem;color:var(--muted);line-height:1.55;font-weight:300}
 
 /* Social proof */
 .intro-social-proof{display:flex;align-items:center;gap:10px;margin-top:1rem}
@@ -288,25 +287,24 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .sp-text strong{color:var(--ink);font-weight:700}
 
 .btn-start .btn-start-icon{font-size:1rem}
+.intro-facts{display:flex;gap:1.25rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.fact{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);font-weight:400}
+.fact-sep{width:1px;height:14px;background:var(--border)}
 
 /* Responsive intro */
 @media(max-width:800px){
-  .intro-hero{grid-template-columns:1fr;gap:2rem;min-height:auto;padding:1rem 0}
+  .intro-top{padding:1.25rem 0 1.5rem}
+  .intro-hero{grid-template-columns:1fr;gap:1.5rem;padding-bottom:1.5rem}
   .drain-visual{height:300px}
   .lf-1,.lf-2,.lf-3,.lf-4{font-size:.72rem;padding:.45rem .7rem}
-  .lf-1{top:5%;left:0}
-  .lf-2{top:15%;right:0}
-  .lf-3{bottom:20%;left:0}
-  .lf-4{bottom:8%;right:0}
-  .mini-steps{flex-direction:column;gap:.75rem}
-  .ms-arrow{display:none}
+  .lf-1{top:8%;left:0}.lf-2{top:20%;right:0}
+  .lf-3{bottom:26%;left:0}.lf-4{bottom:26%;right:0}
 }
 
 /* RESPONSIVE */
 @media(max-width:700px){
   nav{padding:.85rem 1.25rem}
   .main{padding:120px 1rem 4rem}
-  .result-grid{grid-template-columns:1fr}
   .sticky-form{position:static}
 }
 </style>
@@ -342,10 +340,20 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 <!-- ══ INTRO ══ -->
 <div class="screen active" id="screen-intro">
 
-  <!-- Animated hero -->
+  <!-- Full-width top: badge + headline -->
+  <div class="intro-top">
+    <div class="intro-badge"><span class="pulse"></span>Free Revenue Leak Calculator &middot; 2 min &middot; No sign-up</div>
+    <h1 class="intro-h1">
+      Find out exactly<br>
+      how much your business<br>
+      <em>leaks every month.</em>
+    </h1>
+  </div>
+
+  <!-- Two-column body: animation left, content right -->
   <div class="intro-hero">
 
-    <!-- Floating money drain visual -->
+    <!-- Left: animated drain visual -->
     <div class="drain-visual">
       <div class="drain-center">
         <div class="drain-logo">
@@ -382,49 +390,48 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
         <span class="lf-amt" id="lf-amt-4">-$390</span>
       </div>
 
-      <!-- Draining total -->
+      <!-- Draining total — at bottom, same as original -->
       <div class="drain-total">
         <div class="dt-label">Draining monthly</div>
         <div class="dt-amount" id="drain-counter">$0</div>
       </div>
     </div>
 
-    <!-- Right: headline + CTA -->
+    <!-- Right: sub-copy + timeline steps + CTA -->
     <div class="intro-content">
-      <div class="intro-badge"><span class="pulse"></span>Free &middot; 2 min &middot; No sign-up</div>
+      <p class="intro-sub">Most business owners lose thousands every month to missed calls, wasted admin time, and slow follow-ups — without ever realising it. This calculator shows you the exact dollar amount in under 2 minutes, broken down into 3 categories.</p>
 
-      <h1 class="intro-h1">
-        Your business<br>
-        is losing money<br>
-        <em>every single day.</em>
-      </h1>
-
-      <p class="intro-sub">Most owners have no idea how much slips through the cracks &mdash; missed calls, admin hours, slow follow-ups. Answer 7 questions. See the exact dollar amount. Instantly.</p>
-
-      <!-- Mini explainer steps -->
-      <div class="mini-steps">
-        <div class="ms ms-1">
-          <div class="ms-num">1</div>
-          <div class="ms-text"><strong>Answer 7 questions</strong> about your team, costs &amp; workflow</div>
+      <!-- Vertical timeline steps -->
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <div class="how-step-body">
+            <div class="how-step-title">Answer 7 quick questions</div>
+            <div class="how-step-desc">About your team size, hourly costs, missed leads, and daily workflow</div>
+          </div>
         </div>
-        <div class="ms-arrow">→</div>
-        <div class="ms ms-2">
-          <div class="ms-num">2</div>
-          <div class="ms-text"><strong>See your leak</strong> broken down into 3 exact categories</div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <div class="how-step-body">
+            <div class="how-step-title">See your personalised revenue leak</div>
+            <div class="how-step-desc">Broken down into 3 exact cost categories with dollar amounts</div>
+          </div>
         </div>
-        <div class="ms-arrow">→</div>
-        <div class="ms ms-3">
-          <div class="ms-num">3</div>
-          <div class="ms-text"><strong>Book a call</strong> or get the full report emailed to you</div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <div class="how-step-body">
+            <div class="how-step-title">Get a clear action plan</div>
+            <div class="how-step-desc">Book a free strategy call or receive the full report by email</div>
+          </div>
         </div>
       </div>
 
       <div class="intro-facts">
         <div class="fact">⚡ Result shown instantly</div>
         <div class="fact-sep"></div>
-        <div class="fact">🔒 No email to see result</div>
+        <div class="fact">🔒 No email required</div>
         <div class="fact-sep"></div>
-        <div class="fact">📊 Specific breakdown</div>
+        <div class="fact">📊 Personalised breakdown</div>
       </div>
 
       <button class="btn-start" onclick="go(1)">
@@ -590,96 +597,91 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 
 <!-- ══ RESULT ══ -->
 <div class="screen" id="screen-result">
-  <div class="result-grid">
 
-    <!-- LEFT: numbers -->
-    <div class="result-left">
-      <div class="leak-hero">
-        <div class="lh-label">Your estimated monthly revenue leak</div>
-        <div class="lh-amount" id="r-total">$0</div>
-        <div class="lh-per">per month</div>
-        <div class="lh-badge" id="r-badge"></div>
-        <div class="lh-annual">That's <strong id="r-annual">$0</strong> leaking out per year</div>
-      </div>
+  <!-- TOP: leak number + severity -->
+  <div class="leak-hero">
+    <div class="lh-label">Your estimated monthly revenue leak</div>
+    <div class="lh-amount" id="r-total">$0</div>
+    <div class="lh-per">per month</div>
+    <div class="lh-badge" id="r-badge"></div>
+    <div class="lh-annual">That's <strong id="r-annual">$0</strong> leaking out every year</div>
+  </div>
 
-      <div class="bsection-title">Where it's leaking from</div>
-      <div class="bcards">
-        <div class="bcard" id="bc-a">
-          <div class="bcard-ico bi-a">📞</div>
-          <div class="bcard-info">
-            <div class="bcard-name">Missed leads &amp; calls</div>
-            <div class="bcard-detail" id="bc-a-d">—</div>
-            <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-a-bar" style="background:var(--orange)"></div></div>
-          </div>
-          <div class="bcard-amt" id="bc-a-amt">—</div>
-        </div>
-        <div class="bcard" id="bc-b">
-          <div class="bcard-ico bi-b">⚙️</div>
-          <div class="bcard-info">
-            <div class="bcard-name">Manual admin waste</div>
-            <div class="bcard-detail" id="bc-b-d">—</div>
-            <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-b-bar" style="background:#6366f1"></div></div>
-          </div>
-          <div class="bcard-amt" id="bc-b-amt">—</div>
-        </div>
-        <div class="bcard" id="bc-c">
-          <div class="bcard-ico bi-c">🔄</div>
-          <div class="bcard-info">
-            <div class="bcard-name">Follow-up opportunity cost</div>
-            <div class="bcard-detail" id="bc-c-d">—</div>
-            <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-c-bar" style="background:var(--red)"></div></div>
-          </div>
-          <div class="bcard-amt" id="bc-c-amt">—</div>
-        </div>
+  <!-- BREAKDOWN CARDS -->
+  <div class="bsection-title">Where the money is going</div>
+  <div class="bcards">
+    <div class="bcard" id="bc-a">
+      <div class="bcard-ico bi-a">📞</div>
+      <div class="bcard-info">
+        <div class="bcard-name">Missed leads &amp; calls</div>
+        <div class="bcard-detail" id="bc-a-d">—</div>
+        <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-a-bar" style="background:var(--orange)"></div></div>
       </div>
+      <div class="bcard-amt" id="bc-a-amt">—</div>
+    </div>
+    <div class="bcard" id="bc-b">
+      <div class="bcard-ico bi-b">⚙️</div>
+      <div class="bcard-info">
+        <div class="bcard-name">Manual admin waste</div>
+        <div class="bcard-detail" id="bc-b-d">—</div>
+        <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-b-bar" style="background:#6366f1"></div></div>
+      </div>
+      <div class="bcard-amt" id="bc-b-amt">—</div>
+    </div>
+    <div class="bcard" id="bc-c">
+      <div class="bcard-ico bi-c">🔄</div>
+      <div class="bcard-info">
+        <div class="bcard-name">Follow-up opportunity cost</div>
+        <div class="bcard-detail" id="bc-c-d">—</div>
+        <div class="bcard-bar-wrap"><div class="bcard-bar" id="bc-c-bar" style="background:var(--red)"></div></div>
+      </div>
+      <div class="bcard-amt" id="bc-c-amt">—</div>
+    </div>
+  </div>
 
-      <div class="fix-box">
-        <div class="fix-title">✅ What AI recovers for you</div>
-        <div id="fix-list"></div>
-      </div>
+  <!-- WHAT AI RECOVERS -->
+  <div class="fix-box">
+    <div class="fix-title">✅ What AI can recover for you</div>
+    <div id="fix-list"></div>
+  </div>
 
-      <div class="share-row">
-        <div class="share-lbl">Share your result:</div>
-        <button class="btn-share" onclick="cp()">🔗 Copy link</button>
-        <button class="btn-share" onclick="wa()">📱 WhatsApp</button>
-        <button class="btn-share" onclick="li()">in LinkedIn</button>
-      </div>
-      <span class="restart" onclick="restart()">← Recalculate with different answers</span>
+  <!-- TWO CTA CARDS SIDE BY SIDE -->
+  <div class="result-cta-row">
+
+    <!-- Book a call -->
+    <div class="cta-box">
+      <div class="cta-eyebrow">Free 30-min call</div>
+      <div class="cta-h" id="cta-h">Stop the leak.<br>21 days to live AI.</div>
+      <div class="cta-p">We'll map exactly what to build, show you the ROI, and give you a clear plan — no commitment needed.</div>
+      <a href="https://sitfox.com/call" target="_blank" class="btn-book">📅 Book My Free Strategy Call →</a>
     </div>
 
-    <!-- RIGHT: sticky CTA + email form always visible -->
-    <div class="result-right">
-      <div class="sticky-form">
-
-        <!-- Book call -->
-        <div class="cta-box">
-          <div class="cta-eyebrow">Free 30-min call</div>
-          <div class="cta-h" id="cta-h">Stop the leak.<br>21 days to live AI.</div>
-          <div class="cta-p">We'll map exactly what to build, show you the ROI, and give you a clear plan. No commitment needed.</div>
-          <a href="https://calendly.com/aratidhara5/30min" target="_blank" class="btn-book">Book My Free Strategy Call →</a>
-        </div>
-
-        <div class="or-divider"><div class="or-line"></div>or<div class="or-line"></div></div>
-
-        <!-- Email form — ALWAYS SHOWN, no gate -->
-        <div class="email-box">
-          <h4>📄 Email me the full breakdown</h4>
-          <p class="email-desc">Get your personalised PDF with exact numbers, which AI systems we'd build first, and estimated time-to-ROI. No spam &mdash; just the report.</p>
-          <div id="email-form-inner">
-            <input type="text" class="email-field" id="f-name" placeholder="First name">
-            <input type="email" class="email-field" id="f-email" placeholder="Email address">
-            <button class="btn-email" onclick="sendLead()">Send Me the Full Report →</button>
-            <div class="email-micro">🔒 No spam, ever. We'll reply within 2 hours if your leak is significant.</div>
-          </div>
-          <div class="email-done" id="email-done">
-            <p>🎉 Report sent! Check your inbox.<br><br>If your monthly leak is over $5,000 we'll reach out personally.</p>
-          </div>
-        </div>
-
+    <!-- Email report -->
+    <div class="email-box">
+      <h4>📄 Get the full breakdown by email</h4>
+      <p class="email-desc">Receive a personalised report with exact numbers, which AI systems to build first, and estimated time-to-ROI.</p>
+      <div id="email-form-inner">
+        <input type="text" class="email-field" id="f-name" placeholder="First name">
+        <input type="email" class="email-field" id="f-email" placeholder="Email address">
+        <button class="btn-email" onclick="sendLead()">Send Me the Report →</button>
+        <div class="email-micro">🔒 No spam, ever.</div>
+      </div>
+      <div class="email-done" id="email-done">
+        <p>🎉 Report sent! Check your inbox.<br><br>If your monthly leak is over $5,000 we'll reach out personally.</p>
       </div>
     </div>
 
-  </div><!-- /result-grid -->
+  </div>
+
+  <!-- SHARE + RESTART -->
+  <div class="share-row">
+    <div class="share-lbl">Share your result:</div>
+    <button class="btn-share" onclick="cp()">🔗 Copy link</button>
+    <button class="btn-share" onclick="wa()">📱 WhatsApp</button>
+    <button class="btn-share" onclick="li()">in LinkedIn</button>
+  </div>
+  <span class="restart" onclick="restart()">← Recalculate with different answers</span>
+
 </div>
 
 </div></div><!-- /container /main -->
@@ -917,10 +919,13 @@ async function sendLead(){
     timestamp:new Date().toISOString(),
     page_url:window.location.href
   };
-  /* ↓ Replace with your Make.com webhook URL */
+  /* ↓ Make.com webhook + Formspree backup */
   const WEBHOOK='https://hook.us2.make.com/q74fmids3bw4uaelwbf9yq7pqivsur3d';
-  try{await fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}
-  catch(e){console.log('Webhook error (silent):',e);}
+  const FORMSPREE='https://formspree.io/f/xzdywzyj';
+  const makePromise = fetch(WEBHOOK,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(e=>console.log('Webhook:',e));
+  const formspreePromise = fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).catch(e=>console.log('Formspree:',e));
+  try{await Promise.allSettled([makePromise,formspreePromise]);}
+  catch(e){console.log('Submit error:',e);}
   document.getElementById('email-form-inner').style.display='none';
   document.getElementById('email-done').classList.add('show');
   toast('📧 Report on its way to '+email);
