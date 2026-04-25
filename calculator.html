@@ -250,19 +250,21 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .fix-ck{width:17px;height:17px;border-radius:50%;background:var(--lime-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .fix-ck svg{width:7px;height:7px}
 
-/* Two CTA cards side by side */
-.result-cta-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+/* CTA section — full-width stacked, centred */
+.result-cta-row{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:1.5rem;width:100%}
 
-/* Book call CTA */
-.cta-box{background:var(--dark);border-radius:20px;padding:1.75rem;text-align:center;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.cta-box::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.09),transparent 70%)}
-.cta-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.75rem;position:relative;z-index:1}
-.cta-h{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.18;margin-bottom:.75rem;position:relative;z-index:1}
-.cta-p{font-size:.88rem;color:rgba(255,255,255,.48);font-weight:300;line-height:1.7;margin-bottom:1.75rem;position:relative;z-index:1;max-width:460px}
-.btn-book{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:14px 28px;border-radius:100px;font-size:14.5px;font-weight:700;text-decoration:none;transition:all .28s;box-shadow:0 6px 22px rgba(254,136,41,.42);position:relative;z-index:1;white-space:nowrap}
+/* Book call card — full width, left-aligned content */
+.cta-box{background:var(--dark);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+.cta-box::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.09),transparent 65%);pointer-events:none}
+.cta-box::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(199,245,125,.06),transparent 65%);pointer-events:none}
+.cta-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.75rem;position:relative;z-index:1}
+.cta-h{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;letter-spacing:-1.5px;line-height:1.12;margin-bottom:.75rem;position:relative;z-index:1}
+.cta-p{font-size:.9rem;color:rgba(255,255,255,.48);font-weight:300;line-height:1.75;margin-bottom:1.75rem;position:relative;z-index:1;max-width:520px}
+.btn-book{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:14px 28px;border-radius:100px;font-size:14.5px;font-weight:700;text-decoration:none;transition:all .28s;box-shadow:0 6px 22px rgba(254,136,41,.42);position:relative;z-index:1}
 .btn-book:hover{background:#ff9940;transform:translateY(-2px);box-shadow:0 14px 36px rgba(254,136,41,.55)}
 
-/* Email form */
+/* Email form card */
+.email-box{background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:2rem 2.5rem}
 .email-box h4{font-size:1rem;font-weight:700;letter-spacing:-.3px;margin-bottom:.35rem}
 .email-box .email-desc{font-size:.83rem;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:1.1rem}
 .email-field{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:11px;padding:.8rem 1rem;font-size:.9rem;font-family:'Inter',sans-serif;color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:.55rem}
@@ -273,8 +275,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .email-done{display:none;text-align:center;padding:.85rem;background:rgba(74,122,18,.06);border:1px solid rgba(74,122,18,.14);border-radius:11px}
 .email-done.show{display:block}
 .email-done p{font-size:.85rem;color:var(--lime-dark);font-weight:500;line-height:1.5}
-
-@media(max-width:600px){.result-cta-row{grid-template-columns:1fr}}
 
 /* Share */
 .share-row{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:1.1rem;flex-wrap:wrap}
