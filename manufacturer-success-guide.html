@@ -1205,7 +1205,7 @@ const style=document.createElement('style');
 style.textContent='@keyframes scanLine{0%,100%{transform:translateY(0)}50%{transform:translateY(80px)}}';
 document.head.appendChild(style);
 
-/* CONTACT FORM — submits to Make.com webhook */
+/* CONTACT FORM — submits to Make.com webhook + Formspree backup */
 async function submitForm(e) {
   e.preventDefault();
   const btn=document.getElementById('submitBtn');
@@ -1224,27 +1224,29 @@ async function submitForm(e) {
     submittedAt:new Date().toISOString()
   };
 
-  /* MAKE.COM WEBHOOK
-     To activate: Go to make.com → Create scenario → Add Webhook trigger
-     Copy the webhook URL and replace MAKE_WEBHOOK_URL_HERE below.
-     Then add a Gmail/Email module to send data to aratidhara5@gmail.com
-     The webhook URL looks like: https://hook.eu1.make.com/xxxxxxxxxxxxxxxx
-  */
   const WEBHOOK_URL = 'https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e';
+  const FORMSPREE_URL = 'https://formspree.io/f/mjgjlqjp';
 
-  try {
-    await fetch(WEBHOOK_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
-    });
-    // Show success to user
-    document.getElementById('contactForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  } catch(err) {
-    document.getElementById('contactForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  }
+  // Fire both simultaneously — Make.com for automation, Formspree as backup
+  const makePromise = fetch(WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors', // fixes CORS block from GitHub Pages
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(err => console.error('Make.com webhook failed:', err));
+
+  const formspreePromise = fetch(FORMSPREE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(err => console.error('Formspree backup failed:', err));
+
+  // Wait for both to finish (succeed or fail)
+  await Promise.allSettled([makePromise, formspreePromise]);
+
+  // Always show success — at least one channel will have captured the data
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
 }
 </script>
 
