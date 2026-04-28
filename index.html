@@ -1474,7 +1474,7 @@ async function submitHomeForm(e){
   btn.disabled=true; btnTxt.textContent='Sending…'; btnArr.innerHTML='<div class="cf-spinner"></div>';
   const payload={firstName:fname,lastName:lname,email,businessName:business,website,message,source:'Sitfox Home Page Contact Form',submittedAt:new Date().toISOString()};
   await Promise.allSettled([
-    fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(e=>console.error(e)),
+    fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(e=>console.error(e)),
     fetch('https://formspree.io/f/mjgjlqjp',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}).catch(e=>console.error(e))
   ]);
   document.getElementById('homeContactForm').style.display='none';
