@@ -858,9 +858,9 @@ async function submitForm(e) {
   btnArr.innerHTML = '<div class="spinner"></div>';
 
   try {
-    /* Build a FormData object matching the <form> field names */
+    /* ── PRIMARY: Netlify Forms (same-origin POST, no CORS) ── */
     const formData = new FormData();
-    formData.append('form-name', 'contact');
+    formData.append('form-name',    'contact');
     formData.append('firstName',    fname);
     formData.append('lastName',     lname);
     formData.append('email',        email);
@@ -868,24 +868,38 @@ async function submitForm(e) {
     formData.append('website',      website);
     formData.append('message',      message);
 
-    /*
-      POST to "/" — Netlify intercepts this at the CDN edge.
-      No CORS. No third-party. 100% reliable.
-      After you receive the first test submission in the Netlify
-      dashboard, connect Make.com under:
-        Site settings → Forms → [contact form] → Notifications → Webhook
-    */
-    const res = await fetch('/', {
+    const netlifyPromise = fetch('/', {
       method:  'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body:    new URLSearchParams(formData).toString()
     });
 
-    if (res.ok || res.status === 200) {
+    /* ── BACKUP: Formspree (catches anything Netlify misses) ── */
+    const payload = {
+      firstName:    fname,
+      lastName:     lname,
+      email:        email,
+      businessName: business,
+      website:      website,
+      message:      message,
+      source:       'Sitfox Contact Page',
+      submittedAt:  new Date().toISOString()
+    };
+
+    const formspreePromise = fetch('https://formspree.io/f/mjgjlqjp', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+
+    /* Fire both simultaneously — success if either lands */
+    const [netlifyRes] = await Promise.allSettled([netlifyPromise, formspreePromise]);
+
+    if (netlifyRes.status === 'fulfilled' && (netlifyRes.value.ok || netlifyRes.value.status === 200)) {
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     } else {
-      throw new Error('Network response was not ok');
+      throw new Error('Submission failed');
     }
   } catch (err) {
     console.error('Form submission error:', err);
