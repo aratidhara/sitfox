@@ -11,40 +11,24 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://sitfox.com/contact">
 
-<!-- ═══════════════════════════════════════════════
-     OPEN GRAPH (Facebook, LinkedIn, WhatsApp, etc.)
-════════════════════════════════════════════════ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://sitfox.com/contact">
 <meta property="og:title" content="Contact Sitfox — Talk to an AI Automation Specialist">
 <meta property="og:description" content="Have a question or want to explore what AI can do for your business? Drop us a message and we'll get back to you within 24 hours.">
-<!-- ✅ Upload og-contact.png (1200×630) to your Netlify repo at /og-contact.png -->
 <meta property="og:image" content="https://sitfox.com/og-contact.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Sitfox">
 
-<!-- ═══════════════════════════════════════════════
-     TWITTER / X CARD
-════════════════════════════════════════════════ -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@sitfox">
 <meta name="twitter:title" content="Contact Sitfox — Talk to an AI Automation Specialist">
 <meta name="twitter:description" content="Drop us a message. We reply within 24 hours.">
-<!-- ✅ Same image as og:image is fine -->
 <meta name="twitter:image" content="https://sitfox.com/og-contact.png">
 
-<!-- ═══════════════════════════════════════════════
-     FAVICON
-     Upload your logo PNG to /images/favicon.png in your repo
-     For best results also add /favicon.ico (16×16 or 32×32 ICO)
-════════════════════════════════════════════════ -->
 <link rel="icon" type="image/png" href="/images/logo.png">
 <link rel="apple-touch-icon" href="/images/logo.png">
 
-<!-- ═══════════════════════════════════════════════
-     STRUCTURED DATA (JSON-LD)
-════════════════════════════════════════════════ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -77,7 +61,6 @@
 }
 </script>
 
-<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EKWQHY88GQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -115,251 +98,82 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 @keyframes scaleIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* NAV CSS (from about page) */
 /* ══ NAV ══ */
-.sf-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:var(--ink);
-  border-bottom:1px solid var(--dark-border);
-  height:64px;padding:0 2.5rem;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:box-shadow .3s;
-}
+.sf-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);border-bottom:1px solid var(--dark-border);height:64px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
 .sf-nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.3)}
-
-/* Logo */
 .sf-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .sf-logo img{height:36px;width:36px;object-fit:contain}
 .sf-logo-word{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.4px}
 .sf-logo-word span{color:var(--orange)}
-
-/* Centre nav — main pages only, no clutter */
 .sf-nav-centre{display:flex;align-items:center;gap:.125rem}
-.sf-nl{
-  font-size:.875rem;font-weight:500;
-  color:rgba(255,255,255,.5);
-  text-decoration:none;
-  padding:.5rem 1rem;border-radius:8px;
-  transition:all .18s;white-space:nowrap;
-  position:relative;
-}
+.sf-nl{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;padding:.5rem 1rem;border-radius:8px;transition:all .18s;white-space:nowrap;position:relative}
 .sf-nl:hover{color:#fff;background:rgba(255,255,255,.06)}
 .sf-nl.active{color:#fff}
-.sf-nl.active::after{
-  content:"";position:absolute;
-  bottom:-1px;left:1rem;right:1rem;
-  height:2px;border-radius:100px;
-  background:linear-gradient(90deg,var(--orange),var(--lime));
-}
-
-/* "More" pill — houses secondary pages */
+.sf-nl.active::after{content:"";position:absolute;bottom:-1px;left:1rem;right:1rem;height:2px;border-radius:100px;background:linear-gradient(90deg,var(--orange),var(--lime))}
 .sf-more{position:relative}
-.sf-more-btn{
-  font-size:.875rem;font-weight:500;
-  color:rgba(255,255,255,.5);
-  background:none;border:none;cursor:pointer;font-family:inherit;
-  padding:.5rem 1rem;border-radius:8px;
-  display:flex;align-items:center;gap:5px;
-  transition:all .18s;
-}
+.sf-more-btn{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;font-family:inherit;padding:.5rem 1rem;border-radius:8px;display:flex;align-items:center;gap:5px;transition:all .18s}
 .sf-more-btn:hover{color:#fff;background:rgba(255,255,255,.06)}
 .sf-more-btn svg{width:11px;height:11px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .2s}
 .sf-more.open .sf-more-btn svg{transform:rotate(180deg)}
-.sf-more-menu{
-  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-4px);
-  background:var(--ink);border:1px solid var(--dark-border);
-  border-radius:16px;padding:.5rem;min-width:210px;
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
-  opacity:0;visibility:hidden;
-  transition:all .2s ease;
-  transform-origin:top center;
-}
+.sf-more-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-4px);background:var(--ink);border:1px solid var(--dark-border);border-radius:16px;padding:.5rem;min-width:210px;box-shadow:0 20px 60px rgba(0,0,0,.4);opacity:0;visibility:hidden;transition:all .2s ease;transform-origin:top center}
 .sf-more.open .sf-more-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-
-/* small triangle pointer */
-.sf-more-menu::before{
-  content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);
-  width:10px;height:10px;background:var(--dark-border);
-  clip-path:polygon(50% 0%,0% 100%,100% 100%);
-}
-
-.sf-more-item{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.625rem .875rem;border-radius:10px;
-  text-decoration:none;transition:background .15s;
-  color:rgba(255,255,255,.55);
-}
+.sf-more-menu::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--dark-border);clip-path:polygon(50% 0%,0% 100%,100% 100%)}
+.sf-more-item{display:flex;align-items:center;gap:.75rem;padding:.625rem .875rem;border-radius:10px;text-decoration:none;transition:background .15s;color:rgba(255,255,255,.55)}
 .sf-more-item:hover{background:rgba(255,255,255,.07);color:#fff}
-.sf-more-ico{
-  width:30px;height:30px;border-radius:8px;
-  background:rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.85rem;flex-shrink:0;
-}
+.sf-more-ico{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
 .sf-more-text strong{display:block;font-size:.83rem;font-weight:600;line-height:1.2}
 .sf-more-text small{font-size:.72rem;color:rgba(255,255,255,.3);font-weight:300}
-
-/* Right: CTA */
 .sf-nav-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
-.sf-nav-cta{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--lime);color:var(--ink);
-  padding:8px 20px;border-radius:100px;
-  font-size:.84rem;font-weight:800;
-  text-decoration:none;transition:all .22s;
-  white-space:nowrap;
-}
+.sf-nav-cta{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:var(--ink);padding:8px 20px;border-radius:100px;font-size:.84rem;font-weight:800;text-decoration:none;transition:all .22s;white-space:nowrap}
 .sf-nav-cta:hover{background:#d4f994;transform:translateY(-1px);box-shadow:0 6px 20px rgba(199,245,125,.35)}
-
-/* Hamburger */
-.sf-burger{
-  display:none;flex-direction:column;gap:5px;
-  background:none;border:none;cursor:pointer;padding:6px;margin-left:.5rem;
-}
-.sf-burger span{
-  display:block;width:22px;height:2px;
-  background:#fff;border-radius:2px;
-  transition:all .25s;transform-origin:center;
-}
+.sf-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:.5rem}
+.sf-burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s;transform-origin:center}
 .sf-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .sf-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .sf-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* Mobile drawer */
-.sf-drawer{
-  position:fixed;top:64px;left:0;right:0;z-index:199;
-  background:var(--ink);border-bottom:1px solid var(--dark-border);
-  overflow:hidden;max-height:0;
-  transition:max-height .35s cubic-bezier(.4,0,.2,1);
-}
+.sf-drawer{position:fixed;top:64px;left:0;right:0;z-index:199;background:var(--ink);border-bottom:1px solid var(--dark-border);overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
 .sf-drawer.open{max-height:100vh}
 .sf-drawer-inner{padding:1rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.2rem}
-.sf-ml{
-  display:flex;align-items:center;gap:.875rem;
-  padding:.75rem .875rem;border-radius:10px;
-  text-decoration:none;color:rgba(255,255,255,.55);
-  font-size:.9rem;font-weight:500;transition:all .18s;
-}
+.sf-ml{display:flex;align-items:center;gap:.875rem;padding:.75rem .875rem;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.55);font-size:.9rem;font-weight:500;transition:all .18s}
 .sf-ml:hover,.sf-ml.active{background:rgba(255,255,255,.07);color:#fff}
 .sf-ml-ico{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
 .sf-ml-sub{font-size:.72rem;color:rgba(255,255,255,.25);display:block;margin-top:1px;font-weight:300}
-.sf-drawer-section{
-  font-size:.68rem;font-weight:700;letter-spacing:.12em;
-  text-transform:uppercase;color:rgba(255,255,255,.2);
-  padding:.75rem .875rem .25rem;margin-top:.25rem;
-}
+.sf-drawer-section{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.75rem .875rem .25rem;margin-top:.25rem}
 .sf-drawer-divider{height:1px;background:var(--dark-border);margin:.5rem 0}
-.sf-drawer-cta{
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  background:var(--lime);color:var(--ink);
-  padding:.875rem;border-radius:12px;
-  font-size:.9rem;font-weight:800;
-  text-decoration:none;margin-top:.75rem;
-  transition:background .2s;
-}
+.sf-drawer-cta{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--lime);color:var(--ink);padding:.875rem;border-radius:12px;font-size:.9rem;font-weight:800;text-decoration:none;margin-top:.75rem;transition:background .2s}
 .sf-drawer-cta:hover{background:#d4f994}
 
-
-
-/* FOOTER CSS (from about page) */
 /* ══ FOOTER ══ */
-.sf-footer{
-  background:var(--ink);
-  border-top:1px solid var(--dark-border);
-  padding:4rem 2.5rem 2rem;
-  position:relative;overflow:hidden;
-}
-.sf-footer::before{
-  content:"";position:absolute;bottom:-80px;left:-60px;
-  width:350px;height:350px;border-radius:50%;
-  background:radial-gradient(circle,rgba(199,245,125,.04),transparent 65%);
-  pointer-events:none;
-}
-.sf-footer::after{
-  content:"";position:absolute;top:-60px;right:-60px;
-  width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,rgba(254,136,41,.04),transparent 65%);
-  pointer-events:none;
-}
+.sf-footer{background:var(--ink);border-top:1px solid var(--dark-border);padding:4rem 2.5rem 2rem;position:relative;overflow:hidden}
+.sf-footer::before{content:"";position:absolute;bottom:-80px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(199,245,125,.04),transparent 65%);pointer-events:none}
+.sf-footer::after{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.04),transparent 65%);pointer-events:none}
 .sf-foot-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1}
-
-/* Top grid: 4 columns */
-.sf-foot-top{
-  display:grid;
-  grid-template-columns:1.6fr 1fr 1fr 1fr;
-  gap:3rem;
-  padding-bottom:3rem;
-  border-bottom:1px solid var(--dark-border);
-  margin-bottom:2rem;
-}
+.sf-foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--dark-border);margin-bottom:2rem}
 .sf-foot-top>div{text-align:left}
-
-/* Brand */
 .sf-foot-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:1rem}
 .sf-foot-logo img{height:34px;width:34px;object-fit:contain}
 .sf-foot-logo-word{font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.4px}
 .sf-foot-logo-word span{color:var(--orange)}
 .sf-foot-tagline{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.75;font-weight:300;margin-bottom:1.5rem;max-width:230px}
-
-/* Contact links in brand col */
 .sf-foot-contacts{display:flex;flex-direction:column;gap:.625rem}
-.sf-foot-contact-link{
-  display:flex;align-items:center;gap:.6rem;
-  font-size:.82rem;color:rgba(255,255,255,.4);
-  text-decoration:none;transition:color .2s;font-weight:400;
-}
+.sf-foot-contact-link{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;font-weight:400}
 .sf-foot-contact-link:hover{color:var(--lime)}
 .sf-foot-contact-link svg{flex-shrink:0;opacity:.6}
-
-/* Link columns */
-.sf-foot-col-title{
-  font-size:.7rem;font-weight:700;letter-spacing:.13em;
-  text-transform:uppercase;color:rgba(255,255,255,.22);
-  margin-bottom:1.1rem;text-align:left;
-}
+.sf-foot-col-title{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.1rem;text-align:left}
 .sf-foot-col-links{list-style:none;display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
 .sf-foot-col-links li{width:100%;text-align:left}
-.sf-foot-col-links li a{
-  text-align:left;
-  font-size:.84rem;color:rgba(255,255,255,.42);
-  text-decoration:none;transition:color .2s;
-  display:inline-flex;align-items:center;gap:.5rem;
-}
+.sf-foot-col-links li a{text-align:left;font-size:.84rem;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:.5rem}
 .sf-foot-col-links li a:hover{color:#fff}
-.sf-free-badge{
-  font-size:.6rem;font-weight:700;letter-spacing:.05em;
-  text-transform:uppercase;
-  background:rgba(199,245,125,.12);color:var(--lime-dark);
-  border:1px solid rgba(199,245,125,.2);
-  border-radius:100px;padding:1px 7px;
-}
-
-/* Contact us button */
-.sf-foot-contact-btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  color:rgba(255,255,255,.6);padding:.75rem 1.5rem;border-radius:100px;
-  font-size:.84rem;font-weight:600;text-decoration:none;
-  transition:all .25s;
-}
+.sf-free-badge{font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(199,245,125,.12);color:var(--lime-dark);border:1px solid rgba(199,245,125,.2);border-radius:100px;padding:1px 7px}
+.sf-foot-contact-btn{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);padding:.75rem 1.5rem;border-radius:100px;font-size:.84rem;font-weight:600;text-decoration:none;transition:all .25s}
 .sf-foot-contact-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
 .sf-foot-contact-divider{height:1px;background:var(--dark-border);margin-bottom:2rem}
-
-/* Bottom bar */
-.sf-foot-bottom{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:1rem;
-}
+.sf-foot-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .sf-foot-copy{font-size:.75rem;color:rgba(255,255,255,.2)}
 .sf-foot-copy a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
 .sf-foot-copy a:hover{color:rgba(255,255,255,.6)}
 .sf-foot-badges{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
-.sf-foot-badge{
-  display:flex;align-items:center;gap:.4rem;
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
-  border-radius:100px;padding:4px 12px;
-  font-size:.7rem;color:rgba(255,255,255,.28);font-weight:500;
-}
+.sf-foot-badge{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.28);font-weight:500}
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:900px){
@@ -379,13 +193,11 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
   .sf-foot-bottom{flex-direction:column;align-items:flex-start;gap:.75rem}
 }
 
-
-/* ── HERO — single column, topic centred top, form centred below ── */
+/* ── HERO ── */
 .hero{padding:120px 2rem 60px;background:var(--cream);position:relative;overflow:hidden}
 .hero-blob{position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(199,245,125,.18) 0%,rgba(254,136,41,.05) 55%,transparent 72%);filter:blur(60px);pointer-events:none;z-index:0;animation:blobFloat 8s ease-in-out infinite}
 @keyframes blobFloat{0%,100%{transform:translateX(-50%) scale(1);opacity:.8}50%{transform:translateX(-50%) scale(1.06);opacity:1}}
 
-/* Topic block — centred, full width */
 .hero-topic{position:relative;z-index:1;text-align:center;max-width:680px;margin:0 auto 3rem;opacity:0;animation:fadeUp .7s .1s ease forwards}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:5px 15px 5px 8px;font-size:11.5px;color:var(--muted);font-weight:500;box-shadow:0 2px 14px rgba(26,28,46,.07);margin-bottom:1.5rem}
 .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 2s infinite;flex-shrink:0}
@@ -393,12 +205,10 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 .hero h1 em{font-style:normal;color:var(--lime-dark)}
 .hero-sub{font-size:.96rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:0}
 
-/* Contact pills row under sub */
 .contact-pills{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem}
 .contact-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:.78rem;font-weight:600;color:var(--muted);text-decoration:none;transition:all .2s;box-shadow:0 1px 6px rgba(26,28,46,.05)}
 .contact-pill:hover{border-color:rgba(199,245,125,.45);color:var(--ink);transform:translateY(-1px)}
 
-/* Form — full-width centred card */
 .form-wrap{position:relative;z-index:1;max-width:720px;margin:0 auto}
 
 /* ── FORM CARD ── */
@@ -411,24 +221,21 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 .form-card h2 em{font-style:normal;color:var(--lime-dark)}
 .form-desc{font-size:.84rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
 
-/* Fields */
 .field{margin-bottom:.875rem}
 .field label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:.4rem}
 .field label .req{color:var(--orange)}
-.field input,.field textarea{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.92rem;color:var(--ink);font-family:'Inter',sans-serif;transition:all .2s;outline:none;resize:none}
+.field input,.field textarea,.field select{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.92rem;color:var(--ink);font-family:'Inter',sans-serif;transition:all .2s;outline:none;resize:none;appearance:none}
 .field input::placeholder,.field textarea::placeholder{color:rgba(107,111,138,.38)}
-.field input:focus,.field textarea:focus{border-color:rgba(90,158,26,.5);background:var(--white);box-shadow:0 0 0 4px rgba(199,245,125,.14)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(90,158,26,.5);background:var(--white);box-shadow:0 0 0 4px rgba(199,245,125,.14)}
 .field textarea{min-height:120px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
 
-/* Submit */
 .submit-btn{width:100%;background:var(--lime);color:var(--ink);border:none;border-radius:100px;padding:1.05rem;font-size:.96rem;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:.5rem;box-shadow:0 4px 22px rgba(199,245,125,.45)}
 .submit-btn:hover{background:#d4f994;transform:translateY(-2px);box-shadow:0 10px 32px rgba(199,245,125,.45)}
 .submit-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 .spinner{width:18px;height:18px;border:2.5px solid rgba(26,28,46,.2);border-top-color:var(--ink);border-radius:50%;animation:spin .65s linear infinite}
 .privacy{text-align:center;font-size:.71rem;color:rgba(107,111,138,.5);margin-top:.75rem;line-height:1.6}
 
-/* Success state */
 .success-state{display:none;text-align:center;padding:2rem 0}
 .success-ico{width:76px;height:76px;background:rgba(199,245,125,.15);border:2px solid rgba(199,245,125,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:2.2rem;animation:scaleIn .4s ease}
 .success-state h3{font-size:1.35rem;font-weight:800;letter-spacing:-.4px;color:var(--ink);margin-bottom:.5rem}
@@ -455,12 +262,10 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 .alt-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:var(--lime-dark);text-decoration:none;transition:gap .2s}
 .alt-link:hover{gap:.65rem}
 
-/* reveal */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}
 
-/* RESPONSIVE */
 @media(max-width:900px){
   .contact-pills{gap:.5rem}
   .alt-grid{grid-template-columns:1fr 1fr}
@@ -483,22 +288,16 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 <div id="cring"></div>
 <div class="bg-dots"></div>
 
+<!-- NAV -->
 <nav class="sf-nav" id="sf-nav">
-
   <a href="https://sitfox.com" class="sf-logo">
-    <!-- ✅ Image migrated from base64 to Netlify-hosted file -->
-    <!-- Upload your logo PNG to /images/logo.png in your repo -->
     <img src="/images/logo.png" alt="Sitfox logo" width="36" height="36">
     <span class="sf-logo-word">Sit<span>Fox</span></span>
   </a>
-
-  <!-- Centre nav links -->
   <div class="sf-nav-centre">
     <a href="https://sitfox.com" class="sf-nl">Home</a>
     <a href="https://sitfox.com/about" class="sf-nl">About</a>
     <a href="https://sitfox.com/calculator" class="sf-nl">Revenue Leak Calculator</a>
-
-    <!-- Resources dropdown -->
     <div class="sf-more" id="sf-more">
       <button class="sf-more-btn" onclick="toggleMore()">
         Resources
@@ -514,71 +313,46 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
         </a>
       </div>
     </div>
-
     <a href="https://sitfox.com/faqs" class="sf-nl">FAQs</a>
     <a href="https://sitfox.com/contact" class="sf-nl active">Contact</a>
   </div>
-
   <div class="sf-nav-right">
     <a href="https://sitfox.com/call" class="sf-nav-cta">Book a Free Call →</a>
     <button class="sf-burger" id="sf-burger" onclick="toggleDrawer()" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </div>
-
 </nav>
 
-<!-- Mobile drawer — smooth slide down -->
+<!-- Mobile drawer -->
 <div class="sf-drawer" id="sf-drawer">
   <div class="sf-drawer-inner">
-    <a href="https://sitfox.com" class="sf-ml">
-      <span class="sf-ml-ico">🏠</span>
-      <span>Home</span>
-    </a>
-    <a href="https://sitfox.com/about" class="sf-ml">
-      <span class="sf-ml-ico">👋</span>
-      <span>About Sitfox</span>
-    </a>
+    <a href="https://sitfox.com" class="sf-ml"><span class="sf-ml-ico">🏠</span><span>Home</span></a>
+    <a href="https://sitfox.com/about" class="sf-ml"><span class="sf-ml-ico">👋</span><span>About Sitfox</span></a>
     <a href="https://sitfox.com/calculator" class="sf-ml">
       <span class="sf-ml-ico">📊</span>
-      <div>
-        Revenue Leak Calculator
-        <span class="sf-ml-sub">Find your monthly revenue leak — free</span>
-      </div>
+      <div>Revenue Leak Calculator<span class="sf-ml-sub">Find your monthly revenue leak — free</span></div>
     </a>
     <div class="sf-drawer-divider"></div>
     <div class="sf-drawer-section">Resources</div>
     <a href="https://sitfox.com/manufacturers-guide" class="sf-ml">
       <span class="sf-ml-ico">🏭</span>
-      <div>
-        Manufacturer's Guide
-        <span class="sf-ml-sub">17 AI ideas — free download</span>
-      </div>
+      <div>Manufacturer's Guide<span class="sf-ml-sub">17 AI ideas — free download</span></div>
     </a>
     <div class="sf-drawer-divider"></div>
-    <a href="https://sitfox.com/faqs" class="sf-ml">
-      <span class="sf-ml-ico">❓</span>
-      <span>FAQs</span>
-    </a>
-    <a href="https://sitfox.com/contact" class="sf-ml">
-      <span class="sf-ml-ico">✉️</span>
-      <span>Contact</span>
-    </a>
+    <a href="https://sitfox.com/faqs" class="sf-ml"><span class="sf-ml-ico">❓</span><span>FAQs</span></a>
+    <a href="https://sitfox.com/contact" class="sf-ml"><span class="sf-ml-ico">✉️</span><span>Contact</span></a>
     <a href="https://sitfox.com/call" class="sf-drawer-cta">Book a Free Call →</a>
   </div>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <div class="hero">
   <div class="hero-blob"></div>
-
-  <!-- Topic block — centred, single column -->
   <div class="hero-topic">
     <div class="hero-eyebrow"><span class="eyebrow-dot"></span> We reply within 24 hours</div>
     <h1>Let's talk about<br>what AI can do<br>for <em>your business.</em></h1>
     <p class="hero-sub">Whether you have a question, want to explore a project, or just want to learn more — we'd love to hear from you.</p>
-
-    <!-- Quick contact pills under sub -->
     <div class="contact-pills">
       <a href="mailto:hello@sitfox.com" class="contact-pill">✉️ hello@sitfox.com</a>
       <a href="https://sitfox.com/call" class="contact-pill">📅 Book a free call</a>
@@ -586,40 +360,13 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
     </div>
   </div>
 
-  <!-- Form — full-width centred -->
   <div class="form-wrap">
     <div class="form-card">
       <div class="form-eyebrow">Send a message</div>
       <h2>Tell us about <em>your business</em></h2>
       <p class="form-desc">Fill in the form and we'll get back to you within 24 hours. A real person reads every message — no automated responses.</p>
 
-      <!--
-        ══════════════════════════════════════════════════════
-        NETLIFY FORMS — key changes:
-          1. <form> tag with netlify attribute (data-netlify="true")
-          2. Hidden input: name="form-name" value="contact"
-          3. JS intercepts submit, reads form data, POSTs to "/"
-             with fetch (no CORS issue — same origin)
-          4. Make.com webhook fired server-side via Netlify Forms
-             → Make integration (set up in Netlify dashboard after
-             first test submission arrives)
-        ══════════════════════════════════════════════════════
-      -->
-      <form
-        id="contactForm"
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        onsubmit="submitForm(event)"
-      >
-        <!-- Required hidden field so Netlify knows which form this is -->
-        <input type="hidden" name="form-name" value="contact">
-
-        <!-- Honeypot spam field — hidden from real users -->
-        <p style="display:none">
-          <label>Don't fill this out: <input name="bot-field"></label>
-        </p>
+      <form id="contactForm" onsubmit="submitForm(event)">
 
         <div class="form-row">
           <div class="field">
@@ -639,9 +386,10 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
           <label for="business">Business name</label>
           <input type="text" id="business" name="businessName" placeholder="e.g. Meridian Group">
         </div>
+        <!-- type="text" — no URL validation, user can type anything -->
         <div class="field">
           <label for="website">Website</label>
-          <input type="url" id="website" name="website" placeholder="e.g. https://yoursite.com">
+          <input type="text" id="website" name="website" placeholder="e.g. sitfox.com">
         </div>
         <div class="field">
           <label for="message">Your message <span class="req">*</span></label>
@@ -662,10 +410,9 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- ══ TRUST STRIP ══ -->
+<!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-inner">
     <div class="trust-item"><span class="trust-ico">🌍</span> 12+ countries served</div>
@@ -680,7 +427,7 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
   </div>
 </div>
 
-<!-- ══ OTHER WAYS ══ -->
+<!-- OTHER WAYS -->
 <div class="alt-section">
   <div class="alt-inner">
     <div class="alt-eyebrow reveal">Other ways to connect</div>
@@ -708,15 +455,12 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="sf-footer">
   <div class="sf-foot-inner">
-
     <div class="sf-foot-top">
-
-      <!-- Brand column -->
       <div class="sf-foot-brand">
         <a href="https://sitfox.com" class="sf-foot-logo">
-          <!-- ✅ Image migrated from base64 to Netlify-hosted file -->
           <img src="/images/logo.png" alt="Sitfox" width="34" height="34">
           <span class="sf-foot-logo-word">Sit<span>Fox</span></span>
         </a>
@@ -732,8 +476,6 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
           </a>
         </div>
       </div>
-
-      <!-- Company -->
       <div>
         <div class="sf-foot-col-title">Company</div>
         <ul class="sf-foot-col-links">
@@ -743,27 +485,13 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
           <li><a href="https://sitfox.com/faqs">FAQs</a></li>
         </ul>
       </div>
-
-      <!-- Resources -->
       <div>
         <div class="sf-foot-col-title">Free Resources</div>
         <ul class="sf-foot-col-links">
-          <li>
-            <a href="https://sitfox.com/calculator">
-              Revenue Leak Calculator
-              <span class="sf-free-badge">Free</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://sitfox.com/manufacturers-guide">
-              Manufacturer's Guide
-              <span class="sf-free-badge">Free</span>
-            </a>
-          </li>
+          <li><a href="https://sitfox.com/calculator">Revenue Leak Calculator <span class="sf-free-badge">Free</span></a></li>
+          <li><a href="https://sitfox.com/manufacturers-guide">Manufacturer's Guide <span class="sf-free-badge">Free</span></a></li>
         </ul>
       </div>
-
-      <!-- Get started -->
       <div>
         <div class="sf-foot-col-title">Get started</div>
         <ul class="sf-foot-col-links">
@@ -771,51 +499,28 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
           <li><a href="https://sitfox.com/calculator">Find Your Revenue Leak</a></li>
           <li><a href="mailto:hello@sitfox.com">Email Us Directly</a></li>
         </ul>
-        <a href="https://sitfox.com/contact" class="sf-foot-contact-btn" style="margin-top:1.25rem;display:inline-flex">
-          ✉️ &nbsp;Get in Touch
-        </a>
+        <a href="https://sitfox.com/contact" class="sf-foot-contact-btn" style="margin-top:1.25rem;display:inline-flex">✉️ &nbsp;Get in Touch</a>
       </div>
-
     </div>
-
     <div class="sf-foot-contact-divider"></div>
-
-    <!-- Bottom bar -->
     <div class="sf-foot-bottom">
-      <div class="sf-foot-copy">
-        © 2026 Sitfox &nbsp;·&nbsp;
-        <a href="https://sitfox.com">sitfox.com</a> &nbsp;·&nbsp;
-        All rights reserved &nbsp;·&nbsp;
-        <a href="/privacy">Privacy Policy</a>
-      </div>
+      <div class="sf-foot-copy">© 2026 Sitfox &nbsp;·&nbsp; <a href="https://sitfox.com">sitfox.com</a> &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></div>
       <div class="sf-foot-badges">
         <div class="sf-foot-badge"><span>🌍</span> 12+ Countries</div>
         <div class="sf-foot-badge"><span>🤖</span> AI & Automation</div>
       </div>
     </div>
-
   </div>
 </footer>
-
-<div id="cdot" style="display:none"></div>
-<div id="cring" style="display:none"></div>
 
 <script>
 /* CURSOR */
 if(window.innerWidth > 720){
   const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
-  dot.style.display='block'; ring.style.display='block';
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    dot.style.left=mx+'px';dot.style.top=my+'px';
-  });
-  (function loop(){
-    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-    ring.style.left=rx+'px';ring.style.top=ry+'px';
-    requestAnimationFrame(loop);
-  })();
-  document.querySelectorAll('a,button,input,textarea,.alt-card,.info-card').forEach(el=>{
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+  document.querySelectorAll('a,button,input,textarea,.alt-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
     el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
   });
@@ -827,14 +532,13 @@ const io=new IntersectionObserver(entries=>{
 },{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ══════════════════════════════════════════════════════
-   FORM SUBMIT — Netlify Forms version
-   Posts to "/" (same origin = no CORS) using FormData.
-   Netlify intercepts this server-side before it hits your
-   origin, stores the submission, and fires your Make.com
-   webhook (configured once in Netlify dashboard after the
-   first test submission arrives).
-══════════════════════════════════════════════════════ */
+/* =====================================================
+   CONTACT FORM — make.com webhook (primary) + Formspree (backup)
+   Same webhook URL as index.html and call.html.
+   source field identifies this as the Contact page.
+   Field names match across all pages:
+     firstName, lastName, email, businessName, website, message
+===================================================== */
 async function submitForm(e) {
   e.preventDefault();
 
@@ -845,10 +549,7 @@ async function submitForm(e) {
   const website  = document.getElementById('website').value.trim();
   const message  = document.getElementById('message').value.trim();
 
-  if (!fname || !email || !message) {
-    document.getElementById(fname ? (email ? 'message' : 'cemail') : 'fname').focus();
-    return;
-  }
+  if (!fname || !email || !message) return;
 
   const btn    = document.getElementById('submitBtn');
   const btnTxt = document.getElementById('btnText');
@@ -857,52 +558,45 @@ async function submitForm(e) {
   btnTxt.textContent = 'Sending…';
   btnArr.innerHTML = '<div class="spinner"></div>';
 
-  try {
-    /* ── PRIMARY: Netlify Forms (same-origin POST, no CORS) ── */
-    const formData = new FormData();
-    formData.append('form-name',    'contact');
-    formData.append('firstName',    fname);
-    formData.append('lastName',     lname);
-    formData.append('email',        email);
-    formData.append('businessName', business);
-    formData.append('website',      website);
-    formData.append('message',      message);
+  const payload = {
+    firstName:    fname,
+    lastName:     lname,
+    email:        email,
+    businessName: business,
+    website:      website,
+    message:      message,
+    source:       'Sitfox Contact Page',
+    submittedAt:  new Date().toISOString()
+  };
 
-    const netlifyPromise = fetch('/', {
+  try {
+    /* ── PRIMARY: make.com webhook ── */
+    const makePromise = fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e', {
       method:  'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body:    new URLSearchParams(formData).toString()
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
     });
 
-    /* ── BACKUP: Formspree (catches anything Netlify misses) ── */
-    const payload = {
-      firstName:    fname,
-      lastName:     lname,
-      email:        email,
-      businessName: business,
-      website:      website,
-      message:      message,
-      source:       'Sitfox Contact Page',
-      submittedAt:  new Date().toISOString()
-    };
-
+    /* ── BACKUP: Formspree ── */
     const formspreePromise = fetch('https://formspree.io/f/mjgjlqjp', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body:    JSON.stringify(payload)
     });
 
-    /* Fire both simultaneously — success if either lands */
-    const [netlifyRes] = await Promise.allSettled([netlifyPromise, formspreePromise]);
+    const [makeRes, formspreeRes] = await Promise.allSettled([makePromise, formspreePromise]);
 
-    if (netlifyRes.status === 'fulfilled' && (netlifyRes.value.ok || netlifyRes.value.status === 200)) {
+    const makeOk      = makeRes.status === 'fulfilled' && makeRes.value.ok;
+    const formspreeOk = formspreeRes.status === 'fulfilled' && formspreeRes.value.ok;
+
+    if (makeOk || formspreeOk) {
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
     } else {
-      throw new Error('Submission failed');
+      throw new Error('Both submissions failed');
     }
-  } catch (err) {
-    console.error('Form submission error:', err);
+  } catch(err) {
+    console.error('Form error:', err);
     btn.disabled = false;
     btnTxt.textContent = 'Send Message';
     btnArr.innerHTML = '→';
@@ -911,39 +605,31 @@ async function submitForm(e) {
 }
 
 /* Enter in inputs submits */
-document.querySelectorAll('#contactForm input').forEach(inp => {
-  inp.addEventListener('keydown', e => { if (e.key === 'Enter' && inp.type !== 'url') submitForm(e); });
+document.querySelectorAll('#contactForm input').forEach(inp=>{
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')submitForm(e)});
 });
 </script>
 
 <script>
 /* ── "More" dropdown ── */
-function toggleMore(){
-  document.getElementById("sf-more").classList.toggle("open");
-}
-document.addEventListener("click", e => {
-  if(!e.target.closest("#sf-more"))
-    document.getElementById("sf-more").classList.remove("open");
-});
+function toggleMore(){document.getElementById("sf-more").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest("#sf-more"))document.getElementById("sf-more").classList.remove("open")});
 
 /* ── Mobile drawer ── */
 function toggleDrawer(){
-  const drawer = document.getElementById("sf-drawer");
-  const burger = document.getElementById("sf-burger");
-  drawer.classList.toggle("open");
-  burger.classList.toggle("open");
+  document.getElementById("sf-drawer").classList.toggle("open");
+  document.getElementById("sf-burger").classList.toggle("open");
 }
-document.querySelectorAll(".sf-ml, .sf-drawer-cta").forEach(el => {
-  el.addEventListener("click", () => {
+document.querySelectorAll(".sf-ml,.sf-drawer-cta").forEach(el=>{
+  el.addEventListener("click",()=>{
     document.getElementById("sf-drawer").classList.remove("open");
     document.getElementById("sf-burger").classList.remove("open");
   });
 });
 
 /* ── Nav scroll shadow ── */
-window.addEventListener("scroll", () => {
-  document.getElementById("sf-nav")
-    .classList.toggle("scrolled", window.scrollY > 8);
+window.addEventListener("scroll",()=>{
+  document.getElementById("sf-nav").classList.toggle("scrolled",window.scrollY>8);
 });
 </script>
 
