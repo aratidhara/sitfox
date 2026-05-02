@@ -80,14 +80,7 @@
   gtag('config', 'G-EKWQHY88GQ');
 </script>
 
-<!--
-  ══════════════════════════════════════════════════════
-  NETLIFY FORMS — Hidden form for calculator leads.
-  Netlify detects this at deploy time and registers the form.
-  The actual submission happens via JS fetch in sendLead().
-  Must live in the HTML body (not JS) for Netlify to find it.
-  ══════════════════════════════════════════════════════
--->
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -444,36 +437,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 </head>
 <body>
 
-<!--
-  ══════════════════════════════════════════════════════
-  NETLIFY FORMS — Hidden form so Netlify registers it at
-  deploy time. The JS sendLead() function POSTs to this
-  form via fetch. Must be in the HTML body, not in JS.
-  Give it a unique name so it appears separately in your
-  Netlify dashboard from the contact page form.
-  ══════════════════════════════════════════════════════
--->
-<form name="calculator-leads" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="hidden" name="form-name" value="calculator-leads">
-  <input name="bot-field">
-  <input name="name">
-  <input name="email">
-  <input name="monthly_leak">
-  <input name="annual_leak">
-  <input name="leak_calls">
-  <input name="leak_admin">
-  <input name="leak_followup">
-  <input name="team_size">
-  <input name="hourly">
-  <input name="missed_per_week">
-  <input name="deal_value">
-  <input name="admin_hrs">
-  <input name="fu_hrs">
-  <input name="ai_status">
-  <input name="source">
-  <input name="timestamp">
-  <input name="page_url">
-</form>
+<!-- GitHub Pages — no server-side form handling needed; submissions go via JS to Make.com + Formspree -->
 
 <div class="cur-dot" id="cdot"></div>
 <div class="cur-ring" id="cring"></div>
@@ -577,7 +541,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 <!-- ══ INTRO ══ -->
 <div class="screen active" id="screen-intro">
   <div class="intro-top">
-    <div class="intro-badge"><span class="pulse"></span>Free Revenue Leak Calculator &middot; 2 min &middot; No sign-up</div>
+    <div class="intro-badge"><span class="pulse"></span>Free Revenue Leak Calculator &middot; 2 min</div>
     <h1 class="intro-h1">
       Find out exactly<br>
       how much your business<br>
@@ -657,9 +621,9 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
       <div class="intro-facts">
         <div class="fact">⚡ Result shown instantly</div>
         <div class="fact-sep"></div>
-        <div class="fact">🔒 No email required</div>
-        <div class="fact-sep"></div>
         <div class="fact">📊 Personalised breakdown</div>
+        <div class="fact-sep"></div>
+        <div class="fact">🎯 Free strategy call included</div>
       </div>
 
       <button class="btn-start" onclick="go(1)">
@@ -822,6 +786,32 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   </div>
 </div>
 
+<!-- ══ LEAD GATE ══ -->
+<div class="screen" id="screen-gate">
+  <div style="max-width:560px;margin:0 auto;text-align:center;padding:2rem 0">
+    <div style="font-size:3rem;margin-bottom:1.25rem">🔍</div>
+    <div style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem">Your result is ready</div>
+    <h2 style="font-size:clamp(1.5rem,3vw,2.1rem);font-weight:900;letter-spacing:-1.2px;line-height:1.12;margin-bottom:.65rem;color:var(--ink)">Where should we send<br>your personalised breakdown?</h2>
+    <p style="font-size:.92rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:2rem;max-width:440px;margin-left:auto;margin-right:auto">Enter your name and email to reveal your monthly revenue leak — we'll also send you the full breakdown with your custom action plan.</p>
+
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:2rem 2.5rem;text-align:left">
+      <div id="gate-form-inner">
+        <input type="text" class="email-field" id="gate-name" placeholder="First name" style="margin-bottom:.65rem">
+        <input type="email" class="email-field" id="gate-email" placeholder="Email address" style="margin-bottom:.85rem">
+        <button class="btn-email" id="gate-btn" onclick="submitGate()" style="font-size:1rem;padding:1rem;border-radius:14px;background:var(--orange)">Reveal My Revenue Leak →</button>
+        <div class="email-micro" style="margin-top:.75rem">🔒 No spam, ever. We only reach out if we can genuinely help.</div>
+      </div>
+      <div id="gate-error" style="display:none;color:var(--red);font-size:.83rem;font-weight:500;margin-top:.5rem;text-align:center"></div>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--muted)"><span>✅</span> Personalised to your answers</div>
+      <div style="display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--muted)"><span>📊</span> 3-category breakdown</div>
+      <div style="display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--muted)"><span>🎯</span> Free strategy call offered</div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ RESULT ══ -->
 <div class="screen" id="screen-result">
 
@@ -871,31 +861,21 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 
   <div class="result-cta-row">
 
-    <div class="cta-box">
+    <div class="cta-box" style="border:2px solid rgba(254,136,41,0.35);box-shadow:0 8px 48px rgba(254,136,41,0.18)">
       <div class="cta-eyebrow">🎯 Free strategy call · 30 minutes · No commitment</div>
       <div class="cta-h" id="cta-h">Stop losing money.<br>Let's fix it.</div>
       <div class="cta-p">Book a free call with our team. We'll map exactly which AI systems will recover this leak, show you the ROI, and give you a clear plan — no obligation.</div>
-      <a href="https://sitfox.com/call" target="_blank" class="btn-book">📅 Book My Free Strategy Call →</a>
+      <a href="https://sitfox.com/call" target="_blank" class="btn-book" style="font-size:16px;padding:16px 34px;box-shadow:0 8px 32px rgba(254,136,41,.55)">📅 Book My Free Strategy Call →</a>
+      <div style="margin-top:1.1rem;font-size:.78rem;color:rgba(255,255,255,.3);position:relative;z-index:1">⚡ Most spots go within 48 hours</div>
     </div>
 
-    <div style="display:flex;align-items:center;gap:1rem">
-      <div style="flex:1;height:1px;background:var(--border)"></div>
-      <span style="font-size:.78rem;color:var(--muted);white-space:nowrap;font-weight:500">or get the report sent to you</span>
-      <div style="flex:1;height:1px;background:var(--border)"></div>
-    </div>
-
-    <div class="email-box">
-      <h4>📄 Get the full breakdown by email</h4>
-      <p class="email-desc">Receive a personalised report with exact numbers, which AI systems to prioritise, and estimated ROI — straight to your inbox.</p>
-      <div id="email-form-inner">
-        <input type="text" class="email-field" id="f-name" placeholder="First name">
-        <input type="email" class="email-field" id="f-email" placeholder="Email address">
-        <button class="btn-email" onclick="sendLead()">Send Me the Report →</button>
-        <div class="email-micro">🔒 No spam, ever.</div>
+    <div style="background:#fff;border:1.5px solid var(--border);border-radius:20px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem">Prefer to chat first?</div>
+        <div style="font-size:1.05rem;font-weight:800;letter-spacing:-.4px;color:var(--ink);margin-bottom:.3rem">Talk to us directly</div>
+        <div style="font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.6">Drop us a message on our contact page — we reply within a business day.</div>
       </div>
-      <div class="email-done" id="email-done">
-        <p>🎉 Report sent! Check your inbox.<br><br>If your monthly leak is over $5,000 we'll reach out personally.</p>
-      </div>
+      <a href="https://sitfox.com/contact" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;padding:13px 26px;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .28s;white-space:nowrap;flex-shrink:0" onmouseover="this.style.background='var(--orange)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--ink)';this.style.transform='none'">✉️ Contact Us →</a>
     </div>
 
   </div>
@@ -930,7 +910,7 @@ const qLabels=['','Team Size','Hourly Cost','Missed Leads','Deal Value','Admin H
 
 function go(n){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  const id = n==='calc'?'screen-calc': n==='result'?'screen-result': n==='intro'?'screen-intro':'screen-'+n;
+  const id = n==='calc'?'screen-calc': n==='result'?'screen-result': n==='intro'?'screen-intro': n==='gate'?'screen-gate':'screen-'+n;
   document.getElementById(id).classList.add('active');
   updateProg(n);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -946,7 +926,7 @@ function updateProg(n){
     document.getElementById('prog-step').textContent=n+' of 7';
   } else {
     document.getElementById('prog-fill').style.width='100%';
-    document.getElementById('prog-label').textContent='Your Result';
+    document.getElementById('prog-label').textContent= n==='gate'?'Almost there…':'Your Result';
     document.getElementById('prog-step').textContent='Done';
   }
 }
@@ -1026,11 +1006,16 @@ function calculate(){
   });
   setTimeout(()=>{
     document.getElementById('cs4').classList.replace('active','done');
-    setTimeout(()=>render(),350);
+    setTimeout(()=>{
+      // Pre-calculate and store result, then show gate
+      preCalculate();
+      go('gate');
+    },350);
   },3200);
 }
 
-function render(){
+/* ── PRE-CALCULATE (store result before gate) ── */
+function preCalculate(){
   const mult={none:1.0,basic:0.85,some:0.65,integrated:0.30}[S.ai]||1.0;
 
   const rawCalls = S.missed * 4.3 * S.deal * 0.30;
@@ -1045,65 +1030,23 @@ function render(){
   const total = Math.round((leakCalls + leakAdmin + leakFu) * variance);
   const annual = total * 12;
 
-  let sevClass, sevText;
-  if(total>=15000){sevClass='sev-crit';sevText='🚨 Critical — Immediate Action Needed';}
-  else if(total>=5000){sevClass='sev-high';sevText='⚠️ High — Significant Opportunity';}
-  else{sevClass='sev-med';sevText='📊 Moderate — Room to Improve';}
-
-  document.getElementById('r-total').textContent='$'+total.toLocaleString();
-  document.getElementById('r-annual').textContent='$'+annual.toLocaleString();
-  const badge=document.getElementById('r-badge');
-  badge.className='lh-badge '+sevClass;
-  badge.innerHTML='<div class="sev-dot"></div>'+sevText;
-
-  const sum=(leakCalls+leakAdmin+leakFu)||1;
-  const pA=Math.round((leakCalls/sum)*100);
-  const pB=Math.round((leakAdmin/sum)*100);
-  const pC=Math.round((leakFu/sum)*100);
-
-  document.getElementById('bc-a-amt').textContent='$'+Math.round(leakCalls).toLocaleString();
-  document.getElementById('bc-a-d').textContent=Math.round(S.missed*4.3)+' missed leads/month';
-  document.getElementById('bc-b-amt').textContent='$'+Math.round(leakAdmin).toLocaleString();
-  document.getElementById('bc-b-d').textContent=Math.round(S.admin*4.3)+' admin hrs/month automatable';
-  document.getElementById('bc-c-amt').textContent='$'+Math.round(leakFu).toLocaleString();
-  document.getElementById('bc-c-d').textContent=Math.round(S.fu*4.3)+' follow-up hrs/month';
-
-  ['a','b','c'].forEach((l,i)=>{
-    setTimeout(()=>{
-      document.getElementById('bc-'+l).classList.add('in');
-      setTimeout(()=>{
-        document.getElementById('bc-'+l+'-bar').style.width=[pA,pB,pC][i]+'%';
-      },100);
-    },i*160);
-  });
-
-  const fixes=[];
-  if(leakCalls>500)fixes.push('AI voice agent answers calls 24/7, books appointments, and recovers an estimated <strong>$'+Math.round(leakCalls*.75).toLocaleString()+'/mo</strong> in missed leads');
-  if(leakAdmin>500)fixes.push('Workflow automation handles scheduling, data entry, and invoicing — saving <strong>'+Math.round(S.admin*4.3*.7)+' hours/month</strong>');
-  if(leakFu>500)fixes.push('AI follow-up sequences re-engage cold leads automatically — recovering <strong>$'+Math.round(leakFu).toLocaleString()+'/mo</strong> in opportunity cost');
-  fixes.push('Fast, reliable implementation with 30-day post-launch support included — we move quickly and we\'re thorough');
-  document.getElementById('fix-list').innerHTML=fixes.map(f=>`<div class="fix-item"><div class="fix-ck"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6.5 7,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>${f}</span></div>`).join('');
-
-  document.getElementById('cta-h').innerHTML='Stop losing $'+total.toLocaleString()+'/mo.<br>Let\'s fix it.';
-
-  window._R={total,annual,leakCalls,leakAdmin,leakFu,S:{...S}};
-  go('result');
+  window._R = {total,annual,leakCalls,leakAdmin,leakFu,S:{...S}};
 }
 
-/* ── LEAD SUBMIT ── */
-/*
-  Three destinations fire simultaneously via Promise.allSettled:
-  1. Netlify Forms  — same-origin POST, stored in your Netlify dashboard,
-                      triggers your Make.com webhook via Netlify → Make integration
-  2. Make.com       — direct webhook for immediate automation
-  3. Formspree      — backup capture in case either above has downtime
-*/
-async function sendLead(){
-  const name  = document.getElementById('f-name').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  if(!email || !email.includes('@')){ toast('Please enter a valid email'); return; }
+/* ── GATE SUBMIT ── */
+async function submitGate(){
+  const name  = document.getElementById('gate-name').value.trim();
+  const email = document.getElementById('gate-email').value.trim();
+  const errEl = document.getElementById('gate-error');
+  errEl.style.display='none';
 
-  const btn = document.querySelector('.btn-email');
+  if(!email || !email.includes('@')){
+    errEl.textContent='Please enter a valid email address.';
+    errEl.style.display='block';
+    return;
+  }
+
+  const btn = document.getElementById('gate-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
 
@@ -1128,34 +1071,11 @@ async function sendLead(){
     page_url:       window.location.href
   };
 
-  /* ── 1. NETLIFY FORMS — same-origin POST, no CORS issues ── */
-  const netlifyData = new URLSearchParams();
-  netlifyData.append('form-name',     'calculator-leads');
-  netlifyData.append('name',          payload.name);
-  netlifyData.append('email',         payload.email);
-  netlifyData.append('monthly_leak',  payload.monthly_leak);
-  netlifyData.append('annual_leak',   payload.annual_leak);
-  netlifyData.append('leak_calls',    payload.leak_calls);
-  netlifyData.append('leak_admin',    payload.leak_admin);
-  netlifyData.append('leak_followup', payload.leak_followup);
-  netlifyData.append('team_size',     payload.team_size);
-  netlifyData.append('hourly',        payload.hourly);
-  netlifyData.append('missed_per_week', payload.missed_per_week);
-  netlifyData.append('deal_value',    payload.deal_value);
-  netlifyData.append('admin_hrs',     payload.admin_hrs);
-  netlifyData.append('fu_hrs',        payload.fu_hrs);
-  netlifyData.append('ai_status',     payload.ai_status);
-  netlifyData.append('source',        payload.source);
-  netlifyData.append('timestamp',     payload.timestamp);
-  netlifyData.append('page_url',      payload.page_url);
+  // Store name/email for result page personalisation
+  window._leadName = name;
+  window._leadEmail = email;
 
-  const netlifyPromise = fetch('/', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:    netlifyData.toString()
-  }).catch(e => console.log('Netlify:', e));
-
-  /* ── 2. MAKE.COM WEBHOOK — direct automation trigger ── */
+  /* ── Make.com webhook — JSON payload ── */
   const WEBHOOK = 'https://hook.us2.make.com/q74fmids3bw4uaelwbf9yq7pqivsur3d';
   const makePromise = fetch(WEBHOOK, {
     method:  'POST',
@@ -1164,7 +1084,7 @@ async function sendLead(){
     body:    JSON.stringify(payload)
   }).catch(e => console.log('Make.com:', e));
 
-  /* ── 3. FORMSPREE — backup capture ── */
+  /* ── Formspree — JSON payload ── */
   const FORMSPREE = 'https://formspree.io/f/xzdywzyj';
   const formspreePromise = fetch(FORMSPREE, {
     method:  'POST',
@@ -1172,12 +1092,62 @@ async function sendLead(){
     body:    JSON.stringify(payload)
   }).catch(e => console.log('Formspree:', e));
 
-  /* Fire all three simultaneously — succeed if any land */
-  await Promise.allSettled([netlifyPromise, makePromise, formspreePromise]);
+  /* Fire both simultaneously */
+  await Promise.allSettled([makePromise, formspreePromise]);
 
-  document.getElementById('email-form-inner').style.display = 'none';
-  document.getElementById('email-done').classList.add('show');
-  toast('📧 Report on its way to ' + email);
+  render();
+}
+
+function render(){
+  const r = window._R || {};
+  const total = r.total || 0;
+  const annual = r.annual || 0;
+  const leakCalls = r.leakCalls || 0;
+  const leakAdmin = r.leakAdmin || 0;
+  const leakFu    = r.leakFu    || 0;
+
+  let sevClass, sevText;
+  if(total>=15000){sevClass='sev-crit';sevText='🚨 Critical — Immediate Action Needed';}
+  else if(total>=5000){sevClass='sev-high';sevText='⚠️ High — Significant Opportunity';}
+  else{sevClass='sev-med';sevText='📊 Moderate — Room to Improve';}
+
+  document.getElementById('r-total').textContent='$'+total.toLocaleString();
+  document.getElementById('r-annual').textContent='$'+annual.toLocaleString();
+  const badge=document.getElementById('r-badge');
+  badge.className='lh-badge '+sevClass;
+  badge.innerHTML='<div class="sev-dot"></div>'+sevText;
+
+  const sum=(leakCalls+leakAdmin+leakFu)||1;
+  const pA=Math.round((leakCalls/sum)*100);
+  const pB=Math.round((leakAdmin/sum)*100);
+  const pC=Math.round((leakFu/sum)*100);
+
+  document.getElementById('bc-a-amt').textContent='$'+Math.round(leakCalls).toLocaleString();
+  document.getElementById('bc-a-d').textContent=Math.round((r.S||S).missed*4.3)+' missed leads/month';
+  document.getElementById('bc-b-amt').textContent='$'+Math.round(leakAdmin).toLocaleString();
+  document.getElementById('bc-b-d').textContent=Math.round((r.S||S).admin*4.3)+' admin hrs/month automatable';
+  document.getElementById('bc-c-amt').textContent='$'+Math.round(leakFu).toLocaleString();
+  document.getElementById('bc-c-d').textContent=Math.round((r.S||S).fu*4.3)+' follow-up hrs/month';
+
+  ['a','b','c'].forEach((l,i)=>{
+    setTimeout(()=>{
+      document.getElementById('bc-'+l).classList.add('in');
+      setTimeout(()=>{
+        document.getElementById('bc-'+l+'-bar').style.width=[pA,pB,pC][i]+'%';
+      },100);
+    },i*160);
+  });
+
+  const fixes=[];
+  if(leakCalls>500)fixes.push('AI voice agent answers calls 24/7, books appointments, and recovers an estimated <strong>$'+Math.round(leakCalls*.75).toLocaleString()+'/mo</strong> in missed leads');
+  if(leakAdmin>500)fixes.push('Workflow automation handles scheduling, data entry, and invoicing — saving <strong>'+Math.round((r.S||S).admin*4.3*.7)+' hours/month</strong>');
+  if(leakFu>500)fixes.push('AI follow-up sequences re-engage cold leads automatically — recovering <strong>$'+Math.round(leakFu).toLocaleString()+'/mo</strong> in opportunity cost');
+  fixes.push('Fast, reliable implementation with 30-day post-launch support included — we move quickly and we\'re thorough');
+  document.getElementById('fix-list').innerHTML=fixes.map(f=>`<div class="fix-item"><div class="fix-ck"><svg viewBox="0 0 8 8"><polyline points="1,4 3,6.5 7,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>${f}</span></div>`).join('');
+
+  document.getElementById('cta-h').innerHTML='Stop losing $'+total.toLocaleString()+'/mo.<br>Let\'s fix it.';
+
+  go('result');
 }
 
 /* ── SHARE ── */
@@ -1196,10 +1166,14 @@ function restart(){
   Object.assign(S,{q1:null,hourly:35,missed:5,deal:0,admin:8,fu:5,ai:null});
   document.querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));
   ['n1','n4','n7'].forEach(id=>{const b=document.getElementById(id);if(b)b.disabled=true;});
-  document.getElementById('email-form-inner').style.display='';
-  document.getElementById('email-done').classList.remove('show');
+  // Reset gate form
+  const gn=document.getElementById('gate-name');const ge=document.getElementById('gate-email');
+  if(gn)gn.value='';if(ge)ge.value='';
+  const gb=document.getElementById('gate-btn');if(gb){gb.textContent='Reveal My Revenue Leak →';gb.disabled=false;}
+  const gerr=document.getElementById('gate-error');if(gerr)gerr.style.display='none';
   document.querySelectorAll('.bcard').forEach(c=>{c.classList.remove('in');});
   document.querySelectorAll('.bcard-bar').forEach(b=>b.style.width='0');
+  window._R=null;
   go('intro');
 }
 
