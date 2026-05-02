@@ -268,6 +268,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .dt-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.3rem}
 .dt-amount{font-size:1.7rem;font-weight:900;letter-spacing:-1.5px;color:var(--red);line-height:1}
 
+/* Mobile static card grid — shown only on small screens */
+.drain-mobile-grid{display:none;grid-template-columns:1fr 1fr;gap:.55rem;width:100%;margin-top:.5rem}
+.dmg-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:.6rem .75rem;display:flex;align-items:center;gap:7px;font-size:.76rem;font-weight:500}
+.dmg-icon{font-size:.9rem;flex-shrink:0}
+.dmg-text{color:var(--muted);flex:1;font-size:.72rem}
+.dmg-amt{font-weight:800;color:var(--red);font-size:.76rem;white-space:nowrap}
+
 .intro-content{display:flex;flex-direction:column}
 .intro-sub{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
 
@@ -384,11 +391,14 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   .sf-nav-centre,.sf-nav-right .sf-nav-cta{display:none}
   .sf-burger{display:flex}
   .sf-nav-right{gap:.25rem}
-  .intro-hero{grid-template-columns:1fr;gap:2rem;padding-bottom:1.5rem}
-  .drain-visual{height:320px;order:-1}
-  .lf-1{top:5%;left:2%}.lf-2{top:18%;right:2%}
-  .lf-3{bottom:22%;left:2%}.lf-4{bottom:22%;right:2%}
-  .lf-1,.lf-2,.lf-3,.lf-4{font-size:.72rem;padding:.4rem .7rem}
+  .intro-hero{grid-template-columns:1fr;gap:1.5rem;padding-bottom:1.5rem}
+  /* Drain visual — keep floating cards but anchor them inside the container */
+  .drain-visual{height:360px;order:-1;overflow:visible}
+  .lf-1,.lf-2,.lf-3,.lf-4{font-size:.7rem;padding:.4rem .65rem;gap:5px;white-space:nowrap}
+  .lf-1{top:4%;left:0%;animation-delay:0s}
+  .lf-2{top:4%;right:0%;animation-delay:0.7s}
+  .lf-3{bottom:18%;left:0%;animation-delay:1.4s}
+  .lf-4{bottom:18%;right:0%;animation-delay:2.1s}
   .intro-content{text-align:left}
   .intro-facts{gap:.75rem}
   .fact-sep{display:none}
@@ -408,10 +418,18 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   .gate-trust{gap:.75rem}
   .btn-book{font-size:14px;padding:13px 20px}
   .intro-top{padding:1.25rem 0 1.5rem}
-  .drain-visual{height:280px}
-  .lf-1,.lf-2,.lf-3,.lf-4{display:none}
-  .drain-total{min-width:150px;padding:.7rem 1.1rem}
-  .dt-amount{font-size:1.5rem}
+  /* Smaller visual height, cards stay visible but tighter */
+  .drain-visual{height:300px}
+  .lf-1,.lf-2,.lf-3,.lf-4{font-size:.65rem;padding:.32rem .55rem;gap:4px}
+  .lf-amt{min-width:38px;font-size:.68rem}
+  .lf-1{top:2%;left:0%}
+  .lf-2{top:2%;right:0%}
+  .lf-3{bottom:14%;left:0%}
+  .lf-4{bottom:14%;right:0%}
+  .drain-center{width:110px;height:110px}
+  .drain-logo{width:72px;height:72px}
+  .drain-total{min-width:145px;padding:.65rem 1rem}
+  .dt-amount{font-size:1.4rem}
 }
 @media(max-width:400px){
   .intro-h1{letter-spacing:-1.5px}
@@ -520,6 +538,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
         <div class="dt-label">Draining monthly</div>
         <div class="dt-amount" id="drain-counter">$0</div>
       </div>
+    </div>
+    <!-- Mobile: static card grid (floating cards hidden on small screens) -->
+    <div class="drain-mobile-grid">
+      <div class="dmg-card"><span class="dmg-icon">📞</span><span class="dmg-text">Missed calls</span><span class="dmg-amt" id="dmg-amt-1">-$840</span></div>
+      <div class="dmg-card"><span class="dmg-icon">⚙️</span><span class="dmg-text">Admin waste</span><span class="dmg-amt" id="dmg-amt-2">-$1,200</span></div>
+      <div class="dmg-card"><span class="dmg-icon">🔄</span><span class="dmg-text">Follow-up</span><span class="dmg-amt" id="dmg-amt-3">-$560</span></div>
+      <div class="dmg-card"><span class="dmg-icon">📋</span><span class="dmg-text">Slow responses</span><span class="dmg-amt" id="dmg-amt-4">-$390</span></div>
     </div>
 
     <div class="intro-content">
@@ -972,11 +997,16 @@ async function submitGate(){
   window._leadName=name;
   window._leadEmail=email;
 
-  /* ── Make.com — no mode:no-cors so JSON header is preserved ── */
+  /* ── Make.com webhook ──
+     mode:no-cors + Content-Type:text/plain avoids CORS preflight.
+     text/plain is a "simple" header the browser sends without blocking.
+     Make.com receives the raw JSON string and parses it correctly.
+  ── */
   const WEBHOOK='https://hook.us2.make.com/q74fmids3bw4uaelwbf9yq7pqivsur3d';
   const makePromise=fetch(WEBHOOK,{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
     body:JSON.stringify(payload)
   }).catch(e=>console.log('Make.com:',e));
 
@@ -1083,6 +1113,9 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
         c=Math.min(c+inc,t);
         const el=document.getElementById(labels[i]);
         if(el)el.textContent='-$'+Math.round(c).toLocaleString();
+        // also update mobile grid
+        const mel=document.getElementById('dmg-amt-'+(i+1));
+        if(mel)mel.textContent='-$'+Math.round(c).toLocaleString();
         if(c>=t)clearInterval(iv);
       },stepTime);
     });
@@ -1093,7 +1126,10 @@ function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t
       if(step>=steps)clearInterval(iv2);
     },stepTime);
     setTimeout(()=>{
-      amounts.forEach((_,i)=>{const el=document.getElementById(labels[i]);if(el)el.textContent='-$0';});
+      amounts.forEach((_,i)=>{
+        const el=document.getElementById(labels[i]);if(el)el.textContent='-$0';
+        const mel=document.getElementById('dmg-amt-'+(i+1));if(mel)mel.textContent='-$0';
+      });
       const el=document.getElementById('drain-counter');if(el)el.textContent='$0';
       started=false;setTimeout(animateDrain,600);
     },5500);
