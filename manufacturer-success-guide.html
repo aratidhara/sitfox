@@ -1153,10 +1153,9 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.55)}
 </div>
 
 <!-- ══ CONTACT FORM ══
-     Uses name="contact" — same form as contact.html.
-     Netlify + Formspree fire simultaneously.
-     Extra fields (country, industry, challenge, ideas) are kept.
-     Netlify stores all fields; they appear in your dashboard.
+     GitHub Pages — no Netlify.
+     Make.com webhook (primary) + Formspree (backup).
+     Both fire with application/json for clean data in Make.
 -->
 <div class="form-section" id="contact">
   <div class="form-inner rev">
@@ -1165,14 +1164,8 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.55)}
 
     <form
       id="guideContactForm"
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
       onsubmit="submitGuideForm(event)"
     >
-      <input type="hidden" name="form-name" value="contact">
-      <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
 
       <div class="form-grid">
         <div class="form-field">
@@ -1398,10 +1391,10 @@ document.querySelectorAll('.count-stat').forEach(el=>countIO.observe(el));
 
 /* =====================================================
    GUIDE CONTACT FORM
-   name="contact" — same form as contact.html.
-   Fires: Netlify Forms (primary) + Formspree (backup).
-   Extra fields (country, industry, ideas) are captured
-   by Netlify and included in Formspree payload.
+   GitHub Pages — no Netlify.
+   Fires: Make.com webhook (primary) + Formspree (backup).
+   Both receive application/json — this is what ensures
+   Make.com receives clean, parseable field data.
 ===================================================== */
 async function submitGuideForm(e) {
   e.preventDefault();
@@ -1418,26 +1411,6 @@ async function submitGuideForm(e) {
   const challenge = document.getElementById('challenge').value.trim();
   const ideas     = document.getElementById('ideas').value.trim();
 
-  /* ── PRIMARY: Netlify Forms ── */
-  const formData = new FormData();
-  formData.append('form-name',  'contact');
-  formData.append('firstName',  fname);
-  formData.append('lastName',   lname);
-  formData.append('email',      email);
-  formData.append('businessName', company);
-  formData.append('country',    country);
-  formData.append('industry',   industry);
-  formData.append('message',    challenge);
-  formData.append('ideas',      ideas);
-  formData.append('source',     'AI for Manufacturers Guide');
-
-  const netlifyPromise = fetch('/', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:    new URLSearchParams(formData).toString()
-  }).catch(err => console.error('Netlify:', err));
-
-  /* ── BACKUP: Formspree ── */
   const payload = {
     firstName:    fname,
     lastName:     lname,
@@ -1447,17 +1420,30 @@ async function submitGuideForm(e) {
     industry:     industry,
     message:      challenge,
     ideas:        ideas,
-    source:       'AI for Manufacturers Guide',
-    submittedAt:  new Date().toISOString()
+    source:       'AI for Manufacturers Guide — Contact Form',
+    timestamp:    new Date().toISOString(),
+    page_url:     window.location.href
   };
 
-  const formspreePromise = fetch('https://formspree.io/f/mjgjlqjp', {
+  /* ── 1. MAKE.COM WEBHOOK — application/json, correct Content-Type ── */
+  const WEBHOOK = 'https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e';
+  const makePromise = fetch(WEBHOOK, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload)
+  }).catch(err => console.error('Make.com:', err));
+
+  /* ── 2. FORMSPREE — backup capture, application/json ── */
+  const FORMSPREE = 'https://formspree.io/f/mjgjlqjp';
+  const formspreePromise = fetch(FORMSPREE, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body:    JSON.stringify(payload)
   }).catch(err => console.error('Formspree:', err));
 
-  await Promise.allSettled([netlifyPromise, formspreePromise]);
+  /* Fire both simultaneously — succeed if either lands */
+  await Promise.allSettled([makePromise, formspreePromise]);
 
   document.getElementById('guideContactForm').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
