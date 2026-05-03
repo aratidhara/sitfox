@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sitfox — AI & Automation Agency | Custom AI Systems for Your Business</title>
+<meta name="description" content="Sitfox designs and builds custom AI automation systems for businesses across 12+ countries. Reduce costs, save time, and grow revenue with AI built specifically for you. Book a free strategy call.">
+<meta name="keywords" content="AI automation agency, business automation, AI implementation, custom AI systems, AI for small business, workflow automation, AI specialist, Sitfox">
+<meta name="author" content="Sitfox">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://sitfox.com">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sitfox.com">
+<meta property="og:title" content="Sitfox — AI & Automation Agency | Custom AI Systems for Your Business">
+<meta property="og:description" content="Custom AI automation systems for businesses across 12+ countries. Reduce costs, save time, and grow revenue. Free 30-minute strategy call.">
+<meta property="og:image" content="https://sitfox.com/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Sitfox">
+<meta property="og:locale" content="en_GB">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@sitfox">
+<meta name="twitter:url" content="https://sitfox.com">
+<meta name="twitter:title" content="Sitfox — AI & Automation Agency">
+<meta name="twitter:description" content="Custom AI automation systems for businesses across 12+ countries. Book a free strategy call.">
+<meta name="twitter:image" content="https://sitfox.com/og-home.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sitfox.com/#org",
+      "name": "Sitfox",
+      "url": "https://sitfox.com",
+      "email": "hello@sitfox.com",
+      "description": "AI and automation agency building custom AI systems for businesses across 12+ countries.",
+      "logo": { "@type": "ImageObject", "url": "https://sitfox.com/images/logo.png" },
+      "sameAs": ["https://sitfox.com/about", "https://sitfox.com/contact"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sitfox.com/#website",
+      "url": "https://sitfox.com",
+      "name": "Sitfox",
+      "publisher": { "@id": "https://sitfox.com/#org" },
+      "potentialAction": { "@type": "SearchAction", "target": "https://sitfox.com/?s={search_term_string}", "query-input": "required name=search_term_string" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://sitfox.com/#service",
+      "name": "AI & Automation Implementation",
+      "provider": { "@id": "https://sitfox.com/#org" },
+      "description": "Custom AI systems, workflow automation, AI voice agents, and business process automation — built end-to-end for your business.",
+      "areaServed": "Worldwide",
+      "serviceType": "AI Automation"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How long does it take to implement AI in my business?", "acceptedAnswer": { "@type": "Answer", "text": "Once the project is confirmed and we have everything we need, your system goes live in 21 days. No endless delays. Simple automations can launch in 5-7 days; complex multi-system builds may take 4-6 weeks." } },
+        { "@type": "Question", "name": "How much does AI automation cost?", "acceptedAnswer": { "@type": "Answer", "text": "Projects typically range from $3,000 to $25,000 depending on complexity. Most businesses see full ROI within 60-90 days through recovered labour costs and new revenue from AI-handled leads." } },
+        { "@type": "Question", "name": "Do I need technical knowledge to work with Sitfox?", "acceptedAnswer": { "@type": "Answer", "text": "None. Sitfox is a fully done-for-you partner. We handle every technical decision — from tool selection to deployment. You describe the problem; we build the solution." } },
+        { "@type": "Question", "name": "What happens after my AI system launches?", "acceptedAnswer": { "@type": "Answer", "text": "Every deployment includes 30 days of post-launch support at no extra cost. After 30 days you can continue with a retainer or run independently — your systems are fully yours." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="icon" type="image/png" href="/images/logo.png">
+<link rel="apple-touch-icon" href="/images/logo.png">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EKWQHY88GQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EKWQHY88GQ');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --lime:#c7f57d;
+  --dark:#1a1c2e;
+  --orange:#fe8829;
+  --cream:#faf9f6;
+  --ink:#1a1c2e;
+  --muted:#6b6f8a;
+  --border:rgba(36,39,71,0.08);
+  --dark-border:rgba(255,255,255,0.08);
+  --white:#fff;
+  --lime-dark:#5a9e1a;
+  --muted-light:#6b6f8a;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* ============ CURSOR ============ */
+.c-dot{position:fixed;width:8px;height:8px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.c-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(254,136,41,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .08s linear}
+body.link-hover .c-dot{width:14px;height:14px;background:var(--lime)}
+body.link-hover .c-ring{width:50px;height:50px;border-color:rgba(199,245,125,0.6)}
+
+/* ============ NAV ============ */
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:52px;width:52px;object-fit:contain;display:block}
+.nav-logo-name{font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.nav-logo-name span{color:var(--lime)}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+.nav-links a{font-size:13.5px;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.01em;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  background:var(--orange);color:#fff;
+  padding:11px 24px;border-radius:100px;
+  font-size:13.5px;font-weight:600;text-decoration:none;
+  transition:all .25s;box-shadow:0 4px 20px rgba(254,136,41,0.35)
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(254,136,41,0.5)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:130px 2rem 5rem;
+  position:relative;overflow:hidden;
+  background:var(--cream)
+}
+.hero-mesh{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(199,245,125,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(254,136,41,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(36,39,71,0.03) 0%, transparent 70%)
+}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
+.orb-1{width:500px;height:500px;background:rgba(199,245,125,0.08);top:-10%;right:-5%;animation-delay:0s}
+.orb-2{width:400px;height:400px;background:rgba(254,136,41,0.07);bottom:-15%;left:-5%;animation-delay:-3s}
+.orb-3{width:300px;height:300px;background:rgba(36,39,71,0.05);top:40%;left:60%;animation-delay:-5s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(3%,-3%) scale(1.05)}66%{transform:translate(-2%,2%) scale(0.97)}}
+.hero-dots{
+  position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(circle, rgba(36,39,71,0.08) 1px, transparent 1px);
+  background-size:32px 32px;
+  mask-image:radial-gradient(ellipse 80% 70% at center, black 30%, transparent 80%)
+}
+.hero>*:not(.hero-mesh):not(.orb):not(.hero-dots){position:relative;z-index:1}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:white;border:1px solid var(--border);
+  border-radius:100px;padding:6px 16px;
+  font-size:11.5px;color:var(--muted);font-weight:500;
+  letter-spacing:.05em;text-transform:uppercase;
+  margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp .8s .1s ease forwards
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:livepulse 2s infinite}
+@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+.hero h1{
+  font-size:clamp(2.8rem,6vw,5.8rem);font-weight:800;
+  line-height:1.05;letter-spacing:-2.5px;max-width:860px;
+  opacity:0;animation:fadeUp .8s .2s ease forwards
+}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero h1 .lime{color:#4a7a12}
+.hero-sub{
+  font-size:clamp(.98rem,1.4vw,1.15rem);color:var(--muted);
+  max-width:500px;line-height:1.85;margin:1.75rem auto 2.75rem;
+  font-weight:300;opacity:0;animation:fadeUp .8s .3s ease forwards
+}
+.hero-btns{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s .4s ease forwards
+}
+.btn-main{
+  background:var(--ink);color:#fff;padding:15px 30px;
+  border-radius:100px;font-size:14.5px;font-weight:500;
+  text-decoration:none;transition:all .25s;
+  display:inline-flex;align-items:center;gap:9px
+}
+.btn-main:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 8px 28px rgba(254,136,41,.4)}
+.btn-ghost{
+  background:white;color:var(--ink);padding:15px 30px;
+  border-radius:100px;font-size:14.5px;font-weight:400;
+  text-decoration:none;border:1px solid var(--border);transition:all .25s
+}
+.btn-ghost:hover{border-color:rgba(36,39,71,.25)}
+.hero-imgs{
+  width:100%;max-width:1060px;margin:3.5rem auto 0;
+  opacity:0;animation:fadeUp .8s .5s ease forwards
+}
+.hero-imgs-desktop{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:14px;border-radius:22px;overflow:hidden
+}
+.hero-imgs-mobile{display:none}
+.him-main{position:relative}
+.him-main img{width:100%;height:400px;object-fit:cover;display:block}
+.him-badge{
+  position:absolute;bottom:18px;left:18px;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);
+  border-radius:12px;padding:11px 16px
+}
+.him-badge-val{font-size:1.5rem;font-weight:800;color:var(--ink);line-height:1;letter-spacing:-.5px}
+.him-badge-label{font-size:10.5px;color:var(--muted);margin-top:2px}
+.him-side{display:flex;flex-direction:column;gap:14px}
+.him-side img{width:100%;height:193px;object-fit:cover;display:block}
+.hero-imgs-mobile img{width:100%;height:280px;object-fit:cover;border-radius:22px;display:block}
+.scroll-hint{
+  margin-top:2.5rem;display:flex;flex-direction:column;
+  align-items:center;gap:8px;opacity:.35;
+  animation:fadeUp 1s .8s ease both
+}
+.scroll-hint span{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--muted),transparent);animation:sl 2s ease-in-out infinite}
+@keyframes sl{0%,100%{opacity:.5}50%{opacity:.15}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ STATS ============ */
+.stats{background:var(--ink);padding:3.5rem 2rem;position:relative;overflow:hidden}
+.stats::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 150% at 0% 50%, rgba(199,245,125,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 150% at 100% 50%, rgba(254,136,41,0.04) 0%, transparent 60%)
+}
+.stats-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:1}
+.stat{text-align:center;padding:.5rem 1rem;border-right:1px solid rgba(255,255,255,.07)}
+.stat:last-child{border-right:none}
+.stat-n{font-size:2.8rem;font-weight:800;color:var(--lime);line-height:1;letter-spacing:-1px;display:inline-block}
+.stat-l{font-size:12.5px;color:rgba(255,255,255,.45);margin-top:5px;font-weight:300}
+.stat-n{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.stat-n.counted{opacity:1;transform:translateY(0)}
+
+/* ============ SECTIONS ============ */
+.sep{height:1px;background:var(--border);max-width:1060px;margin:0 auto}
+.sec{padding:6.5rem 2rem;max-width:1060px;margin:0 auto}
+.sec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:1.25rem}
+.sec-title{font-size:clamp(1.9rem,3.2vw,3rem);font-weight:800;letter-spacing:-1.2px;line-height:1.08;margin-bottom:1rem}
+.sec-body{font-size:1.02rem;color:var(--muted);line-height:1.85;max-width:500px;font-weight:300}
+
+/* ============ METHOD ============ */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:3.5rem}
+.mc{background:white;border-radius:22px;overflow:hidden;border:1px solid var(--border);transition:transform .35s,box-shadow .35s;position:relative}
+.mc:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(36,39,71,.12)}
+.mc::after{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(199,245,125,0) 0%,rgba(199,245,125,0.04) 100%);opacity:0;transition:opacity .35s;pointer-events:none}
+.mc:hover::after{opacity:1}
+.mc img{width:100%;height:210px;object-fit:cover;display:block;transition:transform .6s ease}
+.mc:hover img{transform:scale(1.04)}
+.mc-body{padding:1.85rem}
+.mc-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:1.1rem}
+.ico-a{background:rgba(36,39,71,.06)}.ico-b{background:rgba(254,136,41,.1)}
+.mc h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.3px}
+.mc p{font-size:.9rem;color:var(--muted);line-height:1.78;margin-bottom:1.4rem;font-weight:300}
+.cklist{display:flex;flex-direction:column;gap:9px}
+.ckrow{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink)}
+.ckdot{width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ckd{background:var(--ink)}.cko{background:var(--orange)}
+.ckdot svg{width:7px;height:7px}
+
+/* ============ TIMELINE ============ */
+.tl{position:relative;margin-top:4rem}
+.tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+.tl-row{display:grid;grid-template-columns:1fr 72px 1fr;margin-bottom:4.5rem}
+.tl-row:last-child{margin-bottom:0}
+.tl-card{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.tl-card:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(36,39,71,.08)}
+.tl-card img{width:100%;height:170px;object-fit:cover;display:block;transition:transform .6s}
+.tl-card:hover img{transform:scale(1.05)}
+.tl-card-body{padding:1.6rem}
+.tl-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.45rem;letter-spacing:-.2px}
+.tl-card p{font-size:.86rem;color:var(--muted);line-height:1.72;font-weight:300}
+.tl-badge{display:inline-block;background:rgba(199,245,125,.22);color:#3a6b0a;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:.85rem;letter-spacing:.03em}
+.tl-mid{display:flex;flex-direction:column;align-items:center;padding-top:1.6rem}
+.tl-num{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:800;color:#fff;position:relative;z-index:1;transition:transform .3s,box-shadow .3s}
+.tl-num:hover{transform:scale(1.2)}
+.tn1{background:var(--ink)}.tn2{background:var(--orange)}.tn3{background:#4a7a12}
+
+/* ============ INDUSTRIES ============ */
+.ind-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:3.5rem}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.icard{background:white;border-radius:20px;border:1px solid var(--border);overflow:hidden;transition:transform .35s,box-shadow .35s;position:relative}
+.icard:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(36,39,71,.1)}
+.icard.feat{grid-column:span 2}
+.icard.feat .feat-inner{display:grid;grid-template-columns:1fr 1fr}
+.icard.feat .feat-img{width:100%;height:100%;min-height:250px;object-fit:cover;display:block;transition:transform .6s}
+.icard.feat:hover .feat-img{transform:scale(1.03)}
+.icard.feat .ibody{display:flex;flex-direction:column;justify-content:center;padding:2rem}
+.iimg{width:100%;height:165px;object-fit:cover;display:block;transition:transform .6s}
+.icard:hover .iimg{transform:scale(1.05)}
+.ibar{height:3px}
+.ib1{background:linear-gradient(90deg,#fe8829,#ffb870)}
+.ib2{background:linear-gradient(90deg,#242747,#5a5fc7)}
+.ib3{background:linear-gradient(90deg,#c7f57d,#7ecf3a)}
+.ib4{background:linear-gradient(90deg,#7c3aed,#c084fc)}
+.ib5{background:linear-gradient(90deg,#0ea5e9,#38bdf8)}
+.ibody{padding:1.35rem}
+.iico{font-size:19px;margin-bottom:.6rem;display:block}
+.icard h3{font-size:.94rem;font-weight:700;margin-bottom:.35rem;letter-spacing:-.1px}
+.icard p{font-size:.82rem;color:var(--muted);line-height:1.62;font-weight:300}
+.istat{margin-top:.85rem;display:flex;align-items:baseline;gap:4px}
+.istat-n{font-size:1.55rem;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+.istat-l{font-size:11px;color:var(--muted)}
+.itags{display:flex;gap:5px;flex-wrap:wrap;margin-top:.7rem}
+.itag{font-size:10px;padding:2.5px 9px;border-radius:100px;background:rgba(36,39,71,.05);color:var(--muted);font-weight:500}
+
+/* ============ TESTIMONIALS ============ */
+.testi-section{background:var(--ink);padding:6.5rem 2rem;position:relative;overflow:hidden}
+.testi-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(199,245,125,0.04) 0%, transparent 60%)}
+.testi-wrap{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+.testi-hd{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3.5rem}
+.testi-hd .sec-title{color:white}
+.testi-hd .sec-body{color:rgba(255,255,255,.45)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.tcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:1.65rem;transition:all .3s;position:relative;overflow:hidden}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(199,245,125,.3),transparent);transform:translateX(-100%);transition:transform .6s ease}
+.tcard:hover::before{transform:translateX(100%)}
+.tcard:hover{background:rgba(255,255,255,.07);border-color:rgba(199,245,125,.15);transform:translateY(-3px)}
+.tstars{color:var(--lime);font-size:12px;letter-spacing:3px;margin-bottom:1rem}
+.tquote{font-size:.88rem;color:rgba(255,255,255,.68);line-height:1.82;font-weight:300;font-style:normal;margin-bottom:1.25rem}
+.tsource{display:flex;align-items:center;gap:8px}
+.tsource-dot{width:8px;height:8px;border-radius:50%;background:var(--lime);flex-shrink:0}
+.tsource-text{font-size:12px;color:rgba(255,255,255,.4);font-weight:400}
+
+/* ============ FAQ ============ */
+.faq-wrap{display:grid;grid-template-columns:5fr 7fr;gap:5.5rem;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.fi{border-bottom:1px solid var(--border);overflow:hidden}
+.fq{width:100%;background:none;border:none;padding:1.3rem 0;font-size:.93rem;font-weight:500;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;text-align:left;font-family:'Inter',sans-serif;transition:color .2s;letter-spacing:-.1px}
+.fq:hover{color:var(--orange)}
+.fq-ico{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;color:var(--muted);transition:all .25s;line-height:1}
+.fi.open .fq-ico{background:var(--ink);border-color:var(--ink);color:white;transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s}
+.fa-in{padding:0 0 1.3rem;font-size:.86rem;color:var(--muted);line-height:1.82;font-weight:300}
+.fi.open .fa{max-height:200px}
+
+/* ============ CTA ============ */
+.cta-outer{padding:6.5rem 2rem}
+.cta-card{max-width:1060px;margin:0 auto;background:var(--ink);border-radius:28px;padding:4.5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;position:relative;overflow:hidden}
+.cta-card::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;border-radius:50%;background:rgba(199,245,125,.06)}
+.cta-card::after{content:'';position:absolute;bottom:-60px;left:180px;width:260px;height:260px;border-radius:50%;background:rgba(254,136,41,.06)}
+.cta-left{position:relative;z-index:1}
+.cta-left h2{font-size:clamp(1.7rem,2.6vw,2.6rem);font-weight:800;color:white;letter-spacing:-.8px;line-height:1.12;margin-bottom:1.1rem}
+.cta-left p{font-size:.96rem;color:rgba(255,255,255,.5);line-height:1.82;font-weight:300;max-width:360px}
+.cta-right{position:relative;z-index:1;display:flex;flex-direction:column;gap:1.1rem}
+.cta-img-wrap{border-radius:18px;overflow:hidden}
+.cta-img-wrap img{width:100%;height:220px;object-fit:cover;display:block;opacity:.65}
+.btn-lime{background:var(--lime);color:var(--ink);padding:15px 32px;border-radius:100px;font-size:14.5px;font-weight:700;text-decoration:none;transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+.btn-lime:hover{background:#d4f994;transform:translateY(-2px);box-shadow:0 8px 28px rgba(199,245,125,.4)}
+.cta-note{font-size:11.5px;color:rgba(255,255,255,.28)}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--border);padding:2.25rem 3rem}
+.foot{max-width:1060px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.foot-logo{display:flex;align-items:center;gap:8px}
+.foot-logo img{height:32px;width:32px;object-fit:contain}
+.foot-logo-name{font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+.foot-copy{font-size:12.5px;color:var(--muted)}
+.foot-links{display:flex;gap:1.5rem}
+.foot-links a{font-size:12.5px;color:var(--muted);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--ink)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+
+/* ============ ANIMATED WORD CYCLE ============ */
+.word-cycle{display:inline-block;position:relative;overflow:hidden;vertical-align:bottom;color:var(--orange)}
+.word-cycle span{display:block;animation:wordSpin 6s ease-in-out infinite}
+@keyframes wordSpin{0%,28%{transform:translateY(0);opacity:1}33%{transform:translateY(-100%);opacity:0}34%{transform:translateY(100%);opacity:0}66%,94%{transform:translateY(0);opacity:1}100%{transform:translateY(0);opacity:1}}
+
+/* ============ PARTICLE CANVAS ============ */
+#particle-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+
+/* ============ MAGNETIC BTN ============ */
+.magnetic{display:inline-block;transition:transform .15s ease}
+
+/* ══ NAV ══ */
+.sf-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);border-bottom:1px solid var(--dark-border);height:64px;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
+.sf-nav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.3)}
+.sf-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.sf-logo img{height:36px;width:36px;object-fit:contain}
+.sf-logo-word{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.4px}
+.sf-logo-word span{color:var(--orange)}
+.sf-nav-centre{display:flex;align-items:center;gap:.125rem}
+.sf-nl{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;padding:.5rem 1rem;border-radius:8px;transition:all .18s;white-space:nowrap;position:relative}
+.sf-nl:hover{color:#fff;background:rgba(255,255,255,.06)}
+.sf-nl.active{color:#fff}
+.sf-nl.active::after{content:"";position:absolute;bottom:-1px;left:1rem;right:1rem;height:2px;border-radius:100px;background:linear-gradient(90deg,var(--orange),var(--lime))}
+.sf-more{position:relative}
+.sf-more-btn{font-size:.875rem;font-weight:500;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;font-family:inherit;padding:.5rem 1rem;border-radius:8px;display:flex;align-items:center;gap:5px;transition:all .18s}
+.sf-more-btn:hover{color:#fff;background:rgba(255,255,255,.06)}
+.sf-more-btn svg{width:11px;height:11px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .2s}
+.sf-more.open .sf-more-btn svg{transform:rotate(180deg)}
+.sf-more-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-4px);background:var(--ink);border:1px solid var(--dark-border);border-radius:16px;padding:.5rem;min-width:210px;box-shadow:0 20px 60px rgba(0,0,0,.4);opacity:0;visibility:hidden;transition:all .2s ease;transform-origin:top center}
+.sf-more.open .sf-more-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.sf-more-menu::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:10px;background:var(--dark-border);clip-path:polygon(50% 0%,0% 100%,100% 100%)}
+.sf-more-item{display:flex;align-items:center;gap:.75rem;padding:.625rem .875rem;border-radius:10px;text-decoration:none;transition:background .15s;color:rgba(255,255,255,.55)}
+.sf-more-item:hover{background:rgba(255,255,255,.07);color:#fff}
+.sf-more-ico{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.sf-more-text strong{display:block;font-size:.83rem;font-weight:600;line-height:1.2}
+.sf-more-text small{font-size:.72rem;color:rgba(255,255,255,.3);font-weight:300}
+.sf-nav-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.sf-nav-cta{display:inline-flex;align-items:center;gap:6px;background:var(--lime);color:var(--ink);padding:8px 20px;border-radius:100px;font-size:.84rem;font-weight:800;text-decoration:none;transition:all .22s;white-space:nowrap}
+.sf-nav-cta:hover{background:#d4f994;transform:translateY(-1px);box-shadow:0 6px 20px rgba(199,245,125,.35)}
+.sf-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:.5rem}
+.sf-burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .25s;transform-origin:center}
+.sf-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.sf-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.sf-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.sf-drawer{position:fixed;top:64px;left:0;right:0;z-index:199;background:var(--ink);border-bottom:1px solid var(--dark-border);overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.sf-drawer.open{max-height:100vh}
+.sf-drawer-inner{padding:1rem 1.5rem 1.5rem;display:flex;flex-direction:column;gap:.2rem}
+.sf-ml{display:flex;align-items:center;gap:.875rem;padding:.75rem .875rem;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.55);font-size:.9rem;font-weight:500;transition:all .18s}
+.sf-ml:hover,.sf-ml.active{background:rgba(255,255,255,.07);color:#fff}
+.sf-ml-ico{font-size:1rem;width:20px;text-align:center;flex-shrink:0}
+.sf-ml-sub{font-size:.72rem;color:rgba(255,255,255,.25);display:block;margin-top:1px;font-weight:300}
+.sf-drawer-section{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.75rem .875rem .25rem;margin-top:.25rem}
+.sf-drawer-divider{height:1px;background:var(--dark-border);margin:.5rem 0}
+.sf-drawer-cta{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--lime);color:var(--ink);padding:.875rem;border-radius:12px;font-size:.9rem;font-weight:800;text-decoration:none;margin-top:.75rem;transition:background .2s}
+.sf-drawer-cta:hover{background:#d4f994}
+
+/* ══ FOOTER ══ */
+.sf-footer{background:var(--ink);border-top:1px solid var(--dark-border);padding:4rem 2.5rem 2rem;position:relative;overflow:hidden}
+.sf-footer::before{content:"";position:absolute;bottom:-80px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(199,245,125,.04),transparent 65%);pointer-events:none}
+.sf-footer::after{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(254,136,41,.04),transparent 65%);pointer-events:none}
+.sf-foot-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.sf-foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid var(--dark-border);margin-bottom:2rem}
+.sf-foot-top>div{text-align:left}
+.sf-foot-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:1rem}
+.sf-foot-logo img{height:34px;width:34px;object-fit:contain}
+.sf-foot-logo-word{font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-.4px}
+.sf-foot-logo-word span{color:var(--orange)}
+.sf-foot-tagline{font-size:.82rem;color:rgba(255,255,255,.35);line-height:1.75;font-weight:300;margin-bottom:1.5rem;max-width:230px}
+.sf-foot-contacts{display:flex;flex-direction:column;gap:.625rem}
+.sf-foot-contact-link{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;font-weight:400}
+.sf-foot-contact-link:hover{color:var(--lime)}
+.sf-foot-contact-link svg{flex-shrink:0;opacity:.6}
+.sf-foot-col-title{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:1.1rem;text-align:left}
+.sf-foot-col-links{list-style:none;display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
+.sf-foot-col-links li{width:100%;text-align:left}
+.sf-foot-col-links li a{text-align:left;font-size:.84rem;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:.5rem}
+.sf-foot-col-links li a:hover{color:#fff}
+.sf-free-badge{font-size:.6rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(199,245,125,.12);color:var(--lime-dark);border:1px solid rgba(199,245,125,.2);border-radius:100px;padding:1px 7px}
+.sf-foot-contact-btn{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);padding:.75rem 1.5rem;border-radius:100px;font-size:.84rem;font-weight:600;text-decoration:none;transition:all .25s}
+.sf-foot-contact-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.sf-foot-contact-divider{height:1px;background:var(--dark-border);margin-bottom:2rem}
+.sf-foot-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.sf-foot-copy{font-size:.75rem;color:rgba(255,255,255,.2)}
+.sf-foot-copy a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.sf-foot-copy a:hover{color:rgba(255,255,255,.6)}
+.sf-foot-badges{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.sf-foot-badge{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:100px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.28);font-weight:500}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero-imgs-desktop{display:none}
+  .hero-imgs-mobile{display:block}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding:1rem}
+  .stat:nth-child(odd){border-right:1px solid rgba(255,255,255,.07)}
+  .stat:nth-child(3),.stat:nth-child(4){border-bottom:none}
+  .method-grid,.ind-intro,.testi-hd,.faq-wrap,.cta-card{grid-template-columns:1fr;gap:1.5rem}
+  .ind-grid{grid-template-columns:1fr}
+  .icard.feat{grid-column:span 1}
+  .icard.feat .feat-inner{grid-template-columns:1fr}
+  .icard.feat .feat-img{height:180px;min-height:auto}
+  .testi-grid{grid-template-columns:1fr;gap:1rem}
+  .tl::before{display:none}
+  .tl-row{grid-template-columns:1fr;gap:0;margin-bottom:1.5rem}
+  .tl-mid{flex-direction:row;padding:.75rem 0}
+  .tl-empty{display:none}
+  .cta-card{padding:2.5rem 1.75rem}
+  .foot{flex-direction:column;gap:1.25rem;text-align:center}
+  .sf-foot-top{grid-template-columns:1fr 1fr}
+  .sf-foot-brand{grid-column:1/-1}
+}
+@media(max-width:768px){
+  .sf-nav-centre,.sf-nav-right .sf-nav-cta{display:none}
+  .sf-burger{display:flex}
+  .sf-nav-right{gap:.25rem}
+}
+@media(max-width:600px){
+  .sf-nav{padding:0 1.25rem}
+  .sf-footer{padding:3rem 1.25rem 1.5rem}
+  .sf-foot-top{grid-template-columns:1fr}
+  .sf-foot-brand{grid-column:auto}
+  .sf-foot-bottom{flex-direction:column;align-items:flex-start;gap:.75rem}
+}
+
+/* ── CONTACT FORM SECTION ── */
+.contact-section{padding:6.5rem 2rem;background:var(--cream)}
+.contact-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.contact-form-card{background:#fff;border:1px solid var(--border);border-radius:24px;padding:2.75rem;box-shadow:0 8px 48px rgba(26,28,46,.09);position:relative;overflow:hidden}
+.contact-form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--lime),var(--orange))}
+.contact-form-card::after{content:'';position:absolute;bottom:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(199,245,125,.08),transparent 65%);pointer-events:none}
+.cf-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+.contact-form-card h2{font-size:1.45rem;font-weight:800;letter-spacing:-.5px;color:var(--ink);margin-bottom:.4rem}
+.contact-form-card h2 em{font-style:normal;color:#5a9e1a}
+.cf-desc{font-size:.84rem;color:var(--muted);line-height:1.8;margin-bottom:1.75rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:.875rem}
+.cf-field{margin-bottom:.875rem}
+.cf-field label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-bottom:.4rem}
+.cf-field label .req{color:var(--orange)}
+.cf-field input,.cf-field textarea{width:100%;background:var(--cream);border:1.5px solid var(--border);border-radius:10px;padding:.85rem 1rem;font-size:.92rem;color:var(--ink);font-family:'Inter',sans-serif;transition:all .2s;outline:none;resize:none}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(107,111,138,.38)}
+.cf-field input:focus,.cf-field textarea:focus{border-color:rgba(90,158,26,.5);background:#fff;box-shadow:0 0 0 4px rgba(199,245,125,.14)}
+.cf-field textarea{min-height:110px}
+.cf-submit{width:100%;background:var(--lime);color:var(--ink);border:none;border-radius:100px;padding:1.05rem;font-size:.96rem;font-weight:800;font-family:'Inter',sans-serif;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.6rem;margin-top:.5rem;box-shadow:0 4px 22px rgba(199,245,125,.45)}
+.cf-submit:hover{background:#d4f994;transform:translateY(-2px);box-shadow:0 10px 32px rgba(199,245,125,.45)}
+.cf-submit:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.cf-privacy{text-align:center;font-size:.71rem;color:rgba(107,111,138,.5);margin-top:.75rem}
+.cf-success{display:none;text-align:center;padding:2rem 0}
+.cf-success-ico{width:72px;height:72px;background:rgba(199,245,125,.15);border:2px solid rgba(199,245,125,.35);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:2rem}
+.cf-success h3{font-size:1.3rem;font-weight:800;letter-spacing:-.4px;color:var(--ink);margin-bottom:.5rem}
+.cf-success p{font-size:.875rem;color:var(--muted);line-height:1.8}
+.cf-spinner{width:18px;height:18px;border:2.5px solid rgba(26,28,46,.2);border-top-color:var(--ink);border-radius:50%;animation:cfSpin .65s linear infinite}
+@keyframes cfSpin{to{transform:rotate(360deg)}}
+.contact-info-items{display:flex;flex-direction:column;gap:.875rem;margin-bottom:2rem}
+.ci-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:.95rem 1.2rem;display:flex;align-items:center;gap:.875rem;text-decoration:none;transition:all .25s;box-shadow:0 1px 6px rgba(26,28,46,.04)}
+.ci-card:hover{border-color:rgba(199,245,125,.45);transform:translateX(3px);box-shadow:0 4px 18px rgba(26,28,46,.08)}
+.ci-ico{width:38px;height:38px;border-radius:10px;background:rgba(199,245,125,.12);border:1px solid rgba(199,245,125,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.ci-ico-o{background:rgba(254,136,41,.08);border-color:rgba(254,136,41,.2)}
+.ci-lbl{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+.ci-val{font-size:.85rem;font-weight:600;color:var(--ink)}
+@media(max-width:900px){.contact-inner{grid-template-columns:1fr;gap:2.5rem}.cf-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="c-dot" id="cdot"></div>
+<div class="c-ring" id="cring"></div>
+
+<!-- NAV -->
+<nav class="sf-nav" id="sf-nav">
+  <a href="https://sitfox.com" class="sf-logo">
+    <img src="/images/logo.png" alt="Sitfox logo" width="36" height="36">
+    <span class="sf-logo-word">Sit<span>Fox</span></span>
+  </a>
+  <div class="sf-nav-centre">
+    <a href="https://sitfox.com" class="sf-nl active">Home</a>
+    <a href="https://sitfox.com/about" class="sf-nl">About</a>
+    <a href="https://sitfox.com/calculator" class="sf-nl">Revenue Leak Calculator</a>
+    <div class="sf-more" id="sf-more">
+      <button class="sf-more-btn" onclick="toggleMore()">
+        Resources
+        <svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>
+      </button>
+      <div class="sf-more-menu">
+        <a href="https://sitfox.com/manufacturers-guide" class="sf-more-item">
+          <div class="sf-more-ico">🏭</div>
+          <div class="sf-more-text">
+            <strong>Manufacturer's Guide</strong>
+            <small>17 AI ideas — free download</small>
+          </div>
+        </a>
+      </div>
+    </div>
+    <a href="https://sitfox.com/faqs" class="sf-nl">FAQs</a>
+    <a href="https://sitfox.com/contact" class="sf-nl">Contact</a>
+  </div>
+  <div class="sf-nav-right">
+    <a href="https://sitfox.com/call" class="sf-nav-cta">Book a Free Call →</a>
+    <button class="sf-burger" id="sf-burger" onclick="toggleDrawer()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="sf-drawer" id="sf-drawer">
+  <div class="sf-drawer-inner">
+    <a href="https://sitfox.com" class="sf-ml"><span class="sf-ml-ico">🏠</span><span>Home</span></a>
+    <a href="https://sitfox.com/about" class="sf-ml"><span class="sf-ml-ico">👋</span><span>About Sitfox</span></a>
+    <a href="https://sitfox.com/calculator" class="sf-ml">
+      <span class="sf-ml-ico">📊</span>
+      <div>Revenue Leak Calculator<span class="sf-ml-sub">Find your monthly revenue leak — free</span></div>
+    </a>
+    <div class="sf-drawer-divider"></div>
+    <div class="sf-drawer-section">Resources</div>
+    <a href="https://sitfox.com/manufacturers-guide" class="sf-ml">
+      <span class="sf-ml-ico">🏭</span>
+      <div>Manufacturer's Guide<span class="sf-ml-sub">17 AI ideas — free download</span></div>
+    </a>
+    <div class="sf-drawer-divider"></div>
+    <a href="https://sitfox.com/faqs" class="sf-ml"><span class="sf-ml-ico">❓</span><span>FAQs</span></a>
+    <a href="https://sitfox.com/contact" class="sf-ml"><span class="sf-ml-ico">✉️</span><span>Contact</span></a>
+    <a href="https://sitfox.com/call" class="sf-drawer-cta">Book a Free Call →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-mesh"></div>
+  <div class="hero-dots"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="eyebrow"><span class="live-dot"></span>AI Implementation Agency &middot; Global</div>
+  <h1>Stop guessing.<br>Start <em>using</em> AI<br><span class="lime">the right way.</span></h1>
+  <p class="hero-sub">Most businesses know AI can help them. Few know exactly how. Sitfox maps your process, picks the right tools, and builds everything &mdash; and once confirmed, your system is live in 21 days. No endless delays.</p>
+
+  <div class="hero-btns">
+    <a href="https://sitfox.com/call" target="_blank" class="btn-main magnetic">Get Your Free AI Roadmap &rarr;</a>
+    <a href="#method" class="btn-ghost">See how it works</a>
+    <a href="https://sitfox.com/calculator" class="btn-ghost" style="background:rgba(199,245,125,.12);border-color:rgba(199,245,125,.4);color:#3a6b0a;">📊 Find Your Revenue Leak →</a>
+  </div>
+
+  <div class="hero-imgs">
+    <div class="hero-imgs-desktop">
+      <div class="him-main">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop" alt="AI dashboard">
+        <div class="him-badge"><div class="him-badge-val">21 days</div><div class="him-badge-label">to live, once confirmed</div></div>
+      </div>
+      <div class="him-side">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop" alt="Strategy">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80&auto=format&fit=crop" alt="Analytics">
+      </div>
+      <div class="him-side">
+        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop" alt="Healthcare">
+        <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=500&q=80&auto=format&fit=crop" alt="Manufacturing">
+      </div>
+    </div>
+    <div class="hero-imgs-mobile">
+      <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80&auto=format&fit=crop" alt="AI dashboard">
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n" data-target="120" data-suffix="+">0</div><div class="stat-l">Businesses automated</div></div>
+    <div class="stat"><div class="stat-n" data-target="21" data-suffix="">0</div><div class="stat-l">Days to live, once confirmed</div></div>
+    <div class="stat"><div class="stat-n" data-target="340" data-suffix="%">0</div><div class="stat-l">Avg. efficiency gain</div></div>
+    <div class="stat"><div class="stat-n" data-target="5" data-suffix="+">0</div><div class="stat-l">Industry verticals</div></div>
+  </div>
+</div>
+
+<!-- METHOD -->
+<section class="sec" id="method">
+  <div class="sec-label reveal">The Sitfox Method</div>
+  <h2 class="sec-title reveal">We&rsquo;re your guide<br><span style="color:var(--orange)">and</span> your builder.</h2>
+  <p class="sec-body reveal">Most agencies hand you a deck. Most developers build without strategy. Sitfox is the only partner that does both &mdash; under one roof.</p>
+  <div class="method-grid">
+    <div class="mc reveal">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80&auto=format&fit=crop" alt="Strategy">
+      <div class="mc-body">
+        <div class="mc-icon ico-a">🧭</div>
+        <h3>The Strategy</h3>
+        <p>We audit your entire workflow and pinpoint exactly where AI creates leverage. A custom plan with projected ROI before a single dollar is spent.</p>
+        <div class="cklist">
+          <div class="ckrow"><div class="ckdot ckd"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>The Sitfox AI-Stack Audit</div>
+          <div class="ckrow"><div class="ckdot ckd"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom AI tool selection per workflow</div>
+          <div class="ckrow"><div class="ckdot ckd"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>ROI projection before any work begins</div>
+        </div>
+      </div>
+    </div>
+    <div class="mc reveal d1">
+      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80&auto=format&fit=crop" alt="Build">
+      <div class="mc-body">
+        <div class="mc-icon ico-b">⚡</div>
+        <h3>The Build</h3>
+        <p>Our team builds, integrates, and deploys your AI systems end-to-end &mdash; so you never have to manage a developer or figure out the tech yourself.</p>
+        <div class="cklist">
+          <div class="ckrow"><div class="ckdot cko"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Done-for-you AI systems &amp; voice agents</div>
+          <div class="ckrow"><div class="ckdot cko"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Full integration into your existing tools</div>
+          <div class="ckrow"><div class="ckdot cko"><svg viewBox="0 0 7 7"><polyline points="1,3.5 2.5,5.5 6,1.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>30-day post-launch support included</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- TIMELINE -->
+<section class="sec" id="timeline">
+  <div class="sec-label reveal">21-Day Delivery</div>
+  <h2 class="sec-title reveal">Zero to live AI.<br>Three steps.</h2>
+  <p class="sec-body reveal">Once your project is confirmed and we have everything we need, your system is live in 21 days. No endless delays, no moving goalposts.</p>
+  <div class="tl">
+    <div class="tl-row">
+      <div class="tl-card reveal">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop" alt="Audit">
+        <div class="tl-card-body"><h3>AI-Stack Audit</h3><p>We analyze your workflows, bottlenecks, and goals. You receive a prioritized plan with projected ROI for every system we recommend.</p><div class="tl-badge">Days 1 &ndash; 5</div></div>
+      </div>
+      <div class="tl-mid"><div class="tl-num tn1">1</div></div>
+      <div class="tl-empty"></div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-empty"></div>
+      <div class="tl-mid"><div class="tl-num tn2">2</div></div>
+      <div class="tl-card reveal">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80&auto=format&fit=crop" alt="Build">
+        <div class="tl-card-body"><h3>Build &amp; Configure</h3><p>Our team builds your custom AI agents, automations, and integrations. Zero code required on your end. We handle all technical complexity.</p><div class="tl-badge">Days 6 &ndash; 14</div></div>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-card reveal">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&auto=format&fit=crop" alt="Launch">
+        <div class="tl-card-body"><h3>Live Integration</h3><p>Your AI goes live inside your existing tools. We run QA, train your team, and provide 30 days of post-launch support at no extra cost.</p><div class="tl-badge">Days 15 &ndash; 21</div></div>
+      </div>
+      <div class="tl-mid"><div class="tl-num tn3">3</div></div>
+      <div class="tl-empty"></div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- INDUSTRIES -->
+<section class="sec" id="industries">
+  <div class="ind-intro">
+    <div class="reveal">
+      <div class="sec-label">Industry Solutions</div>
+      <h2 class="sec-title">Built for<br>your world.</h2>
+    </div>
+    <p class="sec-body reveal" style="margin:0">Every sector has its own chaos. We&rsquo;ve mapped the highest-leverage AI opportunities for each &mdash; and we&rsquo;ve already built the frameworks to deliver them fast.</p>
+  </div>
+  <div class="ind-grid">
+    <div class="icard feat reveal">
+      <div class="ibar ib2"></div>
+      <div class="feat-inner">
+        <img class="feat-img" src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=700&q=80&auto=format&fit=crop" alt="Manufacturing">
+        <div class="ibody">
+          <span class="iico">🏭</span>
+          <h3>Manufacturing</h3>
+          <p>AI-powered supply chain monitoring, predictive inventory, automated reorder flows, AI-assisted quoting, and lead follow-up systems. Built for manufacturers who need results, not experiments.</p>
+          <div class="itags"><span class="itag">Supply Chain AI</span><span class="itag">Predictive Inventory</span><span class="itag">AI Quoting</span><span class="itag">Lead Automation</span></div>
+          <div class="istat"><div class="istat-n">35%</div><div class="istat-l">avg. stockout reduction</div></div>
+          <div style="margin-top:1.25rem">
+            <a href="https://sitfox.com/manufacturers-guide" style="display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;padding:9px 18px;border-radius:100px;font-size:12.5px;font-weight:700;text-decoration:none;transition:all .22s;margin-right:.5rem">🏭 Get the Free Manufacturer's Guide →</a>
+            <a href="https://sitfox.com/call" style="display:inline-flex;align-items:center;gap:6px;background:rgba(36,39,71,.07);color:var(--ink);padding:9px 18px;border-radius:100px;font-size:12.5px;font-weight:600;text-decoration:none;transition:all .22s;border:1px solid var(--border);margin-top:.5rem">Book a Free Call →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="icard reveal d1">
+      <div class="ibar ib1"></div>
+      <img class="iimg" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop" alt="Medical">
+      <div class="ibody"><span class="iico">🏥</span><h3>Medical Clinics</h3><p>Eliminate scheduling chaos and reduce no-shows with AI-powered patient intake, intelligent triage, and automated appointment management.</p><div class="itags"><span class="itag">Patient Scheduling</span><span class="itag">AI Triage</span><span class="itag">Intake Automation</span></div><div class="istat"><div class="istat-n">60%</div><div class="istat-l">fewer admin hours/week</div></div></div>
+    </div>
+    <div class="icard reveal">
+      <div class="ibar ib3"></div>
+      <img class="iimg" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80&auto=format&fit=crop" alt="Home Services">
+      <div class="ibody"><span class="iico">🏠</span><h3>Home Services</h3><p>AI voice agents answer calls 24/7, qualify prospects, and dispatch jobs automatically &mdash; even at 2am.</p><div class="itags"><span class="itag">AI Voice Dispatch</span><span class="itag">Lead Capture</span></div><div class="istat"><div class="istat-n">3&times;</div><div class="istat-l">leads captured after hours</div></div></div>
+    </div>
+    <div class="icard reveal d1">
+      <div class="ibar ib4"></div>
+      <img class="iimg" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80&auto=format&fit=crop" alt="Real Estate">
+      <div class="ibody"><span class="iico">🏢</span><h3>Real Estate</h3><p>Instant lead qualification and AI-powered property matching. Stop wasting time on unqualified buyers.</p><div class="itags"><span class="itag">Lead Qualification</span><span class="itag">Property Matching</span></div><div class="istat"><div class="istat-n">80%</div><div class="istat-l">faster lead response time</div></div></div>
+    </div>
+    <div class="icard reveal d2">
+      <div class="ibar ib5"></div>
+      <img class="iimg" src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80&auto=format&fit=crop" alt="Law">
+      <div class="ibody"><span class="iico">⚖️</span><h3>Law &amp; Accounting</h3><p>Automate document review, contract summaries, and billing. Recover billable hours lost to admin.</p><div class="itags"><span class="itag">Document Automation</span><span class="itag">Billable Hours</span></div><div class="istat"><div class="istat-n">12+</div><div class="istat-l">hrs recovered per week</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="testi-wrap">
+    <div class="testi-hd">
+      <div class="reveal"><div class="sec-label" style="color:var(--lime)">Client Results</div><h2 class="sec-title">Real businesses.<br>Real outcomes.</h2></div>
+      <p class="sec-body reveal">Owners and operators who were confused about AI &mdash; and needed someone to just build it for them.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal"><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tquote">&ldquo;We went from manually booking 20 appointments a day to fully automated scheduling. Our admin team now focuses on patient care, not paperwork.&rdquo;</p><div class="tsource"><div class="tsource-dot"></div><div class="tsource-text">Medical Clinic Director</div></div></div>
+      <div class="tcard reveal d1"><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tquote">&ldquo;Our AI voice agent answers every call we used to miss after 5pm. It booked us $80k in new jobs in the first 60 days. Unbelievable results.&rdquo;</p><div class="tsource"><div class="tsource-dot"></div><div class="tsource-text">Home Services Business Owner</div></div></div>
+      <div class="tcard reveal d2"><div class="tstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tquote">&ldquo;Sitfox audited our supply chain and deployed a predictive inventory system in under 3 weeks. Stockouts down 40%. The team finally has visibility.&rdquo;</p><div class="tsource"><div class="tsource-dot"></div><div class="tsource-text">COO, Manufacturing Company</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="faq-wrap">
+    <div class="reveal">
+      <div class="sec-label">Common Questions</div>
+      <h2 class="sec-title">Everything you need to know.</h2>
+      <p class="sec-body" style="margin-top:1rem">No jargon. No fluff. Just honest answers about how this works, what it costs, and what to expect.</p>
+      <a href="https://sitfox.com/call" target="_blank" class="btn-main magnetic" style="display:inline-flex;margin-top:2.5rem">Still have questions? &rarr;</a>
+    </div>
+    <div class="faq-list reveal">
+      <div class="fi open"><button class="fq" onclick="tf(this)">How much does AI automation cost?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">Projects typically range from $3,000 to $25,000 depending on complexity. Most businesses see full ROI within 60&ndash;90 days through recovered labour costs and new revenue from AI-handled leads. We always project your ROI before any engagement begins.</div></div></div>
+      <div class="fi"><button class="fq" onclick="tf(this)">Will AI replace my staff?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">No. Sitfox AI handles repetitive, time-consuming tasks &mdash; not skilled people. The goal is to free your team from admin so they focus on what actually matters. Most clients report higher team satisfaction after implementation.</div></div></div>
+      <div class="fi"><button class="fq" onclick="tf(this)">What is an AI voice agent?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">An AI voice agent answers inbound calls using natural conversational AI. It qualifies leads, books appointments, captures details, and routes urgent calls to a human &mdash; with zero staff involvement.</div></div></div>
+      <div class="fi"><button class="fq" onclick="tf(this)">How long does implementation take?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">Once your project is confirmed and we have everything we need, your system is live in 21 days — no endless delays. Simple automations can launch faster; complex multi-system builds may take longer.</div></div></div>
+      <div class="fi"><button class="fq" onclick="tf(this)">Do I need technical knowledge?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">None. Sitfox is a fully done-for-you partner. We handle every technical decision &mdash; from tool selection to deployment. You describe the problem; we build the solution.</div></div></div>
+      <div class="fi"><button class="fq" onclick="tf(this)">What happens after launch?<span class="fq-ico">+</span></button><div class="fa"><div class="fa-in">Every deployment includes 30 days of post-launch support at no extra cost. After 30 days you can continue with a retainer or run independently &mdash; your systems are fully yours.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-outer">
+  <div class="cta-card reveal">
+    <div class="cta-left">
+      <div class="sec-label" style="color:var(--lime)">Free Strategy Call</div>
+      <h2>Ready to stop guessing and start implementing?</h2>
+      <p>Book a free 30-minute AI Roadmap call. We&rsquo;ll map your top 3 automation opportunities and give you a clear next step &mdash; no commitment required.</p>
+    </div>
+    <div class="cta-right">
+      <div class="cta-img-wrap"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80&auto=format&fit=crop" alt="Technology"></div>
+      <a href="https://sitfox.com/call" target="_blank" class="btn-lime magnetic">Book Your Free Call &rarr;</a>
+      <p class="cta-note">No credit card &middot; No commitment &middot; 30 minutes</p>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="sec-label reveal">Get in touch</div>
+      <h2 class="sec-title reveal" style="margin-bottom:1rem">Talk to us about<br><span style="color:var(--orange)">your business.</span></h2>
+      <p class="sec-body reveal" style="margin-bottom:2rem">Whether you have a question, want to explore a project, or just want to learn more — drop us a message and we'll get back to you within 24 hours.</p>
+      <div class="contact-info-items reveal">
+        <a href="mailto:hello@sitfox.com" class="ci-card"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">hello@sitfox.com</div></div></a>
+        <a href="https://sitfox.com/call" class="ci-card"><div class="ci-ico ci-ico-o">📅</div><div><div class="ci-lbl">Prefer a call?</div><div class="ci-val">Book a free 30-min strategy call</div></div></a>
+        <a href="https://sitfox.com/calculator" class="ci-card"><div class="ci-ico" style="background:rgba(199,245,125,.12);border-color:rgba(199,245,125,.3)">📊</div><div><div class="ci-lbl">Not sure where to start?</div><div class="ci-val">Try the Revenue Leak Calculator</div></div></a>
+      </div>
+    </div>
+
+    <div class="contact-form-card reveal">
+      <div class="cf-eyebrow">Send a message</div>
+      <h2>Tell us about<br><em>your business</em></h2>
+      <p class="cf-desc">Fill in the form and a real person on our team will get back to you within 24 hours.</p>
+
+      <form id="homeContactForm" onsubmit="submitHomeForm(event)">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="hf-fname">First name <span class="req">*</span></label>
+            <input type="text" id="hf-fname" name="firstName" placeholder="e.g. James" required>
+          </div>
+          <div class="cf-field">
+            <label for="hf-lname">Last name</label>
+            <input type="text" id="hf-lname" name="lastName" placeholder="e.g. Chen">
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="hf-email">Email address <span class="req">*</span></label>
+          <input type="email" id="hf-email" name="email" placeholder="e.g. james@yourcompany.com" required>
+        </div>
+        <div class="cf-field">
+          <label for="hf-business">Business name</label>
+          <input type="text" id="hf-business" name="businessName" placeholder="e.g. Meridian Group">
+        </div>
+        <div class="cf-field">
+          <label for="hf-website">Website</label>
+          <input type="url" id="hf-website" name="website" placeholder="e.g. https://yoursite.com">
+        </div>
+        <div class="cf-field">
+          <label for="hf-message">Your message <span class="req">*</span></label>
+          <textarea id="hf-message" name="message" placeholder="Tell us about your business and what you'd like help with..." required></textarea>
+        </div>
+        <button class="cf-submit" id="hf-submitBtn" type="submit">
+          <span id="hf-btnText">Send Message</span>
+          <span id="hf-btnArrow">→</span>
+        </button>
+        <p class="cf-privacy">🔒 We never share your details. Ever.</p>
+      </form>
+
+      <div class="cf-success" id="hf-formSuccess">
+        <div class="cf-success-ico">✉️</div>
+        <h3>Message received!</h3>
+        <p>We'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="sf-footer">
+  <div class="sf-foot-inner">
+    <div class="sf-foot-top">
+      <div class="sf-foot-brand">
+        <a href="https://sitfox.com" class="sf-foot-logo">
+          <img src="/images/logo.png" alt="Sitfox" width="34" height="34">
+          <span class="sf-foot-logo-word">Sit<span>Fox</span></span>
+        </a>
+        <p class="sf-foot-tagline">AI & automation systems that reduce costs, save time, and help businesses grow — built by specialists, not generalists.</p>
+        <div class="sf-foot-contacts">
+          <a href="mailto:hello@sitfox.com" class="sf-foot-contact-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            hello@sitfox.com
+          </a>
+          <a href="https://sitfox.com/call" class="sf-foot-contact-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.64 9.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 0h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Book a free strategy call
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="sf-foot-col-title">Company</div>
+        <ul class="sf-foot-col-links">
+          <li><a href="https://sitfox.com">Home</a></li>
+          <li><a href="https://sitfox.com/about">About Us</a></li>
+          <li><a href="https://sitfox.com/contact">Contact</a></li>
+          <li><a href="https://sitfox.com/faqs">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sf-foot-col-title">Free Resources</div>
+        <ul class="sf-foot-col-links">
+          <li><a href="https://sitfox.com/calculator">Revenue Leak Calculator <span class="sf-free-badge">Free</span></a></li>
+          <li><a href="https://sitfox.com/manufacturers-guide">Manufacturer's Guide <span class="sf-free-badge">Free</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sf-foot-col-title">Get started</div>
+        <ul class="sf-foot-col-links">
+          <li><a href="https://sitfox.com/call">Book a Free Call</a></li>
+          <li><a href="https://sitfox.com/calculator">Find Your Revenue Leak</a></li>
+          <li><a href="mailto:hello@sitfox.com">Email Us Directly</a></li>
+        </ul>
+        <a href="https://sitfox.com/contact" class="sf-foot-contact-btn" style="margin-top:1.25rem;display:inline-flex">✉️ &nbsp;Get in Touch</a>
+      </div>
+    </div>
+    <div class="sf-foot-contact-divider"></div>
+    <div class="sf-foot-bottom">
+      <div class="sf-foot-copy">© 2026 Sitfox &nbsp;·&nbsp; <a href="https://sitfox.com">sitfox.com</a> &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; <a href="/privacy">Privacy Policy</a></div>
+      <div class="sf-foot-badges">
+        <div class="sf-foot-badge"><span>🌍</span> 12+ Countries</div>
+        <div class="sf-foot-badge"><span>🤖</span> AI & Automation</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== CUSTOM CURSOR ===== */
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button,.magnetic').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('link-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('link-hover'));
+});
+
+/* ===== MAGNETIC BUTTONS ===== */
+document.querySelectorAll('.magnetic').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.35;
+    const y=(e.clientY-r.top-r.height/2)*.35;
+    el.style.transform=`translate(${x}px,${y}px)`;
+  });
+  el.addEventListener('mouseleave',()=>el.style.transform='');
+});
+
+/* ===== PARTICLE CANVAS ===== */
+(function(){
+  const canvas=document.getElementById('particle-canvas');
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  class Particle{
+    constructor(){this.reset()}
+    reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.size=Math.random()*1.5+.5;this.speedX=(Math.random()-.5)*.4;this.speedY=(Math.random()-.5)*.4;this.opacity=Math.random()*.4+.05;this.color=Math.random()>.5?'rgba(199,245,125,':'rgba(254,136,41,'}
+    update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>W||this.y<0||this.y>H)this.reset()}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fillStyle=this.color+this.opacity+')';ctx.fill()}
+  }
+  let mouseX=-999,mouseY=-999;
+  canvas.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect();mouseX=e.clientX-r.left;mouseY=e.clientY-r.top});
+  canvas.addEventListener('mouseleave',()=>{mouseX=-999;mouseY=-999});
+  for(let i=0;i<80;i++)particles.push(new Particle());
+  function animate(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      const dx=p.x-mouseX,dy=p.y-mouseY;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){const force=(120-dist)/120;p.x+=dx/dist*force*2;p.y+=dy/dist*force*2}
+      p.update();p.draw();
+      particles.forEach(p2=>{
+        const d=Math.sqrt((p.x-p2.x)**2+(p.y-p2.y)**2);
+        if(d<80){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.strokeStyle=`rgba(199,245,125,${.06*(1-d/80)})`;ctx.lineWidth=.5;ctx.stroke()}
+      });
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ===== SCROLL REVEAL ===== */
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== COUNT-UP STATS ===== */
+const statsIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!e.target.classList.contains('counted')){
+      const el=e.target,target=+el.dataset.target,suffix=el.dataset.suffix||'';
+      el.classList.add('counted');
+      let start=0,dur=1800,step=16;
+      const inc=target/(dur/step);
+      const timer=setInterval(()=>{start=Math.min(start+inc,target);el.textContent=Math.round(start)+suffix;if(start>=target)clearInterval(timer)},step);
+    }
+  })
+},{threshold:.5});
+document.querySelectorAll('.stat-n[data-target]').forEach(el=>statsIO.observe(el));
+
+/* ===== FAQ ===== */
+function tf(btn){
+  const i=btn.parentElement,o=i.classList.contains('open');
+  document.querySelectorAll('.fi').forEach(x=>x.classList.remove('open'));
+  if(!o)i.classList.add('open');
+}
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();const t=document.querySelector(a.getAttribute('href'));
+  if(t)t.scrollIntoView({behavior:'smooth'});
+}));
+
+/* ===== TILT CARDS ===== */
+document.querySelectorAll('.mc,.tcard,.tl-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`translateY(-6px) rotateX(${-y*6}deg) rotateY(${x*6}deg)`;
+    card.style.transition='transform .05s ease';
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.transition='transform .4s ease,box-shadow .4s ease'});
+});
+
+/* ===== HERO PARALLAX ===== */
+window.addEventListener('scroll',()=>{
+  const hero=document.querySelector('.hero');
+  if(!hero)return;
+  const scrolled=window.pageYOffset;
+  if(scrolled<hero.offsetHeight){
+    hero.querySelectorAll('img').forEach((img,i)=>{img.style.transform=`translateY(${scrolled*(.08+i*.02)}px)`});
+    hero.querySelectorAll('.orb').forEach((orb,i)=>{orb.style.transform=`translateY(${scrolled*(0.12+i*0.04)}px)`});
+  }
+});
+
+/* ===== GLITCH EFFECT ===== */
+const h1=document.querySelector('.hero h1');
+if(h1){h1.addEventListener('mouseenter',()=>{h1.style.textShadow='2px 0 var(--orange),-2px 0 var(--lime)';setTimeout(()=>{h1.style.textShadow='1px 0 var(--lime),-1px 0 var(--orange)';setTimeout(()=>{h1.style.textShadow=''},80)},60)})}
+
+/* =====================================================
+   CONTACT FORM — make.com webhook (primary) + Formspree (backup)
+   Sends proper JSON to both so make.com always gets
+   clean, mapped field data. No CORS issues.
+===================================================== */
+async function submitHomeForm(e) {
+  e.preventDefault();
+
+  const fname    = document.getElementById('hf-fname').value.trim();
+  const lname    = document.getElementById('hf-lname').value.trim();
+  const email    = document.getElementById('hf-email').value.trim();
+  const business = document.getElementById('hf-business').value.trim();
+  const website  = document.getElementById('hf-website').value.trim();
+  const message  = document.getElementById('hf-message').value.trim();
+
+  if (!fname || !email || !message) return;
+
+  const btn    = document.getElementById('hf-submitBtn');
+  const btnTxt = document.getElementById('hf-btnText');
+  const btnArr = document.getElementById('hf-btnArrow');
+  btn.disabled = true;
+  btnTxt.textContent = 'Sending…';
+  btnArr.innerHTML = '<div class="cf-spinner"></div>';
+
+  const payload = {
+    firstName:    fname,
+    lastName:     lname,
+    email:        email,
+    businessName: business,
+    website:      website,
+    message:      message,
+    source:       'Sitfox Home Page Contact Form',
+    submittedAt:  new Date().toISOString()
+  };
+
+  try {
+    /* ── PRIMARY: make.com webhook ── */
+    const makePromise = fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+
+    /* ── BACKUP: Formspree ── */
+    const formspreePromise = fetch('https://formspree.io/f/mjgjlqjp', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+
+    /* Fire both simultaneously */
+    const [makeRes, formspreeRes] = await Promise.allSettled([makePromise, formspreePromise]);
+
+    /* Show success if either succeeded */
+    const makeOk      = makeRes.status === 'fulfilled' && makeRes.value.ok;
+    const formspreeOk = formspreeRes.status === 'fulfilled' && formspreeRes.value.ok;
+
+    if (makeOk || formspreeOk) {
+      document.getElementById('homeContactForm').style.display = 'none';
+      document.getElementById('hf-formSuccess').style.display  = 'block';
+    } else {
+      throw new Error('Both submissions failed');
+    }
+
+  } catch (err) {
+    console.error('Form error:', err);
+    btn.disabled = false;
+    btnTxt.textContent = 'Send Message';
+    btnArr.innerHTML = '→';
+    alert('Something went wrong. Please try again or email us at hello@sitfox.com');
+  }
+}
+
+document.querySelectorAll('#homeContactForm input').forEach(inp=>{
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&inp.type!=='url')submitHomeForm(e)});
+});
+</script>
+
+<script>
+/* ── "More" dropdown ── */
+function toggleMore(){document.getElementById("sf-more").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest("#sf-more"))document.getElementById("sf-more").classList.remove("open")});
+
+/* ── Mobile drawer ── */
+function toggleDrawer(){
+  document.getElementById("sf-drawer").classList.toggle("open");
+  document.getElementById("sf-burger").classList.toggle("open");
+}
+document.querySelectorAll(".sf-ml,.sf-drawer-cta").forEach(el=>{
+  el.addEventListener("click",()=>{
+    document.getElementById("sf-drawer").classList.remove("open");
+    document.getElementById("sf-burger").classList.remove("open");
+  });
+});
+
+/* ── Nav scroll shadow ── */
+window.addEventListener("scroll",()=>{
+  document.getElementById("sf-nav").classList.toggle("scrolled",window.scrollY>8);
+});
+</script>
+</body>
+</html>
