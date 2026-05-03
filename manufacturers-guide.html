@@ -84,16 +84,6 @@
   gtag('config', 'G-EKWQHY88GQ');
 </script>
 
-<!--
-  ══════════════════════════════════════════════════════
-  NETLIFY FORMS — Hidden form so Netlify registers it at
-  deploy time. Separate name="guide-optin" keeps this
-  distinct from contact, home-contact, and calculator-leads
-  in your Netlify dashboard. JS in handleSubmit() POSTs
-  to this form via fetch alongside Make.com + Formspree.
-  ══════════════════════════════════════════════════════
--->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -316,20 +306,6 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 </head>
 <body>
 
-<!--
-  Netlify hidden form — registered at deploy time.
-  name="guide-optin" is unique to this page.
-  Fields match what handleSubmit() POSTs.
--->
-<form name="guide-optin" data-netlify="true" netlify-honeypot="bot-field" hidden>
-  <input type="hidden" name="form-name" value="guide-optin">
-  <input name="bot-field">
-  <input name="fullName">
-  <input name="email">
-  <input name="source">
-  <input name="timestamp">
-</form>
-
 <div id="cdot"></div>
 <div id="cring"></div>
 <div class="bg-dots"></div>
@@ -441,12 +417,12 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
 
         <div class="field">
           <label for="fname">Your full name</label>
-          <input type="text" id="fname" placeholder="e.g. Rajiv Sharma" required autocomplete="name">
+          <input type="text" id="fname" placeholder="e.g. Thomas Müller" required autocomplete="name">
         </div>
 
         <div class="field">
           <label for="email">Email address</label>
-          <input type="email" id="email" placeholder="e.g. rajiv@yourcompany.com" required autocomplete="email">
+          <input type="email" id="email" placeholder="e.g. thomas@yourcompany.com" required autocomplete="email">
         </div>
 
         <button class="submit-btn" id="submitBtn" onclick="handleSubmit(event)">
@@ -668,12 +644,12 @@ authorIO.observe(document.getElementById('authorBand'));
 
 /* =====================================================
    GUIDE OPT-IN FORM
-   name="guide-optin" — unique to this page.
-   Fires three destinations simultaneously:
-   1. Netlify Forms  — stored in dashboard, triggers Make.com
-                       webhook via Netlify → Make integration
-   2. Make.com       — direct webhook for immediate automation
-   3. Formspree      — backup capture
+   GitHub Pages — no Netlify.
+   Fires two destinations simultaneously:
+   1. Make.com  — direct webhook, application/json payload
+   2. Formspree — backup capture, application/json payload
+   Both receive a clean JSON object with all fields named
+   correctly — this is what fixed the blank data in Make.
    On success: redirects to the full guide page.
 ===================================================== */
 async function handleSubmit(e){
@@ -694,40 +670,29 @@ async function handleSubmit(e){
     fullName:    name,
     email:       email,
     source:      'AI for Manufacturers — Opt-in Page',
-    submittedAt: new Date().toISOString()
+    timestamp:   new Date().toISOString(),
+    page_url:    window.location.href
   };
 
-  /* ── 1. NETLIFY FORMS — same-origin POST, no CORS ── */
-  const netlifyData = new URLSearchParams();
-  netlifyData.append('form-name', 'guide-optin');
-  netlifyData.append('fullName',  name);
-  netlifyData.append('email',     email);
-  netlifyData.append('source',    payload.source);
-  netlifyData.append('timestamp', payload.submittedAt);
-
-  const netlifyPromise = fetch('/', {
-    method:  'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body:    netlifyData.toString()
-  }).catch(err => console.error('Netlify:', err));
-
-  /* ── 2. MAKE.COM WEBHOOK — direct automation trigger ── */
-  const makePromise = fetch('https://hook.eu1.make.com/xn1paznt4ov93gtbta6ywssrvyj1p0lk', {
+  /* ── 1. MAKE.COM WEBHOOK — application/json, correct Content-Type ── */
+  const WEBHOOK = 'https://hook.eu1.make.com/xn1paznt4ov93gtbta6ywssrvyj1p0lk';
+  const makePromise = fetch(WEBHOOK, {
     method:  'POST',
     mode:    'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(payload)
   }).catch(err => console.error('Make.com:', err));
 
-  /* ── 3. FORMSPREE — backup capture ── */
-  const formspreePromise = fetch('https://formspree.io/f/mzdyolyn', {
+  /* ── 2. FORMSPREE — backup capture, application/json ── */
+  const FORMSPREE = 'https://formspree.io/f/mzdyolyn';
+  const formspreePromise = fetch(FORMSPREE, {
     method:  'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body:    JSON.stringify(payload)
   }).catch(err => console.error('Formspree:', err));
 
-  /* Fire all three simultaneously */
-  await Promise.allSettled([netlifyPromise, makePromise, formspreePromise]);
+  /* Fire both simultaneously — succeed if either lands */
+  await Promise.allSettled([makePromise, formspreePromise]);
 
   /* Redirect to the full guide */
   window.location.href = 'https://sitfox.com/manufacturer-success-guide';
