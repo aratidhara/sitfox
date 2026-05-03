@@ -534,10 +534,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* =====================================================
    CONTACT FORM — make.com webhook (primary) + Formspree (backup)
-   Field names aligned with manufacturer-success-guide.html so both
-   pages pass identical structure to the same webhook.
-   Fields: firstName, lastName, email, businessName, website, message,
-           country, industry, ideas, source, timestamp, page_url
+   Identical structure to manufacturer-success-guide.html so
+   both pages arrive in Make as the same raw JSON string in
+   the value field — parsed by one shared Parse JSON module.
+   Fields: firstName, lastName, email, businessName, website,
+           message, country, industry, ideas, source,
+           timestamp, page_url
    country/industry/ideas sent as empty strings (not on this form).
 ===================================================== */
 async function submitForm(e) {
@@ -574,33 +576,28 @@ async function submitForm(e) {
     page_url:     window.location.href
   };
 
-  try {
-    /* ── PRIMARY: make.com webhook ── */
-    const makePromise = fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e', {
-      method:  'POST',
-      mode:    'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload)
-    });
+  /* ── 1. MAKE.COM WEBHOOK — application/json, correct Content-Type ── */
+  const WEBHOOK = 'https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e';
+  const makePromise = fetch(WEBHOOK, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload)
+  }).catch(err => console.error('Make.com:', err));
 
-    /* ── BACKUP: Formspree ── */
-    const formspreePromise = fetch('https://formspree.io/f/mjgjlqjp', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify(payload)
-    });
+  /* ── 2. FORMSPREE — backup capture, application/json ── */
+  const FORMSPREE = 'https://formspree.io/f/mjgjlqjp';
+  const formspreePromise = fetch(FORMSPREE, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body:    JSON.stringify(payload)
+  }).catch(err => console.error('Formspree:', err));
 
-    await Promise.allSettled([makePromise, formspreePromise]);
+  /* Fire both simultaneously — succeed if either lands */
+  await Promise.allSettled([makePromise, formspreePromise]);
 
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  } catch(err) {
-    console.error('Form error:', err);
-    btn.disabled = false;
-    btnTxt.textContent = 'Send Message';
-    btnArr.innerHTML = '→';
-    alert('Something went wrong. Please try again or email us at hello@sitfox.com');
-  }
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
 }
 
 /* Enter in inputs submits */
