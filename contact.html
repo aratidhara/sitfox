@@ -534,10 +534,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* =====================================================
    CONTACT FORM — make.com webhook (primary) + Formspree (backup)
-   Same webhook URL as index.html and call.html.
-   source field identifies this as the Contact page.
-   Field names match across all pages:
-     firstName, lastName, email, businessName, website, message
+   Field names aligned with manufacturer-success-guide.html so both
+   pages pass identical structure to the same webhook.
+   Fields: firstName, lastName, email, businessName, website, message,
+           country, industry, ideas, source, timestamp, page_url
+   country/industry/ideas sent as empty strings (not on this form).
 ===================================================== */
 async function submitForm(e) {
   e.preventDefault();
@@ -565,14 +566,19 @@ async function submitForm(e) {
     businessName: business,
     website:      website,
     message:      message,
+    country:      '',
+    industry:     '',
+    ideas:        '',
     source:       'Sitfox Contact Page',
-    submittedAt:  new Date().toISOString()
+    timestamp:    new Date().toISOString(),
+    page_url:     window.location.href
   };
 
   try {
     /* ── PRIMARY: make.com webhook ── */
     const makePromise = fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e', {
       method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(payload)
     });
@@ -584,17 +590,10 @@ async function submitForm(e) {
       body:    JSON.stringify(payload)
     });
 
-    const [makeRes, formspreeRes] = await Promise.allSettled([makePromise, formspreePromise]);
+    await Promise.allSettled([makePromise, formspreePromise]);
 
-    const makeOk      = makeRes.status === 'fulfilled' && makeRes.value.ok;
-    const formspreeOk = formspreeRes.status === 'fulfilled' && formspreeRes.value.ok;
-
-    if (makeOk || formspreeOk) {
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      throw new Error('Both submissions failed');
-    }
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
   } catch(err) {
     console.error('Form error:', err);
     btn.disabled = false;
