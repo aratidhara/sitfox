@@ -1430,7 +1430,7 @@ async function submitGuideForm(e) {
   const makePromise = fetch(WEBHOOK, {
     method:  'POST',
     mode:    'no-cors',
-    headers: { 'Content-Type': 'text/plain' },
+    headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(payload)
   }).catch(err => console.error('Make.com:', err));
 
