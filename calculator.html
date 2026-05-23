@@ -711,10 +711,10 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   <div class="q-title">Do you use any AI tools in your business right now?</div>
   <div class="q-sub">This calibrates your result based on what's already been addressed vs what's still leaking.</div>
   <div class="choices" id="c7">
-    <button class="choice" onclick="pick('q7','none',this)"><div class="c-radio"></div><div><div class="c-lbl">No AI tools at all</div><div class="c-sub">Starting from scratch — biggest opportunity</div></div><div class="c-ico">🚫</div></button>
-    <button class="choice" onclick="pick('q7','basic',this)"><div class="c-radio"></div><div><div class="c-lbl">Just ChatGPT occasionally</div><div class="c-sub">Manual use, nothing automated</div></div><div class="c-ico">💬</div></button>
-    <button class="choice" onclick="pick('q7','some',this)"><div class="c-radio"></div><div><div class="c-lbl">A few tools, not connected</div><div class="c-sub">Scattered AI, no real workflows</div></div><div class="c-ico">🔧</div></button>
-    <button class="choice" onclick="pick('q7','integrated',this)"><div class="c-radio"></div><div><div class="c-lbl">Integrated AI workflows</div><div class="c-sub">Already automating some processes</div></div><div class="c-ico">⚡</div></button>
+    <button class="choice" onclick="pick('ai','none',this)"><div class="c-radio"></div><div><div class="c-lbl">No AI tools at all</div><div class="c-sub">Starting from scratch — biggest opportunity</div></div><div class="c-ico">🚫</div></button>
+    <button class="choice" onclick="pick('ai','basic',this)"><div class="c-radio"></div><div><div class="c-lbl">Just ChatGPT occasionally</div><div class="c-sub">Manual use, nothing automated</div></div><div class="c-ico">💬</div></button>
+    <button class="choice" onclick="pick('ai','some',this)"><div class="c-radio"></div><div><div class="c-lbl">A few tools, not connected</div><div class="c-sub">Scattered AI, no real workflows</div></div><div class="c-ico">🔧</div></button>
+    <button class="choice" onclick="pick('ai','integrated',this)"><div class="c-radio"></div><div><div class="c-lbl">Integrated AI workflows</div><div class="c-sub">Already automating some processes</div></div><div class="c-ico">⚡</div></button>
   </div>
   <div class="q-nav">
     <button class="btn-back" onclick="go(6)">←</button>
@@ -879,7 +879,8 @@ function pick(key,val,el){
   el.closest('.choices').querySelectorAll('.choice').forEach(c=>c.classList.remove('selected'));
   el.classList.add('selected');
   S[key]=val;
-  const nb=document.getElementById('n'+key.replace('q',''));
+  const btnMap={q1:'n1',q7:'n7',ai:'n7'};
+  const nb=document.getElementById(btnMap[key]||('n'+key.replace('q','')));
   if(nb)nb.disabled=false;
 }
 
