@@ -866,7 +866,7 @@ footer{border-top:1px solid var(--border);padding:2.25rem 3rem}
         </div>
         <div class="cf-field">
           <label for="hf-website">Website</label>
-          <input type="url" id="hf-website" name="website" placeholder="e.g. https://yoursite.com">
+          <input type="text" id="hf-website" name="website" placeholder="e.g. https://yoursite.com">
         </div>
         <div class="cf-field">
           <label for="hf-message">Your message <span class="req">*</span></label>
@@ -1136,7 +1136,7 @@ async function submitHomeForm(e) {
 }
 
 document.querySelectorAll('#homeContactForm input').forEach(inp=>{
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&inp.type!=='url')submitHomeForm(e)});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')submitHomeForm(e)});
 });
 </script>
 
