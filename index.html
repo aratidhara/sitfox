@@ -1096,10 +1096,13 @@ async function submitHomeForm(e) {
 
   try {
     /* ── PRIMARY: make.com webhook ── */
+    const makePayload = {
+      value:     JSON.stringify({ ...payload, timestamp: payload.submittedAt, page: payload.source }),
+    };
     const makePromise = fetch('https://hook.us2.make.com/1cb8dtjgqxn7is7ebqi449wid6yspo6e', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(payload)
+      body:    JSON.stringify(makePayload)
     });
 
     /* ── BACKUP: Formspree ── */
