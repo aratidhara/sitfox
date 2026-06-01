@@ -751,23 +751,28 @@ window.addEventListener("scroll",()=>{
   document.getElementById("sf-nav").classList.toggle("scrolled",window.scrollY>8);
 });
 </script>
-<!-- ── CAL.COM BOOKING SUCCESS DETECTION ── -->
-<!-- Step 5: Listening for cal.com postMessage events.
-     Check browser console after completing a test booking to see the exact event payload.
-     Once confirmed, uncomment the fbq('track','Schedule') line below. -->
+<!-- ── CAL.COM BOOKING SUCCESS → META SCHEDULE ── -->
 <script>
+let scheduleTracked = false;
+
 window.addEventListener("message", function(event) {
   console.log("CAL EVENT:", event.data);
 
-  /* ── Once you confirm the exact event shape from console output,
-     update the condition below and uncomment the Schedule tracking. ── */
-  // Example (update the condition to match actual console output):
-  // if(event.data && (event.data.type === 'bookingSuccessful' || event.data.action === 'booking_successful')){
-  //   if(!window._metaScheduleFired){
-  //     window._metaScheduleFired = true;
-  //     if(typeof fbq === 'function') fbq('track', 'Schedule');
-  //   }
-  // }
+  const data = event.data;
+
+  if (
+    !scheduleTracked &&
+    data &&
+    data.originator === "CAL" &&
+    (
+      data.type === "bookingSuccessful" ||
+      data.type === "bookingSuccessfulV2"
+    )
+  ) {
+    scheduleTracked = true;
+    fbq('track', 'Schedule');
+    console.log("Meta Schedule event fired");
+  }
 });
 </script>
 <!-- ── END CAL.COM DETECTION ── -->
