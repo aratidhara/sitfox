@@ -79,6 +79,26 @@
   gtag('config', 'G-EKWQHY88GQ');
 </script>
 
+<!-- ── META PIXEL ── -->
+<!-- Meta Pixel ID: 828544916691353 -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '828544916691353');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=828544916691353&ev=PageView&noscript=1"
+/></noscript>
+<!-- ── END META PIXEL ── -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -347,7 +367,7 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
     <a href="https://sitfox.com/contact" class="sf-nl">Contact</a>
   </div>
   <div class="sf-nav-right">
-    <button class="sf-nav-cta" onclick="document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">Schedule a Call ↓</button>
+    <button class="sf-nav-cta" onclick="if(typeof fbq==='function') fbq('track','InitiateCheckout'); document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">Schedule a Call ↓</button>
     <button class="sf-burger" id="sf-burger" onclick="toggleDrawer()" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -385,7 +405,7 @@ body.hov #cring{width:46px;height:46px;border-color:rgba(199,245,125,.6)}
       <h1>Book a free<br><em>strategy call</em><br>with Sitfox</h1>
       <p class="hero-sub">In 30 minutes, we'll map out exactly where AI can save your business the most time and money — and give you a clear, actionable plan to get there.</p>
       <div class="hero-actions">
-        <button class="btn-primary" onclick="document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">Schedule a Call →</button>
+        <button class="btn-primary" onclick="if(typeof fbq==='function') fbq('track','InitiateCheckout'); document.getElementById('calendar-section').scrollIntoView({behavior:'smooth'})">Schedule a Call →</button>
         <button class="btn-secondary" onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth'})">Send a message instead ↓</button>
       </div>
       <div class="what-list">
@@ -731,6 +751,26 @@ window.addEventListener("scroll",()=>{
   document.getElementById("sf-nav").classList.toggle("scrolled",window.scrollY>8);
 });
 </script>
+<!-- ── CAL.COM BOOKING SUCCESS DETECTION ── -->
+<!-- Step 5: Listening for cal.com postMessage events.
+     Check browser console after completing a test booking to see the exact event payload.
+     Once confirmed, uncomment the fbq('track','Schedule') line below. -->
+<script>
+window.addEventListener("message", function(event) {
+  console.log("CAL EVENT:", event.data);
+
+  /* ── Once you confirm the exact event shape from console output,
+     update the condition below and uncomment the Schedule tracking. ── */
+  // Example (update the condition to match actual console output):
+  // if(event.data && (event.data.type === 'bookingSuccessful' || event.data.action === 'booking_successful')){
+  //   if(!window._metaScheduleFired){
+  //     window._metaScheduleFired = true;
+  //     if(typeof fbq === 'function') fbq('track', 'Schedule');
+  //   }
+  // }
+});
+</script>
+<!-- ── END CAL.COM DETECTION ── -->
 
 </body>
 </html>
