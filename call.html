@@ -678,16 +678,22 @@ async function submitCallForm(e) {
   btnTxt.textContent = 'Sending…';
   btnArr.innerHTML = '<div class="spinner"></div>';
 
-  const payload = {
+  const innerPayload = {
     firstName:    fname,
     lastName:     lname,
     email:        email,
     businessName: business,
     website:      website,
     message:      message,
-    source:       'Sitfox Book-a-Call Page — Contact Form',
-    submittedAt:  new Date().toISOString()
+    country:      '',
+    industry:     '',
+    ideas:        '',
+    source:       'Sitfox Call Page',
+    timestamp:    new Date().toISOString(),
+    page_url:     'https://sitfox.com/call'
   };
+
+  const payload = { value: JSON.stringify(innerPayload) };
 
   try {
     /* ── PRIMARY: make.com webhook ── */
