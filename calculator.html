@@ -270,12 +270,12 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
 /* ════ INTRO HERO ════ */
-.intro-top{text-align:center;padding:1.75rem 0 2rem;max-width:680px;margin:0 auto}
+.intro-top{text-align:center;padding:2.25rem 0 2.5rem;max-width:680px;margin:0 auto}
 .intro-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-glow);border:1px solid rgba(254,136,41,.22);border-radius:100px;padding:5px 14px;font-size:11px;color:var(--orange);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.25rem}
 .intro-h1{font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:900;line-height:1.06;letter-spacing:-2px;color:var(--ink)}
-.intro-h1 em{font-style:normal;color:var(--orange)}
+.intro-h1 em{font-style:normal;color:var(--ink)}
 
-.intro-hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding-bottom:2.5rem}
+.intro-hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-bottom:3rem}
 
 /* Drain visual */
 .drain-visual{position:relative;height:460px;display:flex;align-items:center;justify-content:center}
@@ -307,8 +307,8 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .dmg-text{color:var(--muted);flex:1;font-size:.72rem}
 .dmg-amt{font-weight:800;color:var(--red);font-size:.76rem;white-space:nowrap}
 
-.intro-content{display:flex;flex-direction:column}
-.intro-sub{font-size:.9rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:1.5rem}
+.intro-content{display:flex;flex-direction:column;gap:.25rem}
+.intro-sub{font-size:.92rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:1.75rem}
 
 /* How it works */
 .how-steps{display:flex;flex-direction:column;margin-bottom:1.75rem;position:relative}
@@ -332,11 +332,35 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 .fact{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);font-weight:400}
 .fact-sep{width:1px;height:14px;background:var(--border)}
 
-.btn-start{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;padding:15px 30px;border-radius:100px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .28s;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(26,28,46,.18);letter-spacing:-.2px;width:100%;justify-content:center}
-.btn-start:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 10px 32px rgba(254,136,41,.4)}
+.btn-start{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--ink);
+  color:#fff;
+  padding:20px 40px;border-radius:100px;
+  font-size:20px;font-weight:800;border:none;cursor:pointer;
+  transition:all .28s;font-family:'Inter',sans-serif;
+  box-shadow:0 6px 32px rgba(26,28,46,.28),0 0 0 0 rgba(254,136,41,.2);
+  letter-spacing:-.3px;width:100%;justify-content:center;
+  animation:ctaPulse 2.8s ease-in-out infinite;
+  position:relative;overflow:hidden;
+}
+.btn-start::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 60%);
+  border-radius:inherit;pointer-events:none;
+}
+@keyframes ctaPulse{
+  0%,100%{box-shadow:0 6px 32px rgba(26,28,46,.28),0 0 0 0 rgba(254,136,41,.2)}
+  50%{box-shadow:0 8px 40px rgba(26,28,46,.35),0 0 0 10px rgba(254,136,41,0)}
+}
+.btn-start:hover{background:var(--orange);color:var(--ink);transform:translateY(-3px);box-shadow:0 14px 48px rgba(254,136,41,.55);animation:none}
+.btn-start:hover .btn-ca{color:var(--ink) !important}
 .btn-start .arr{transition:transform .25s;margin-left:auto}
 .btn-start:hover .arr{transform:translateX(5px)}
-.btn-start-icon{font-size:1rem}
+.btn-start-icon{font-size:1.1rem}
+@media(max-width:768px){
+  .btn-start{width:100%;align-self:center;padding:16px 28px;font-size:16px;}
+}
 
 /* ══ NAV ══ */
 .sf-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);border-bottom:1px solid var(--dark-border);height:64px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;transition:box-shadow .3s}
@@ -423,22 +447,23 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   .sf-nav-centre,.sf-nav-right .sf-nav-cta{display:none}
   .sf-burger{display:flex}
   .sf-nav-right{gap:.25rem}
-  .intro-hero{grid-template-columns:1fr;gap:1.5rem;padding-bottom:1.5rem}
-  /* Drain visual — keep floating cards but anchor them inside the container */
-  .drain-visual{height:360px;order:-1;overflow:visible}
-  .lf-1,.lf-2,.lf-3,.lf-4{font-size:.7rem;padding:.4rem .65rem;gap:5px;white-space:nowrap}
-  .lf-1{top:4%;left:0%;animation-delay:0s}
-  .lf-2{top:4%;right:0%;animation-delay:0.7s}
-  .lf-3{bottom:18%;left:0%;animation-delay:1.4s}
-  .lf-4{bottom:18%;right:0%;animation-delay:2.1s}
-  .intro-content{text-align:left}
-  .intro-facts{gap:.75rem}
+
+  .intro-hero{grid-template-columns:1fr;gap:1rem;padding-bottom:1.5rem}
+
+  /* Hide the big animated visual on mobile — replaced by card grid */
+  .drain-visual{display:none !important;}
+  .drain-mobile-grid{display:grid !important;}
+
+  .intro-content{text-align:left;}
+  .intro-sub{margin-bottom:0;}
+  #btn-start-main{margin-top:1.5rem;margin-bottom:1.5rem;}
+  .intro-facts{gap:.75rem;justify-content:center;}
   .fact-sep{display:none}
   .contact-card{flex-direction:column;align-items:flex-start}
   .btn-contact{width:100%;justify-content:center}
 }
 @media(max-width:600px){
-  .main{padding:108px 1rem 4rem}
+  .main{padding:82px 1rem 4rem}
   .sf-nav{padding:0 1.1rem}
   .sf-footer{padding:3rem 1.25rem 1.5rem}
   .sf-foot-top{grid-template-columns:1fr}
@@ -449,7 +474,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   .gate-card{padding:1.5rem 1.25rem}
   .gate-trust{gap:.75rem}
   .btn-book{font-size:14px;padding:13px 20px}
-  .intro-top{padding:1.25rem 0 1.5rem}
+  .intro-top{padding:.75rem 0 1rem}
   /* Smaller visual height, cards stay visible but tighter */
   .drain-visual{height:300px}
   .lf-1,.lf-2,.lf-3,.lf-4{font-size:.65rem;padding:.32rem .55rem;gap:4px}
@@ -468,6 +493,35 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
   .lh-amount{letter-spacing:-2px}
   .cta-h{letter-spacing:-1px}
 }
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-mobile-cta{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:9990;
+  padding:.75rem 1.25rem calc(.75rem + env(safe-area-inset-bottom));
+  background:rgba(250,249,246,.95);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--border);
+  box-shadow:0 -4px 24px rgba(26,28,46,.1);
+}
+.sticky-mobile-cta button{
+  width:100%;background:var(--ink);color:#fff;
+  padding:14px 20px;border-radius:100px;
+  font-size:15px;font-weight:700;border:none;cursor:pointer;
+  transition:background .25s;font-family:'Inter',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.sticky-mobile-cta button:hover{background:var(--orange);}
+.sticky-mobile-cta button:active{transform:scale(.98);}
+/* Show only on mobile when intro screen is visible */
+@media(max-width:768px){
+  .sticky-mobile-cta{display:block;}
+  /* Extra bottom padding on main so content isn't hidden behind sticky bar */
+  .main{padding-bottom:5.5rem;}
+}
 </style>
 </head>
 <body>
@@ -475,6 +529,13 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 <div class="cur-dot" id="cdot"></div>
 <div class="cur-ring" id="cring"></div>
 <div class="toast" id="toast"></div>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-mobile-cta" id="sticky-mobile-cta">
+  <button onclick="startCalculator()">
+    <span>🔍</span> Calculate My Revenue Leak →
+  </button>
+</div>
 
 <!-- NAV -->
 <nav class="sf-nav" id="sf-nav">
@@ -545,7 +606,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 <div class="screen active" id="screen-intro">
   <div class="intro-top">
     <div class="intro-badge"><span class="pulse"></span>Free Revenue Leak Calculator &middot; 2 min</div>
-    <h1 class="intro-h1">Find out exactly how much<br>your business <em>leaks every month.</em></h1>
+    <h1 class="intro-h1">Find out exactly how much<br><em>your business leaks every month.</em></h1>
   </div>
 
   <div class="intro-hero">
@@ -572,7 +633,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
       </div>
     </div>
     <!-- Mobile: static card grid (floating cards hidden on small screens) -->
-    <div class="drain-mobile-grid">
+    <div class="drain-mobile-grid" style="order:3">
       <div class="dmg-card"><span class="dmg-icon">📞</span><span class="dmg-text">Missed calls</span><span class="dmg-amt" id="dmg-amt-1">-$840</span></div>
       <div class="dmg-card"><span class="dmg-icon">⚙️</span><span class="dmg-text">Admin waste</span><span class="dmg-amt" id="dmg-amt-2">-$1,200</span></div>
       <div class="dmg-card"><span class="dmg-icon">🔄</span><span class="dmg-text">Follow-up</span><span class="dmg-amt" id="dmg-amt-3">-$560</span></div>
@@ -581,6 +642,18 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
 
     <div class="intro-content">
       <p class="intro-sub">Most business owners lose thousands every month to missed calls, wasted admin time, and slow follow-ups — without ever realising it. This calculator shows you the exact dollar amount in under 2 minutes, broken down into 3 categories.</p>
+      <button class="btn-start" id="btn-start-main" onclick="startCalculator()">
+        <span class="btn-start-icon">🔍</span>
+        <span><span class="btn-ca" style="color:var(--orange);font-weight:900">Ca</span><span style="color:#fff;font-weight:800">lculate My Revenue Leak</span></span>
+        <span class="arr" style="color:#fff;">→</span>
+      </button>
+      <div class="intro-facts" style="margin-top:1.25rem;margin-bottom:1.25rem">
+        <div class="fact">✓ Takes 2 minutes</div>
+        <div class="fact-sep"></div>
+        <div class="fact">✓ Personalised report</div>
+        <div class="fact-sep"></div>
+        <div class="fact">✓ Free</div>
+      </div>
       <div class="how-steps">
         <div class="how-step">
           <div class="how-step-num">1</div>
@@ -604,18 +677,6 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
           </div>
         </div>
       </div>
-      <div class="intro-facts">
-        <div class="fact">⚡ Result in 2 mins</div>
-        <div class="fact-sep"></div>
-        <div class="fact">📊 Personalised breakdown</div>
-        <div class="fact-sep"></div>
-        <div class="fact">🎯 Free strategy call</div>
-      </div>
-      <button class="btn-start" onclick="go(1)">
-        <span class="btn-start-icon">🔍</span>
-        Calculate My Revenue Leak
-        <span class="arr">→</span>
-      </button>
       <div class="intro-social-proof">
         <div class="sp-avatars">
           <div class="sp-av">JD</div><div class="sp-av">MR</div><div class="sp-av">KL</div><div class="sp-av">+</div>
@@ -843,7 +904,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.18)}
       <div class="cta-eyebrow">🎯 Free strategy call · 30 minutes · No commitment</div>
       <div class="cta-h" id="cta-h">Stop losing money.<br>Let's fix it.</div>
       <div class="cta-p">Book a free call with our team. We'll map exactly which AI systems will recover this leak, show you the ROI, and give you a clear plan — no obligation.</div>
-      <a href="https://sitfox.com/call" target="_blank" class="btn-book" onclick="if(typeof fbq==='function') fbq('trackCustom','Schedule');">📅 Book My Free Strategy Call →</a>
+      <a href="https://sitfox.com/call" target="_blank" class="btn-book" onclick="trackGA('book_call_click',{location:'results_cta'});trackMeta('BookCallClick',{location:'results_cta'});">📅 Book My Free Strategy Call →</a>
       <div class="cta-urgency">⚡ Most spots go within 48 hours</div>
     </div>
 
@@ -878,6 +939,32 @@ if(window.innerWidth > 768){
   (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
 }
 
+/* ── ANALYTICS HELPERS ── */
+function trackGA(eventName,params){
+  try{if(typeof gtag==='function')gtag('event',eventName,params||{});}catch(e){}
+}
+function trackMeta(eventName,params){
+  try{if(typeof fbq==='function')fbq('trackCustom',eventName,params||{});}catch(e){}
+}
+
+/* ── START CALCULATOR (fires calculator_start / CalculatorStart) ── */
+function startCalculator(){
+  trackGA('calculator_start');
+  trackMeta('CalculatorStart');
+  // Hide sticky CTA and visual mobile CTA once quiz begins
+  const sc=document.getElementById('sticky-mobile-cta');
+  if(sc)sc.style.display='none';
+  go(1);
+}
+
+/* ── STICKY CTA VISIBILITY ── */
+// Show only on intro screen; hide once calculator starts
+function updateStickyCTA(screenId){
+  const sc=document.getElementById('sticky-mobile-cta');
+  if(!sc)return;
+  sc.style.display=(screenId==='intro')?'':'none';
+}
+
 /* ── STATE ── */
 const S={q1:null,hourly:20,missed:5,deal:0,admin:8,fu:5,ai:null};
 const qLabels=['','Team Size','Hourly Cost','Missed Leads','Deal Value','Admin Hours','Follow-up','AI Status'];
@@ -888,7 +975,16 @@ function go(n){
   const id=n==='calc'?'screen-calc':n==='result'?'screen-result':n==='intro'?'screen-intro':n==='gate'?'screen-gate':'screen-'+n;
   document.getElementById(id).classList.add('active');
   updateProg(n);
+  updateStickyCTA(n==='intro'?'intro':'other');
   window.scrollTo({top:0,behavior:'smooth'});
+  // calculator_halfway — fires when user reaches Q4
+  if(n===4){trackGA('calculator_halfway');trackMeta('CalculatorHalfway');}
+  // calculator_complete — fires when user completes Q7 (moves to calc screen)
+  if(n==='calc'){trackGA('calculator_complete');trackMeta('CalculatorComplete');}
+  // lead_form_view — fires when gate (name/email form) becomes visible
+  if(n==='gate'){trackGA('lead_form_view');}
+  // results_view — fires when result screen is shown
+  if(n==='result'){trackGA('results_view');}
 }
 
 function updateProg(n){
@@ -1030,6 +1126,10 @@ async function submitGate(){
   window._leadName=name;
   window._leadEmail=email;
 
+  /* ── Tracking: lead submitted ── */
+  trackGA('lead_submit',{email_domain:email.split('@')[1]||''});
+  trackMeta('Lead',{email:email});
+
   /* ── Make.com webhook ──
      mode:no-cors + Content-Type:text/plain avoids CORS preflight.
      text/plain is a "simple" header the browser sends without blocking.
@@ -1100,12 +1200,6 @@ function render(){
 
   document.getElementById('cta-h').innerHTML='Stop losing $'+total.toLocaleString()+'/mo.<br>Let\'s fix it.';
   go('result');
-
-  /* ── META: Lead event — fires once when results are first revealed ── */
-  if(!window._metaLeadFired){
-    window._metaLeadFired=true;
-    if(typeof fbq==='function') fbq('track','Lead');
-  }
 }
 
 /* ── SHARE ── */
@@ -1129,8 +1223,26 @@ function restart(){
   document.querySelectorAll('.bcard').forEach(c=>c.classList.remove('in'));
   document.querySelectorAll('.bcard-bar').forEach(b=>b.style.width='0');
   window._R=null;
+  // Restore sticky CTA for intro screen
+  const sc=document.getElementById('sticky-mobile-cta');
+  if(sc)sc.style.display='';
   go('intro');
 }
+
+/* ── CAL.COM: Schedule event ──
+   Cal.com fires a postMessage when a booking is confirmed.
+   We listen for it here and send to GA4 + Meta.
+   This works when cal.com is embedded as an iframe on /call.
+   For a redirect flow (new tab), add this same listener on the /call page too.
+── */
+window.addEventListener('message',function(e){
+  if(!e.data||typeof e.data!=='object')return;
+  // Cal.com booking confirmed event
+  if(e.data.type==='bookingSuccessful'||e.data.action==='bookingSuccessful'){
+    trackGA('meeting_booked',{source:'cal_com'});
+    try{if(typeof fbq==='function')fbq('track','Schedule');}catch(err){}
+  }
+});
 
 /* ── TOAST ── */
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
