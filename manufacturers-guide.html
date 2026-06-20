@@ -807,7 +807,7 @@ async function handleSubmit(e){
   await Promise.allSettled([makePromise, formspreePromise]);
 
   /* ── TRACKING: fire Meta Lead event + GA4 generate_lead ── */
-  if(typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if(typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'manufacturers_guide_optin'});
   if(typeof gtag !== 'undefined') gtag('event', 'generate_lead', {
     event_category: 'form',
     event_label: 'manufacturers_guide_optin'
