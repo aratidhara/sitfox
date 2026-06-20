@@ -1479,7 +1479,7 @@ async function submitGuideForm(e) {
   await Promise.allSettled([makePromise, formspreePromise]);
 
   /* ── TRACKING: Meta Lead + GA4 contact_form_submit ── */
-  if(typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if(typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'manufacturer_guide_contact_form'});
   if(typeof gtag !== 'undefined') gtag('event', 'generate_lead', {
     event_category: 'form',
     event_label: 'success_guide_contact_form'
